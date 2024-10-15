@@ -13,13 +13,13 @@ class Boundary { // to be used as a base class for other boundaries
     displaySuccess(successMsgString, successElementId) {
         console.log("Success!");
         var errorMsg = document.getElementById(successElementId);
-        errorMsg.innerHTMl = successMsgString;
+        errorMsg.innerHTML = successMsgString;
     }
 
     displayError(errorMsgString, errorElementId) {
         console.log("An Error has occurred, please try again.");
         var errorMsg = document.getElementById(errorElementId);
-        errorMsg.innerHTMl = errorMsgString;
+        errorMsg.innerHTML = errorMsgString;
     }
 
     /* *
