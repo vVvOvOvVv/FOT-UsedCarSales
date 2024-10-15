@@ -1,14 +1,17 @@
 <html>
     <head>
         <title>FOT - Create User Profile</title>
-    </head>
-
-    <script type="text/javascript" src="../../backend/controllers/CreateUserProfileController.js"></script>
+    </head> 
+    <script type="module" src="../../backend/boundaries/CreateUserProfileUI.js"></script>
     
     <body>
-        <h1>Create a User Profile</h1>
+        <h1>Create a User Profile</h1> 
         <table>
             <caption>Enter profile information</caption>
+            <caption> Note that this information will be made public and visible to all.</caption>
+            <tr>
+                <td id="resultMsg"></td>
+            </tr>
             <tr>
                 <td><img src="../assets/placeholder.png" height="100" width="100"></td>
                 <td>Change profile picture</td>
@@ -21,6 +24,10 @@
             <tr>
                 <td>Location</td>
                 <td><input type="text" id="location"/></td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td><input type="text" id="role"/></td>
             </tr>
             <tr>
                 <td>Contact Phone</td>
