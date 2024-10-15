@@ -1,0 +1,3 @@
+class CreateUserProfileController extends UseCaseController {
+    
+}
