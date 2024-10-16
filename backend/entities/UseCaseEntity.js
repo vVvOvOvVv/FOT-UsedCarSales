@@ -1,11 +1,14 @@
 import Data from "../data/Data.js";
 class Entity {
-    /* * 
-     * enforce the following field format/order:
-     * entityType : {
-     *  identifier : {identifierName: value}
-     *  additional information
-     * }
+    /* * enforce the following structure:
+     * data = {
+            "entityType": entityVal,
+            "identifiers": 
+                [{"identifierKey": identifierVal}], 
+            "entityInformation":
+                [{...: ...}, 
+                {...: ...}]
+        }
      */
     // static dataFile = "../data/Data.json";
  
@@ -16,11 +19,11 @@ class Entity {
         return /^[0-9]*$/.test(str);
     }
 
-    static searchJSON(entityKey, entityValue, identifierKey, identifierValue) {
+    searchJSON(entityKey, entityValue, identifierKey, identifierValue) {
         
     }
 
-    static writeJSON(data) {
+    writeJSON(data) {
         // console.log(data);
         // const dataJSON = JSON.stringify(data); // stringify data into JSON string
 
