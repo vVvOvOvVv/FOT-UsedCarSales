@@ -3,10 +3,14 @@ import Controller from "./UseCaseController.js"
 
 class CreateUserProfileController extends Controller {
     
-    static submitUserProfile(p) {
-        var result = UserProfile.submitUP(p);
-        console.log("controller: " + result);
-        return result;
+    submitUserProfile(p) {
+        try {
+            var userProfile = new UserProfile();
+            var result = userProfile.submitUP(p); 
+            return result; 
+        } catch (err) {
+            throw err; // throws back to the boundary
+        }
     }
 }
 

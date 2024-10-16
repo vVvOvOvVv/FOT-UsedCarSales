@@ -8,38 +8,29 @@
         <h1>Create a User Profile</h1> 
         <table>
             <caption>Enter profile information</caption>
-            <caption> Note that this information will be made public and visible to all.</caption>
             <tr>
                 <td id="resultMsg"></td>
             </tr>
             <tr>
-                <td><img src="../assets/placeholder.png" height="100" width="100"></td>
-                <td>Change profile picture</td>
-                <td><button>Browse</button></td>
+                <td>Role</td> 
+            <tr>
+                <td>
+                    <select name="Select a role" id="role">
+                        <option value="user admin">User Admin</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                        <option value="used car agent">Used Car Agent</option>
+                    </select>
+                </td> 
+            </tr> 
+            <tr>
+                <td>Role description</td>
             </tr>
             <tr>
-                <td>Display Name</td>
-                <td><input type="text" id="displayName"/></td>
-            </tr>
-            <tr>
-                <td>Location</td>
-                <td><input type="text" id="location"/></td>
-            </tr>
-            <tr>
-                <td>Role</td>
-                <td><input type="text" id="role"/></td>
-            </tr>
-            <tr>
-                <td>Contact Phone</td>
-                <td><input type="text" id="phone"/></td>
-            </tr>
-            <tr>
-                <td>Contact Email</td>
-                <td><input type="text" id="email"/></td>
-            </tr>
-            <tr>
-                <td><button id="submit">Submit</button></td>
+                <td><input type="text" id="roleDesc"
+                    height="200" width="500"/></td>
             </tr>
         </table>
+        <button id="submit">Submit</button>
     </body>
 </html>
