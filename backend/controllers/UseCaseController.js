@@ -3,4 +3,4 @@ class Controller {
     // add common functions here
 }
 
-export default AbortController;
+export default Controller;

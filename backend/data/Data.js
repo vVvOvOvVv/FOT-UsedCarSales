@@ -1,5 +1,5 @@
 class Data {
     // can enter test data here
-    static dataListJSON = []; // JSON data
+    static userProfiles = [];
 } 
 export default Data;

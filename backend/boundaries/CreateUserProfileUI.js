@@ -1,21 +1,21 @@
-import UserProfile from "../entities/UserProfile.js";
 import CreateUserProfileController from "../controllers/CreateUserProfileController.js"; 
 import Boundary from "./UseCaseBoundary.js"
 
 class CreateUserProfileUI extends Boundary { 
     onSubmit() {
-        console.log("Submit button clicked!");
-        var role = document.getElementById("role").value;
-        // console.log("Chosen role: " + role);
-        var roleDesc = document.getElementById("roleDesc").value;
-        // console.log("Entered description: " + roleDesc);
+        // console.log("Submit button clicked!");
+        var submitState = true;
         var errorMsg = ""; 
 
-        try { 
-            var p = new UserProfile(role, roleDesc);
+        try {   
+            var role = document.getElementById("role").value;
+            if (role.length <= 0) {// no text entered
+                submitState = false;
+                throw "ERROR: role name cannot be empty"
+            } 
+            var roleDesc = document.getElementById("roleDesc").value; 
             var controller = new CreateUserProfileController();
-            var submitState = controller.submitUserProfile(p);
-            // console.log("From controller: " + submitState);
+            submitState = controller.submitUserProfile(role, roleDesc); 
         } catch (err) {
             console.error(err); 
             errorMsg = err;

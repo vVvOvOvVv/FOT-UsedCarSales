@@ -1,36 +1,43 @@
-import Entity from "./UseCaseEntity.js"; 
+import Data from "../data/Data.js" 
 
-class UserProfile extends Entity {
+class UserProfile{   
     static lastProfileId = 0;
-    profileId; 
-
-    constructor(role, roleDesc) {
-        super();
-        this.profileId = UserProfile.lastProfileId++;
-        this.role = role;
-        this.roleDesc = roleDesc; 
+    
+    init() { 
+        if (UserProfile.lastProfileId == null)
+            UserProfile.lastProfileId = 0;
     }
 
-    submitUP() {
+    submitUP(role, roleDesc) {
+        this.init();
         // attempt to enter into the JSON 
         var isSuccess = true;
-        var data = {
-            "entityType": "userProfile",
+        var profileId = UserProfile.lastProfileId++;
+
+        var data = { 
             "identifiers": 
-                [{"profileId": this.profileId}], 
+                [{"profileId": profileId}], 
             "entityInformation":
-                [{"role": this.role}, 
-                {"roleDescription": this.roleDesc}]
+                [{"role": role}, 
+                {"roleDescription": roleDesc}]
         }
         try {
             this.writeJSON(data);   
         } catch (err) {  
-            isSuccess = false;
+            isSuccess = false; 
             throw err;
         } finally {
             return isSuccess;
         }
-    }
-}
+    } 
 
+    writeJSON(data) {  
+        // write data into JSON
+        try {
+            Data.userProfiles.push(data);
+        } catch (err) {  
+            throw "Unable to write to JSON"; 
+        } 
+    }
+} 
 export default UserProfile;

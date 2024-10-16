@@ -20,14 +20,15 @@ class Boundary { // to be used as a base class for other boundaries
         console.log("An Error has occurred, please try again.");
         var errorMsg = document.getElementById(errorElementId);
         errorMsg.innerHTML = errorMsgString;
-    }
+    } 
 
-    /* *
-     * take in relevant info from the page and process
-     */
-    onSubmit() {
-        
-    }
+    // format/field checks 
+    isAlphabet(str) {
+        return /^[a-z]*$/gi.test(str);
+      }
+    isNumeric(str) {
+        return /^[0-9]*$/.test(str);
+    } 
 }
 
 export default Boundary;
