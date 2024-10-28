@@ -17,7 +17,8 @@ class Boundary { // to be used as a base class for other boundaries
     }
 
     displayError(errorMsgString, errorElementId) {
-        console.log("An Error has occurred, please try again.");
+        console.log("An Error has occurred, please try again. \n"
+            + "ERR: " + errorMsgString);
         var errorMsg = document.getElementById(errorElementId);
         errorMsg.innerHTML = errorMsgString;
     } 

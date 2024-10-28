@@ -1,7 +1,6 @@
-import UserProfile from "../entities/UserProfile.js";
-import Controller from "./UseCaseController.js"; // base class
+import UserProfile from "../entities/UserProfile.js"; 
 
-class CreateUserProfileController extends Controller {  
+class CreateUserProfileController{  
     submitUserProfile(role, roleDesc) {
         var p = new UserProfile();
         try {  

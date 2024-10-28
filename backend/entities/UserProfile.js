@@ -1,11 +1,11 @@
 import Data from "../data/Data.js" 
 
 class UserProfile{   
-    static lastProfileId = 0;
+    static lastProfileId = 1;
     
     init() { 
         if (UserProfile.lastProfileId == null)
-            UserProfile.lastProfileId = 0;
+            UserProfile.lastProfileId = 1;
     }
 
     submitUP(role, roleDesc) {
@@ -16,11 +16,11 @@ class UserProfile{
 
         var data = { 
             "identifiers": 
-                [{"profileId": profileId}], 
+                {"profileId": profileId}, 
             "entityInformation":
-                [{"role": role}, 
-                {"roleDescription": roleDesc}]
-        }
+                {"role": role, 
+                "roleDescription": roleDesc
+        }}
         try {
             this.writeJSON(data);   
         } catch (err) {  

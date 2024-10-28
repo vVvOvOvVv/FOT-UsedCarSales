@@ -8,10 +8,10 @@ class CreateUserProfileUI extends Boundary {
         var errorMsg = ""; 
 
         try {   
-            var role = document.getElementById("role").value;
+            var role = document.getElementById("role").value.toLower();
             if (role.length <= 0) {// no text entered
                 submitState = false;
-                throw "ERROR: role name cannot be empty"
+                throw "ERROR: role name cannot be empty";
             } 
             var roleDesc = document.getElementById("roleDesc").value; 
             var controller = new CreateUserProfileController();
