@@ -5,7 +5,7 @@ class UserAccount {
     
     init() { 
         if (UserAccount.lastAccountId == null)
-            UserAccount.lastAccountId = 1;
+            UserAccount.lastAccountId = 3; // already have 3 accounts in the JSON - for testing
     }
 
     submitUA(name, email, password) {
