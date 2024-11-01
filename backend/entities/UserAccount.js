@@ -1,7 +1,19 @@
 import Data from "../data/Data.js" 
+/* example structure ===================================
+static userAccounts = [
+        {"identifiers":
+            {"accountId": 0},
+        "entityInformation":
+            {"name": "Alex",
+            "roleId": 0,
+            "email": "alex@gmail.com",
+            "password": "a1",
+            "status": "active"}
+    }];
+*/
 
 class UserAccount {
-    static lastAccountId = 1;
+    static lastAccountId = 3;
     
     init() { 
         if (UserAccount.lastAccountId == null)
