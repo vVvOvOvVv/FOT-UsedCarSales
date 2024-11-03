@@ -1,5 +1,5 @@
-import CreateUserProfileController from "../controllers/CreateUserProfileController.js"; 
-import Boundary from "./UseCaseBoundary.js"
+import CreateUserProfileController from "../../controllers/adminFunctions/CreateUserProfileController.js"; 
+import Boundary from "../UseCaseBoundary.js"
 
 class CreateUserProfileUI extends Boundary { 
     onSubmit() {

@@ -1,4 +1,4 @@
-import UserAccount from "../entities/UserAccount.js";
+import UserAccount from "../../entities/UserAccount.js";
 
 class SuspendUserAccountController{
     suspendUserAccount(accountId) {

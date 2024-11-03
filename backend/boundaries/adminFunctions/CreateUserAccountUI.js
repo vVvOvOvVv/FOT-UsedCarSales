@@ -1,5 +1,5 @@
-import SubmitUserAccountController from "../controllers/SubmitUserAccountController.js"; 
-import Boundary from "./UseCaseBoundary.js"
+import SubmitUserAccountController from "../../controllers/adminFunctions/SubmitUserAccountController.js"; 
+import Boundary from "../UseCaseBoundary.js"
 
 class CreateUserAccountUI extends Boundary {
     onSubmit() {
