@@ -31,7 +31,8 @@ class UserAccount {
             "entityInformation":
                 {"name": name,
                 "email": email,
-                "password": password
+                "password": password,
+                "status": "active"
         }};
         try{
             this.writeJSON(data);
