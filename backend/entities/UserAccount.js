@@ -113,5 +113,26 @@ class UserAccount {
         }
             return successFlag;
     }
+
+    searchA(accountId) {
+        var account;
+        try {
+            if (Data.userAccounts == null)
+                throw "Account data missing"
+            else {
+                for (var i = 0; i < Data.userAccounts.length; i++) {
+                    if (Data.userAccounts[i].identifiers.accountId == accountId) {
+                        account = Data.userAccounts[i];
+                        break;
+                    }
+                }
+                if (account == null)
+                    throw "Account could not be found"
+            }
+        } catch (err) {
+            throw err;
+        }
+        return account;
+    }
 }
 export default UserAccount;

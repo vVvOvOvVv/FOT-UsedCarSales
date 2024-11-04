@@ -33,6 +33,7 @@ class Data {
         "entityInformation":
             {"name": "Cassandra",
             "profileId": 0,
+            "email": "cass@gmail.com",
             "password": "c1",
             "status": "active"
             }
