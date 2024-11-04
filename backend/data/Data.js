@@ -12,6 +12,7 @@ class Data {
             {"accountId": 0},
         "entityInformation":
             {"name": "Alex",
+            "profileId": 0,
             "email": "alex@gmail.com",
             "password": "a1",
             "status": "active"}
@@ -20,6 +21,7 @@ class Data {
             {"accountId": 1},
         "entityInformation":
             {"name": "Bob",
+            "profileId": 0,
             "email": "bob@gmail.com",
             "password": "b1",
             "status": "active"
@@ -29,7 +31,7 @@ class Data {
             {"accountId": 2},
         "entityInformation":
             {"name": "Cassandra",
-            "email": "cass@gmail.com",
+            "profileId": 0,
             "password": "c1",
             "status": "active"
             }

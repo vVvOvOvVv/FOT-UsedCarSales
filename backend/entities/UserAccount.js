@@ -56,7 +56,15 @@ class UserAccount {
     suspendUA(accountId) {
         var isSuccess;
         try {
-            var accData = this.viewUA(accountId);
+            // attempt to find user account
+            var accData;
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].identifiers.accountId == accountId) {
+                    accData = Data.userAccounts[i];
+                    break;
+                }
+            }
+
             if (accData != null) {
                 if (accData.entityInformation.status == "suspended") {
                     throw "Account " + accountId + " is already suspended!";
@@ -73,11 +81,11 @@ class UserAccount {
         return isSuccess;
     }
 
-    viewUA(accountId) { 
-        for (var i = 0; i < Data.userAccounts.length; i++) {
-            if (Data.userAccounts[i].identifiers.accountId == accountId)
-                return Data.userAccounts[i];
-        }
+    getUserAccount() {
+        if (Data.userAccounts == null) // array doesn't exist
+            return null;
+        else
+            return Data.userAccounts;
     }
 }
 export default UserAccount;
