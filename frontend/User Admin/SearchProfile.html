@@ -104,7 +104,7 @@
                 <form onsubmit="return showResult();">
                     <div>
                         <label for="profile">Enter the profile name to search:</label>
-                        <input type="text" id="profile" placeholder="Enter profile name" />
+                        <input type="text" id="profileId" placeholder="Enter profile ID" />
                     </div><br/>
 
                     <button class="button" id="search" type="submit">Search</button>
@@ -136,16 +136,16 @@
 
         <script type="text/javascript">
         function showResult() {
-            const profile = document.getElementById("profile").value.toLowerCase();
+            const profileId = document.getElementById("profileId").value;
 
             // Check if the input is 'user admin', then display the result
-            if (profile === "user admin") {
+            if (profileId === "0") {
                 document.getElementById("admin").style.display = "block"; // Show the div
-            } else if (profile === "buyer") {
+            } else if (profileId === "1") {
                 document.getElementById("buyer").style.display = "block";
-            } else if (profile === "seller") {
+            } else if (profileId === "2") {
                 document.getElementById("seller").style.display = "block";
-            } else if (profile === "used car agent") {
+            } else if (profileId === "3") {
                 document.getElementById("agent").style.display = "block";
             } else {
                 alert("Profile not found");
