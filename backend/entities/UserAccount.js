@@ -87,5 +87,31 @@ class UserAccount {
         else
             return Data.userAccounts;
     }
+
+    updateUA(accountId, name, profileId) {
+        var account;
+        var successFlag = true;
+        for (var i = 0; i < Data.userAccounts.length; i++) {
+            if (Data.userAccounts[i].identifiers.accountId == accountId) {
+                account = Data.userAccounts[i];
+                break;
+            }
+        }
+
+        try {
+            if (account != null) {
+                if (name != "")
+                    account.entityInformation.name = name;
+                if (profileId != "")
+                    account.entityInformation.profileId = profileId;
+            } else {
+                throw `Account with ID ${accountId} could not be found`;
+            }
+        } catch (err) {
+            successFlag = false;
+            throw err; // propagate error message to the controller, caught by boundary
+        }
+            return successFlag;
+    }
 }
 export default UserAccount;
