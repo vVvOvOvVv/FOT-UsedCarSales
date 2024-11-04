@@ -138,6 +138,8 @@ class UserAccount {
     doSignInWithEmailAndPassword(email, pass) {
         var successFlag = false;
         try {
+            if (Data.userAccounts == null)
+                throw "Account data missing";
             for (var i = 0; i < Data.userAccounts.length; i++) {
                 if (Data.userAccounts[i].entityInformation.email == email &
                     Data.userAccounts[i].entityInformation.password == pass)
@@ -145,6 +147,27 @@ class UserAccount {
             }
             if (!successFlag)
                 throw "Login credentials do not match"
+        } catch (err) {
+            throw err;
+        }
+        return successFlag;
+    }
+
+    logout(accountId) {
+        // just ensure logging out is successful
+        // i.e. logging out of a valid account
+        var successFlag = false;
+        try {
+            if (Data.userAccounts == null)
+                throw "Account data missing";
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].identifiers.accountId == accountId) {
+                    successFlag = true;
+                    break;
+                }
+            }
+            if (!successFlag)
+                throw "Invalid account that you are attempting to log out of";
         } catch (err) {
             throw err;
         }
