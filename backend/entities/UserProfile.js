@@ -89,6 +89,27 @@ class UserProfile{
         return successFlag;
     }
 
+    searchProfile(profileId) {
+        var profile;
+        try {
+            if (Data.userAccounts == null)
+                throw "Profile data missing"
+            else {
+                for (var i = 0; i < Data.userProfiles.length; i++) {
+                    if (Data.userProfiles[i].identifiers.profileId == profileId) {
+                        profile = Data.userProfiles[i];
+                        break;
+                    }
+                }
+                if (profile == null)
+                    throw "Profile could not be found"
+            }
+        } catch (err) {
+            throw err;
+        }
+        return profile;
+    }
+
     writeJSON(data) {  
         // write data into JSON
         try {
