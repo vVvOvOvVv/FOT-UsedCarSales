@@ -56,7 +56,7 @@ class UserAccount {
     suspendUA(accountId) {
         var isSuccess;
         try {
-            var accData = this.searchUA(accountId);
+            var accData = this.viewUA(accountId);
             if (accData != null) {
                 if (accData.entityInformation.status == "suspended") {
                     throw "Account " + accountId + " is already suspended!";
@@ -73,7 +73,7 @@ class UserAccount {
         return isSuccess;
     }
 
-    searchUA(accountId) { 
+    viewUA(accountId) { 
         for (var i = 0; i < Data.userAccounts.length; i++) {
             if (Data.userAccounts[i].identifiers.accountId == accountId)
                 return Data.userAccounts[i];

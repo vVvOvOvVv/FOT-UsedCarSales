@@ -31,6 +31,13 @@ class UserProfile{
         }
     } 
 
+    getProfiles() {
+        if (Data.userProfiles == null)
+                return null;
+        else
+            return Data.userProfiles;
+    }
+
     writeJSON(data) {  
         // write data into JSON
         try {
