@@ -5,7 +5,8 @@ class Data {
             {"profileId": 0},
         "entityInformation" :
             {"role": "buyer",
-            "roleDescription": "a user that wishes to buy a used car"}
+            "roleDescription": "a user that wishes to buy a used car",
+            "status": "active"}
     }];
     static userAccounts = [
         {"identifiers":

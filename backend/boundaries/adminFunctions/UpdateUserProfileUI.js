@@ -30,7 +30,7 @@ class UpdateUserProfileUI extends Boundary {
     } 
 }
 
-const updateUpdateUI = new UpdateUserProfileUI();
+const updateUserProfileUI = new UpdateUserProfileUI();
 document.getElementById("update").addEventListener("click", () => {
-    updateUpdateUI.onUpdate();
+    updateUserProfileUI.onUpdate();
 }); 
