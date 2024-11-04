@@ -134,5 +134,21 @@ class UserAccount {
         }
         return account;
     }
+
+    doSignInWithEmailAndPassword(email, pass) {
+        var successFlag = false;
+        try {
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].entityInformation.email == email &
+                    Data.userAccounts[i].entityInformation.password == pass)
+                    successFlag = true;
+            }
+            if (!successFlag)
+                throw "Login credentials do not match"
+        } catch (err) {
+            throw err;
+        }
+        return successFlag;
+    }
 }
 export default UserAccount;
