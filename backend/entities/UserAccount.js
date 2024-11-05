@@ -135,13 +135,14 @@ class UserAccount {
         return account;
     }
 
-    doSignInWithEmailAndPassword(email, pass) {
+    doSignInWithEmailAndPassword(profileId, email, pass) {
         var successFlag = false;
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
             for (var i = 0; i < Data.userAccounts.length; i++) {
-                if (Data.userAccounts[i].entityInformation.email == email &
+                if (Data.userAccounts[i].entityInformation.profileId == profileId &
+                    Data.userAccounts[i].entityInformation.email == email &
                     Data.userAccounts[i].entityInformation.password == pass)
                     successFlag = true;
             }

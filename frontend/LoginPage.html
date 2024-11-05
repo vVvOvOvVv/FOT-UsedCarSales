@@ -45,11 +45,15 @@
       }
     </style>
   </head>
+
+  <script type="module" src="../backend/boundaries/LoginUserUI.js"></script>
+  
   <body>
     <div style="padding:30px">
       <h1 style="color:orangered;"><center>Car Sales System</center></h1><br/>
       <h2 style="margin-left:100px;">Login to Your Account</h2>
       <form>
+        <p id="resultMsg"></p> <br/>
         <p>User Profile:</p>
         <input type="radio" id="UserAdmin" name="accountgroup" value="UserAdmin">
         <label for="UserAdmin">User Admin</label>
@@ -65,11 +69,11 @@
         <br/><br/>
 
         <p>User Account:</p>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+        <input type="text" placeholder="Email" id="email"/>
+        <input type="password" placeholder="Password" id="pass"/>
         <br/><br/>
 
-        <button id="button">Login</button>
+        <button id="button" type="button">Login</button> <!--specified type to prevent page refresh-->
       </form>
     </div>
   </body>
