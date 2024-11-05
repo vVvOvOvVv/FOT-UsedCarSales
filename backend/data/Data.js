@@ -5,14 +5,15 @@ class Data {
             {"profileId": 0},
         "entityInformation" :
             {"role": "buyer",
-            "roleDescription": "a user that wishes to buy a used car"}
+            "roleDescription": "a user that wishes to buy a used car",
+            "status": "active"}
     }];
     static userAccounts = [
         {"identifiers":
             {"accountId": 0},
         "entityInformation":
             {"name": "Alex",
-            "roleId": 0,
+            "profileId": 0,
             "email": "alex@gmail.com",
             "password": "a1",
             "status": "active"}
@@ -21,7 +22,7 @@ class Data {
             {"accountId": 1},
         "entityInformation":
             {"name": "Bob",
-            "roleId": 1,
+            "profileId": 0,
             "email": "bob@gmail.com",
             "password": "b1",
             "status": "active"
@@ -31,7 +32,7 @@ class Data {
             {"accountId": 2},
         "entityInformation":
             {"name": "Cassandra",
-            "roleId": 2,
+            "profileId": 0,
             "email": "cass@gmail.com",
             "password": "c1",
             "status": "active"

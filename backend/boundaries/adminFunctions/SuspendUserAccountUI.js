@@ -1,5 +1,5 @@
-import Boundary from "./UseCaseBoundary.js";
-import SuspendUserAccountController from "../controllers/SuspendUserAccountController.js";
+import Boundary from "../UseCaseBoundary.js";
+import SuspendUserAccountController from "../../controllers/adminFunctions/SuspendUserAccountController.js";
 
 class SuspendUserAccountUI extends Boundary {
     onSuspend() {

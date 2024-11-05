@@ -1,4 +1,4 @@
-import UserProfile from "../entities/UserProfile.js"; 
+import UserProfile from "../../entities/UserProfile.js"; 
 
 class CreateUserProfileController{  
     submitUserProfile(role, roleDesc) {

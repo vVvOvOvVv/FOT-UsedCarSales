@@ -19,7 +19,8 @@ class UserProfile{
                 {"profileId": profileId}, 
             "entityInformation":
                 {"role": role, 
-                "roleDescription": roleDesc
+                "roleDescription": roleDesc,
+                "status": "active"
         }}
         try {
             this.writeJSON(data);   
@@ -30,6 +31,84 @@ class UserProfile{
             return isSuccess;
         }
     } 
+
+    getProfiles() {
+        if (Data.userProfiles == null)
+                return null;
+        else
+            return Data.userProfiles;
+    }
+
+    updateUP(profileId, role, roleDesc) {
+        var profile;
+        var successFlag = true;
+        for (var i = 0; i < Data.userProfiles.length; i++) {
+            if (profileId == Data.userProfiles[i].identifiers.profileId) {
+                profile = Data.userProfiles[i];
+                break;
+            }
+        }
+
+        try {
+            if (profile != null) {
+                if (role != "")
+                    profile.entityInformation.role = role;
+                if (roleDesc != "")
+                    profile.entityInformation.roleDescription = roleDesc;
+            } else
+                throw `Profile with ID ${profileId} could not be found`;
+        } catch (err) {
+            successFlag = false;
+            throw err;
+        }
+        return successFlag;
+    }
+
+    suspendUP(profileId) {
+        var profile;
+        var successFlag = true;
+        for (var i = 0; i < Data.userProfiles.length; i++) {
+            if (profileId == Data.userProfiles[i].identifiers.profileId) {
+                profile = Data.userProfiles[i];
+                break;
+            }
+        }
+
+        try {
+            if (profile != null) {
+                if (profile.entityInformation.status == "suspended")
+                    throw `Profile with ID ${profileId} is already suspended`;
+                else
+                    profile.entityInformation.status = "suspended";
+            } else
+                throw `Profile with ID ${profileId} could not be found`;
+        } catch (err) {
+            successFlag = false;
+            throw err;
+        }
+        return successFlag;
+    }
+
+    searchProfile(profileId) {
+        var profile;
+        try {
+            if (Data.userAccounts == null)
+                throw "Profile data missing"
+            else {
+                for (var i = 0; i < Data.userProfiles.length; i++) {
+                    if (Data.userProfiles[i].identifiers.profileId == profileId) {
+                        profile = Data.userProfiles[i];
+                        break;
+                    }
+                }
+                if (profile == null)
+                    throw "Profile could not be found"
+            }
+        } catch (err) {
+            throw err;
+        }
+        return profile;
+    }
 
     writeJSON(data) {  
         // write data into JSON
