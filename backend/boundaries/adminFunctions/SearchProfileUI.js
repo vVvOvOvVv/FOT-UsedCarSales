@@ -1,4 +1,4 @@
-import SearchProfileContainer from "../../controllers/adminFunctions/SearchProfileContainer.js"
+import SearchProfileController from "../../controllers/adminFunctions/SearchProfileController.js"
 import Boundary from "../UseCaseBoundary.js"
 
 class SearchProfileUI extends Boundary {
@@ -9,7 +9,7 @@ class SearchProfileUI extends Boundary {
             if (profileId == "" | profileId == null)
                 throw "Profile ID cannot be left empty"
             else {
-                var controller = new SearchProfileContainer();
+                var controller = new SearchProfileController();
                 var profile = controller.searchProfile(profileId);
 
                 // turn data into readable text
