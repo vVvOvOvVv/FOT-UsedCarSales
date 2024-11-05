@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Search User Profile</title>
+        <title>Delete Car Listing</title>
 
         <!-- boostrap1 css1 js1 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -54,14 +54,14 @@
                 font-size: 35px;
                 border-bottom: 1px solid black;
             }
-            form {
-                margin: 50px 0px;
+            form{
+                margin: 40px 0px;
                 font-size: 20px;
             }
-            input {
+            input[type=text] {
                 width: 80%;
                 padding: 12px 10px;
-                margin: 15px 0px;
+                margin: 10px 0px;
                 border: none;
                 border-bottom: 2px solid black;
                 font-size: 16px;
@@ -80,87 +80,81 @@
             .button:hover {
                 background-color: darkred; 
                 color: white; 
-            }
+            }    
             .searchResult {
                 display: none;
-            }
+                text-align: left;
+            }  
         </style>
-    </head> 
-      
+    </head>
+    
     <body>
         <div id="nav">
             <div id="username">
-                <span style="color:white">User Admin:xxxxxx</span><!--Placeholder for name-->
+                <span style="color:white">Used Car Agent:xxxxxx</span><!--Placeholder for name-->
             </div>
             <div id="logout">
                 <a href="../LoginPage.html" style="text-decoration-color: white; text-decoration: none;"><span style="color:white; ">Logout</span></a>
             </div>
         </div>
 
-        <header>Search a User Profile</header><br/>
-
         <div class="container-fluid">            
             <div class="form-container">
+                <header>Search Review by Car Listing</header>
                 <form onsubmit="return showResult();">
                     <div>
-                        <label for="profile">Enter the profile name to search:</label>
-                        <input type="text" id="profileId" placeholder="Enter profile ID" />
+                        <label for="brand">Enter the brand of the car listing to search the review:</label>
+                        <input type="text" id="brand" placeholder="Enter car brand" />
                     </div><br/>
 
                     <button class="button" id="search" type="submit">Search</button>
                 </form>
             </div>
 
-            <div id="admin" class="searchResult form-container">
-                <h3>User Admin</h3>
-                <p>A user that manages the user profiles and user accounts</p>
+            <div id="b1" class="searchResult form-container">
+                <ul><!-- xxx - placeholders-->
+                    <li>Used Car Agent (ID): xxx</li>
+                    <li>Review given by (ID): xxx</li>
+                    <li>Profile: Buyer</li>
+                    <li>Rating: 5</li>
+                    <li>Review: Quick to respond and very friendly!</li>
+                </ul>
             </div>
 
-            <div id="buyer" class="searchResult form-container">
-                <h3>Buyer</h3>
-                <p>A user that wishes to buy a used car</p>
-            </div>
-
-            <div id="seller" class="searchResult form-container">
-                <h3>Seller</h3>
-                <p>A user that wishes to sell a used car</p>
-            </div>
-
-            <div id="agent" class="searchResult form-container">
-                <h3>Used Car Agent</h3>
-                <p>A user that manages the car listings and interacts with buyers and sellers</p>
+            <div id="b2" class="searchResult form-container">
+                <ul><!-- xxx - placeholders-->
+                    <li>Used Car Agent (ID): xxx</li>
+                    <li>Review given by (ID): xxx</li>
+                    <li>Profile: Seller</li>
+                    <li>Rating: 4.5</li>
+                    <li>Review: Very friendly</li>
+                </ul>
             </div>
         </div>
 
-        <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
+        <center><a href="AgentHomePage.html"><button class="button">Back</button></a></center>
 
         <script type="text/javascript">
-        function showResult() {
-            const profileId = document.getElementById("profileId").value;
+            function showResult() {
+                const brand = document.getElementById("brand").value.toLowerCase();
 
-            // Hide all results initially
-            document.getElementById("admin").style.display = "none";
-            document.getElementById("buyer").style.display = "none";
-            document.getElementById("seller").style.display = "none";
-            document.getElementById("agent").style.display = "none";
+                // Hide all results initially
+                document.getElementById("b1").style.display = "none";
+                document.getElementById("b2").style.display = "none";
 
-            // Check if the input is 'user admin', then display the result
-            if (profileId === "0") {
-                document.getElementById("admin").style.display = "block"; // Show the div
-            } else if (profileId === "1") {
-                document.getElementById("buyer").style.display = "block";
-            } else if (profileId === "2") {
-                document.getElementById("seller").style.display = "block";
-            } else if (profileId === "3") {
-                document.getElementById("agent").style.display = "block";
-            } else {
-                alert("Profile not found");
-                document.getElementById("searchResult").style.display = "none"; // Hide the div if not found
+                // Check if the input is 'user admin', then display the result
+                if (brand === "toyota") {
+                    document.getElementById("b1").style.display = "block"; // Show the div
+                } else if (brand === "hyundai") {
+                    document.getElementById("b2").style.display = "block";
+                } else {
+                    alert("Review not found");
+                    document.getElementById("searchResult").style.display = "none"; // Hide the div if not found
+                }
+
+                // Prevent form submission
+                return false;
             }
-
-            // Prevent form submission
-            return false;
-        }
-    </script>
+        </script>
     </body>
 </html>

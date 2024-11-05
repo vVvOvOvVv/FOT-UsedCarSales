@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Create User Account</title>
+        <title>Update Car Listing</title>
 
         <!-- boostrap1 css1 js1 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -54,7 +54,7 @@
                 border-bottom: 1px solid black;
             }
             form {
-                margin: 50px 0px;
+                margin: 30px 0px;
                 font-size: 20px;
             }
             input {
@@ -80,13 +80,16 @@
                 background-color: darkred; 
                 color: white; 
             }
+            p {
+                font-size: 20px;
+            }
         </style>
     </head> 
       
     <body>
         <div id="nav">
             <div id="username">
-                <span style="color:white">User Admin:xxxxxx</span><!--Placeholder for name-->
+                <span style="color:white">Used Car Agent:xxxxxx</span><!--Placeholder for name-->
             </div>
             <div id="logout">
                 <a href="../LoginPage.html" style="text-decoration-color: white; text-decoration: none;"><span style="color:white; ">Logout</span></a>
@@ -95,45 +98,67 @@
 
         <div class="container-fluid">            
             <div class="form-container">
-                <header>Create a User Account</header><br/>
-                <h3>Enter account information</h3>
+                <header>Update a Car Listing</header><br/>
+                <!-- to fetch details of existing listing -->
+                <p>Enter ID of the car listing:</p>
                 <form>
+                    <label for="carId">Car Listing (ID)</label><br/>
+                    <input type="text" id="carId" name="carId" placeholder="Enter car listing ID" required /><br/>
+                </form>
+                <hr/>
+
+                <p>Update the followings of the car listing:</p>
+                <form>
+                    <label for="brand">Brand</label><br/>
+                    <input type="text" id="brand" name="brand" placeholder="Enter car brand" required /><br/><br/>
+
+                    <label for="model">Model</label><br/>
+                    <input type="text" id="model" name="model" placeholder="Enter car model" required /><br/><br/>
+
+                    <label for="mileage">Mileage</label><br/>
+                    <input type="number" id="mileage" name="mileage" placeholder="Enter mileage" required /><br/><br/>
+
+                    <label for="year">Year Manufactured</label><br/>
+                    <input type="number" id="year" name="year" placeholder="Enter year manufactured" required /><br/><br/>
+
+                    <label for="price">Price</label><br/>
+                    <input type="number" id="price" name="price" placeholder="Enter price" required /><br/><br/>
+
+                    <label for="seller">Seller (ID)</label><br/>
+                    <input type="number" id="seller" name="seller" placeholder="Enter seller ID" required /><br/><br/>
+
+                    <label for="agent">Used Car Agent (ID)</label><br/>
+                    <input type="number" id="agent" name="agent" placeholder="Enter your ID" required /><br/><br/>
+
                     <div>
-                        <label for="profile">Choose a profile:</label>
-                        <select id="profile" name="profile" style="border: none;" required>
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" style="border: none;" required>
                             <option value="" disabled selected></option>
-                            <!-- Other selectable options -->
-                            <option value="UserAdmin">User Admin</option>
-                            <option value="Buyer">Buyer</option>
-                            <option value="Seller">Seller</option> 
-                            <option value="UsedCarAgent">Used Car Agent</option>
+                            <option value="avail">Available</option>
+                            <option value="sold">Sold</option>
                         </select>
                     </div><br/>
-
-                    <label for="name">Username</label><br/>
-                    <input type="text" id="name" name="name" placeholder="Enter username" required /><br/><br/>
-
-                    <label for="email">Email</label><br/>
-                    <input type="email" id="email" name="email" placeholder="Enter email" required /><br/><br/>
-
-                    <label for="password">Password</label><br/>
-                    <input type="password" id="password" name="password" placeholder="Enter password" required /><br/><br/>
 
                     <button class="button" id="submit" onclick="showAlert()">Submit</button>
                 </form>
             </div>
         </div>
 
-        <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
+        <center><a href="AgentHomePage.html"><button class="button">Back</button></a></center>
 
         <script type="text/javascript">          
             function showAlert(){
-                const profile = document.getElementById("profile").value;
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
+                const carId = document.getElementById("carId").value;
+                const brand = document.getElementById("brand").value;
+                const model = document.getElementById("model").value;
+                const mileage = document.getElementById("mileage").value;
+                const year = document.getElementById("year").value;
+                const price = document.getElementById("price").value;
+                const seller = document.getElementById("seller").value;
+                const agent = document.getElementById("agent").value;
+                const status = document.getElementById("status").value;
 
-                if (profile==="" || name==="" || email==="" || password==="") 
+                if (carId==="" || brand==="" || model==="" || mileage==="" || year==="" || price==="" || seller==="" || agent==="" || status==="") 
                     alert("Error");
                 else
                     alert("Success");
