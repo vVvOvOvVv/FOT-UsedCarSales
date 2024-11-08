@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car Sales System</title>
+    <style>
+      form{
+        margin-left: 100px;
+        font-size: 20px;
+      }
+
+      input[type=text] {
+        width: 20%;
+        padding: 12px 10px;
+        border: none;
+        border-bottom: 2px solid black;
+        font-size: 16px;
+      }
+
+      input[type=password] {
+        width: 20%;
+        padding: 12px 10px;
+        margin-left: 100px;
+        border: none;
+        border-bottom: 2px solid black;
+        font-size: 16px;
+      }
+
+      #button {
+        margin-left: 130px;
+        position: absolute;
+        left: 0;
+        border: none;
+        border-radius: 25px;
+        background-color: orangered;
+        width: 175px;
+        text-align: center;
+        font-size: 20px;
+        padding: 10px 20px; 
+        color:white;     
+      }
+
+      #button:hover {
+        background-color: darkred; 
+        color: white; 
+      }
+    </style>
+  </head>
+
+  <script type="module" src="../backend/boundaries/LoginUserUI.js"></script>
+  
+  <body>
+    <div style="padding:30px">
+      <h1 style="color:orangered;"><center>Car Sales System</center></h1><br/>
+      <h2 style="margin-left:100px;">Login to Your Account</h2>
+      <form>
+        <p id="resultMsg"></p> <br/>
+        <p>User Profile:</p>
+        <input type="radio" id="UserAdmin" name="accountgroup" value="UserAdmin">
+        <label for="UserAdmin">User Admin</label>
+
+        <input type="radio" id="Seller" name="accountgroup" value="Seller" style="margin-left: 80px;">
+        <label for="Seller">Seller</label>
+
+        <input type="radio" id="Buyer" name="accountgroup" value="Buyer" style="margin-left: 80px;">
+        <label for="Buyer">Buyer</label>
+
+        <input type="radio" id="UsedCarAgent" name="accountgroup" value="UsedCarAgent" style="margin-left: 80px;">
+        <label for="UsedCarAgent" >Used Car Agent</label>
+        <br/><br/>
+
+        <p>User Account:</p>
+        <input type="text" placeholder="Email" id="email"/>
+        <input type="password" placeholder="Password" id="pass"/>
+        <br/><br/>
+
+        <button id="button" type="button">Login</button> <!--specified type to prevent page refresh-->
+      </form>
+    </div>
+  </body>
+</html>

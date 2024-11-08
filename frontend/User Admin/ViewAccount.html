@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View User Account</title>
+
+        <!-- boostrap1 css1 js1 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+
+        <style>
+            body, header {
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+            #nav {
+                display: flex;
+                justify-content: space-between;
+                background-color: orangered;
+                width: 100%;
+                height: 50px;
+            }
+            #username {
+                padding-left: 10px;
+                display: flex;
+                align-items: center;
+                text-align: left;
+                font-size: 18px;
+            }
+            #logout {
+                padding-right: 10px;
+                display: flex;
+                align-items: center;
+                text-align: right;
+                font-size: 18px;
+            }
+            .container-fluid {
+                background-color: #ececec;
+                text-align: left;
+                padding: 10px 30px;
+                margin: 15px 0px;
+                border-radius: 15px;
+                max-width: 700px;
+                font-size: 18px;
+            }
+            header {
+                margin: 0 50px;
+                padding: 30px;
+                text-align: center;
+                font-size: 35px;
+                border-bottom: 1px solid black;
+            }
+            .button {
+                border: none;
+                border-radius: 25px;
+                background-color: orangered;
+                width: 175px;
+                text-align: center;
+                font-size: 20px;
+                padding: 10px 20px; 
+                color:white;    
+            }
+            .button:hover {
+                background-color: darkred; 
+                color: white; 
+            }
+        </style>
+    </head> 
+      
+    <body>
+        <div id="nav">
+            <div id="username">
+                <span style="color:white">User Admin:xxxxxx</span><!--Placeholder for name-->
+            </div>
+            <div id="logout">
+                <a href="../LoginPage.html" style="text-decoration-color: white; text-decoration: none;"><span style="color:white; ">Logout</span></a>
+            </div>
+        </div>
+
+        <header>View User Accounts</header>
+        <center>            
+            <div class="container-fluid">
+                <ul>
+                    <li>Username: xxx</li><!-- placeholder-->
+                    <li>Email: xxx</li><!-- placeholder-->
+                    <li>Role: User Admin</li>
+                </ul>
+            </div>
+
+            <div class="container-fluid">
+                <ul>
+                    <li>Username: xxx</li><!-- placeholder-->
+                    <li>Email: xxx</li><!-- placeholder-->
+                    <li>Role: Used Car Agent</li>
+                </ul>
+            </div>
+
+            <div class="container-fluid">
+                <ul>
+                    <li>Username: xxx</li><!-- placeholder-->
+                    <li>Email: xxx</li><!-- placeholder-->
+                    <li>Role: Buyer</li>
+                </ul>
+            </div>
+
+            <div class="container-fluid">
+                <ul>
+                    <li>Username: xxx</li><!-- placeholder-->
+                    <li>Email: xxx</li><!-- placeholder-->
+                    <li>Role: Seller</li>
+                </ul>
+            </div>
+
+            <!-- Can add more user accounts -->
+
+            <a href="AdminHomePage.html"><button class="button">Back</button></a>
+        </center>
+    </body>
+</html>
