@@ -82,6 +82,8 @@
             }      
         </style>
     </head>
+
+    <script type="module" src="../../backend/boundaries/carAgentFunctions/DeleteCarListingUI.js"></script>
     
     <body>
         <div id="nav">
@@ -104,30 +106,12 @@
                         <input type="text" id="carId" placeholder="Enter car ID" />
                     </div><br/>
 
-                    <button class="button" id="delete" onclick="return confirmDelete();">Delete</button>
+                    <button class="button" id="delete" type="button">Delete</button>
+                    <!--specify type to prevent refresh-->
                 </form>
             </div>
         </div>
 
         <center><a href="AgentHomePage.html"><button class="button">Back</button></a></center>
-
-        <script type="text/javascript">
-            function confirmDelete() {
-                const carId = document.getElementById("carId").value;
-
-                // Check if a profile is selected
-                if (!carId) {
-                    alert("Please enter car ID to delete.");
-                    return false;
-                }
-
-                // Display the confirmation popup
-                const confirmation = confirm(`Are you sure you want to delete the ${carId} car listing?`);
-                
-                // If the user clicks "OK", return true to proceed with form submission
-                // If the user clicks "Cancel", return false to stop the form submission
-                return confirmation;
-            }
-        </script>
     </body>
 </html>

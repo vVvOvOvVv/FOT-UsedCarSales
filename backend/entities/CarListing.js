@@ -120,6 +120,25 @@ class CarListing {
         return false;
     }
 
+    deleteCL(carId) {
+        var successFlag = false;
+        try {
+            if (Data.carListing == null)
+                throw "Data could not be found";
+            for (var i = 0; i < Data.carListing.length; i++) {
+                if (Data.carListing[i].identifiers.carId == carId) {
+                    Data.carListing.splice(i, 1);
+                    successFlag = true;
+                }
+            }
+            if (!successFlag)
+                throw `Car with ID ${carId} could not be found`;
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return successFlag;
+    }
+
     writeJSON(data) {
         try {
             Data.carListing.push(data)
