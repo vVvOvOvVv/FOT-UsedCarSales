@@ -30,7 +30,7 @@ class LoginUserUI extends Boundary {
                             case "Buyer":
                                 profileId = 2;
                                 break;
-                            default:
+                            default: // agent
                                 profileId = 3;
                         }
                         break;
@@ -53,13 +53,13 @@ class LoginUserUI extends Boundary {
         }
 
         if (successFlag)
-            this.displaySuccess("Logged in!", "resultMsg");
+            this.displaySuccess();
         else
-            this.displayError(resultMsg, "resultMsg");
+            this.displayError();
     }
 
-    displaySuccess(successMsgString, successElementId) {
-        super.displaySuccess(successMsgString + "......Redirecting to homepage", successElementId);
+    displaySuccess() {
+        super.displaySuccess();
         var homepagePath = "";
         switch (profileId) {
             case 0: // admin

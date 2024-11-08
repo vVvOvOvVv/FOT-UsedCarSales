@@ -14,8 +14,9 @@ class Boundary { // to be used as a base class for other boundaries
         alert("Success");
     }
 
-    displayError() {
-        alert("Error");
+    displayError(err) {
+        console.error(err);
+        alert(err);
     } 
 
     // format/field checks 

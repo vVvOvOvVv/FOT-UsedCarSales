@@ -143,8 +143,10 @@ class UserAccount {
             for (var i = 0; i < Data.userAccounts.length; i++) {
                 if (Data.userAccounts[i].entityInformation.profileId == profileId &
                     Data.userAccounts[i].entityInformation.email == email &
-                    Data.userAccounts[i].entityInformation.password == pass)
+                    Data.userAccounts[i].entityInformation.password == pass) {
                     successFlag = true;
+                    Data.currentUser = accountId;
+                }
             }
             if (!successFlag)
                 throw "Login credentials do not match"
@@ -164,6 +166,7 @@ class UserAccount {
             for (var i = 0; i < Data.userAccounts.length; i++) {
                 if (Data.userAccounts[i].identifiers.accountId == accountId) {
                     successFlag = true;
+                    currentUser = null;
                     break;
                 }
             }

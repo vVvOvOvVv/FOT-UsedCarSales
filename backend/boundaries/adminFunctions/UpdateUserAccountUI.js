@@ -24,9 +24,9 @@ class UpdateUserAccountUI extends Boundary {
         }
 
         if (updateFlag)
-            this.displaySuccess(`Account ID ${accountId} has been updated!`, "resultMsg");
+            this.displaySuccess();
         else
-            this.displayError(resultMsg, "resultMsg");
+            this.displayError(resultMsg);
     } 
 }
 

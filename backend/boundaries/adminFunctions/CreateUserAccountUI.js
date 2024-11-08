@@ -51,9 +51,9 @@ class CreateUserAccountUI extends Boundary {
             errorMsg = err;
         }
         if (submitState) { // successful creation
-            this.displaySuccess(name + "\'s account has been successfully created!", "resultMsg");
+            this.displaySuccess();
         } else {
-            this.displayError(errorMsg, "resultMsg");
+            this.displayError(errorMsg);
         } 
     }
 }

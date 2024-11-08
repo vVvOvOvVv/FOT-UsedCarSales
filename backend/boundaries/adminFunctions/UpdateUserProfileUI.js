@@ -24,9 +24,9 @@ class UpdateUserProfileUI extends Boundary {
         }
 
         if (updateFlag)
-            this.displaySuccess(`Profile ID ${profileId} has been updated!`, "resultMsg");
+            this.displaySuccess();
         else
-            this.displayError(resultMsg, "resultMsg");
+            this.displayError(resultMsg);
     } 
 }
 

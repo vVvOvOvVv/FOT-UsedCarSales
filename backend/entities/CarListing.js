@@ -51,6 +51,25 @@ class CarListing {
         return successFlag;
     }
 
+    viewCL() {
+        var cars = [];
+
+        try {
+            if (Data.carListing == null)
+                throw "Data could not be found"
+            else {
+                for (var i = 0; i < Data.carListing.length; i++) {
+                    console.log(JSON.stringify(Data.carListing[i]));
+                    if (Data.carListing[i].entityInformation.carAgent == Data.currentUser)
+                        cars.push(Data.carListing[i]);
+                }
+            }
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return cars;
+    }
+
     writeJSON(data) {
         try {
             Data.carListing.push(data)
@@ -59,3 +78,5 @@ class CarListing {
         }
     }
 }
+
+export default CarListing;

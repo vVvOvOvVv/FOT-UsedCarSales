@@ -13,7 +13,7 @@ class Data {
             {"accountId": 0},
         "entityInformation":
             {"name": "Alex",
-            "profileId": 0,
+            "profileId": 0, // admin
             "email": "alex@gmail.com",
             "password": "a1",
             "status": "active"}
@@ -22,7 +22,7 @@ class Data {
             {"accountId": 1},
         "entityInformation":
             {"name": "Bob",
-            "profileId": 0,
+            "profileId": 1, // seller
             "email": "bob@gmail.com",
             "password": "b1",
             "status": "active"
@@ -32,7 +32,7 @@ class Data {
             {"accountId": 2},
         "entityInformation":
             {"name": "Cassandra",
-            "profileId": 0,
+            "profileId": 2, // buyer, 3 = agent
             "email": "cass@gmail.com",
             "password": "c1",
             "status": "active"
@@ -45,10 +45,10 @@ class Data {
             {"brand": "Toyota",
             "model": "Prius",
             "mileage": 1000, // in km
-            "year manufactured": 2015,
+            "year": 2015,
             "price": 500,
-            "carSeller": "b1",
-            "carAgent": "c1",
+            "carSeller": 1,
+            "carAgent": 2,
             "status": "available",
             "views": 1}
     }];
@@ -68,5 +68,6 @@ class Data {
                 {"rating": 4.5,
                 "review": "Very friendly"
     }]}}];
+    static currentUser = 2; // account ID of current user
 } 
 export default Data;

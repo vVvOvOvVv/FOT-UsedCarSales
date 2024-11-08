@@ -20,9 +20,9 @@ class SuspendUserProfileUI extends Boundary {
         }
 
         if (suspendFlag)
-            this.displaySuccess(`Profile ID ${profileId} has been suspended`, "resultMsg");
+            this.displaySuccess();
         else
-            this.displayError(resultMsg, "resultMsg");
+            this.displayError(resultMsg);
     } 
 }
 

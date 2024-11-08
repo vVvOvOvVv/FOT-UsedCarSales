@@ -21,9 +21,9 @@ class CreateUserProfileUI extends Boundary {
             errorMsg = err;
         }
         if (submitState) { // successful creation
-            this.displaySuccess("A new profile has been successfully created!", "resultMsg");
+            this.displaySuccess();
         } else {
-            this.displayError(errorMsg, "resultMsg");
+            this.displayError(errorMsg);
         } 
     }
 }

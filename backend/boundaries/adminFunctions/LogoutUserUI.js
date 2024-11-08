@@ -31,9 +31,9 @@ class LogoutUserUI extends Boundary {
     displaySuccess(successMsgString, successElementId) {
         super.displaySuccess(successMsgString + "......Redirecting to landing page", successElementId);
         if (landingPagePath != "")
-            window.open(landingPagePath,"_self")
+            window.open()
         else
-            console.error("File path the landing page not set"); // debugging line
+            console.error("File path to the landing page not set"); // debugging line
     }
 }
 

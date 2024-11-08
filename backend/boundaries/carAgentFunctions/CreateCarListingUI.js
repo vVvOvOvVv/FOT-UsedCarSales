@@ -38,14 +38,12 @@ class CreateCarListingsController extends Boundary {
             );
 
         } catch (err) {
-            console.error(err);
+            this.displayError(err);
             successFlag = false;
         }
 
         if (successFlag)
             this.displaySuccess();
-        else
-            this.displayError();
     }
 }
 

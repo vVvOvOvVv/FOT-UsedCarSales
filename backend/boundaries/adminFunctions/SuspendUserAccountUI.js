@@ -20,11 +20,9 @@ class SuspendUserAccountUI extends Boundary {
             errorMsg = err;
         } finally {
             if (suspendState) // successful creation
-                this.displaySuccess("Account with ID \"" + accountId +
-                    "\" has been successfully suspended", 
-                    "resultMsg");
+                this.displaySuccess();
             else
-                this.displayError(errorMsg, "resultMsg");
+                this.displayError(errorMsg);
         }
     }
 }
