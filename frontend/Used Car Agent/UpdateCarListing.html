@@ -85,6 +85,8 @@
             }
         </style>
     </head> 
+
+    <script type="module" src="../../backend/boundaries/carAgentFunctions/UpdateCarListingUI.js"></script>
       
     <body>
         <div id="nav">
@@ -145,24 +147,5 @@
         </div>
 
         <center><a href="AgentHomePage.html"><button class="button">Back</button></a></center>
-
-        <script type="text/javascript">          
-            function showAlert(){
-                const carId = document.getElementById("carId").value;
-                const brand = document.getElementById("brand").value;
-                const model = document.getElementById("model").value;
-                const mileage = document.getElementById("mileage").value;
-                const year = document.getElementById("year").value;
-                const price = document.getElementById("price").value;
-                const seller = document.getElementById("seller").value;
-                const agent = document.getElementById("agent").value;
-                const status = document.getElementById("status").value;
-
-                if (carId==="" || brand==="" || model==="" || mileage==="" || year==="" || price==="" || seller==="" || agent==="" || status==="") 
-                    alert("Error");
-                else
-                    alert("Success");
-            }
-        </script>
     </body>
 </html>

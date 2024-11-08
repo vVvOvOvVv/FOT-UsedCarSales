@@ -3,9 +3,9 @@ import Boundary from "../../boundaries/UseCaseBoundary.js"
 
 class ViewCarListingUI extends Boundary {
     displayPage() {
-        var body = document.getElementById("header");
-
         try {
+            // fetch car listings
+            var body = document.getElementById("header");
             var controller = new ViewCarListingController();
             var cars = controller.viewCarListing();
 
@@ -63,7 +63,8 @@ class ViewCarListingUI extends Boundary {
                 body.insertAdjacentElement("afterend", carList);
             }
         } catch (err) {
-            super.displayError(err);
+            console.error(err);
+            alert(err);
         }
     }
 }

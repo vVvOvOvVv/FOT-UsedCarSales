@@ -70,6 +70,56 @@ class CarListing {
         return cars;
     }
 
+    updateCL(carId, brand, model, mileage, year, price, seller, agent, status) {
+        try {
+            var foundFlag = false;
+            if (Data.carListing == null)
+                throw "Data could not be found";
+            else { // search for car withID carId
+                for (var i = 0; i < Data.carListing.length; i++) {
+                    if (Data.carListing[i].identifiers.carId == carId.toString()) {
+                        foundFlag = true;
+                        var carData = Data.carListing[i];
+                        // change  - only if values aren't empty
+                        if (brand == "" & model == "" & mileage == "" &
+                            year == "" & price == "" & seller == "" &
+                            agent == "" & status == "")
+                            throw "At least one field must be filled";
+                        if (brand != "" & brand != null)
+                            carData.entityInformation.brand = brand;
+                        
+                        if (model != "" & model != null)
+                            carData.entityInformation.model = model;
+                        
+                        if (mileage != "" & mileage != null)
+                            carData.entityInformation.mileage = mileage;
+                        
+                        if (year != "" & year != null)
+                            carData.entityInformation.year = year;
+                        
+                        if (price != "" & price != null)
+                            carData.entityInformation.price = price;
+                        
+                        if (seller != "" & seller != null)
+                            carData.entityInformation.seller = seller;
+                        
+                        if (agent != "" & agent != null)
+                            carData.entityInformation.agent = agent;
+                        
+                        if (status != "" & status != null)
+                            carData.entityInformation.status = status;
+                        return true;
+                    }
+                }
+                if (!foundFlag)
+                    throw `Car with ID ${carId} could not be found`;
+            }
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return false;
+    }
+
     writeJSON(data) {
         try {
             Data.carListing.push(data)
