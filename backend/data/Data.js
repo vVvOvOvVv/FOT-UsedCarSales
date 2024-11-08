@@ -40,7 +40,7 @@ class Data {
     }];
     static carListing = [
         {"identifiers":
-            {"carId": "a1" /*liscence plate, hence a string*/},
+            {"carId": "0" /*liscence plate, hence a string*/},
         "entityInformation": // keep simple, no need to bloat
             {"brand": "Toyota",
             "model": "Prius",
@@ -49,6 +49,7 @@ class Data {
             "price": 500,
             "carSeller": "b1",
             "carAgent": "c1",
+            "status": "available",
             "views": 1}
     }];
     static shortlists = [

@@ -10,17 +10,12 @@ class Boundary { // to be used as a base class for other boundaries
         window.open(url, __self); // open specified url in the same tab
     }
 
-    displaySuccess(successMsgString, successElementId) {
-        console.log("Success!");
-        var errorMsg = document.getElementById(successElementId);
-        errorMsg.innerHTML = successMsgString;
+    displaySuccess() {
+        alert("Success");
     }
 
-    displayError(errorMsgString, errorElementId) {
-        console.error("An Error has occurred, please try again. \n"
-            + "ERR: " + errorMsgString);
-        var errorMsg = document.getElementById(errorElementId);
-        errorMsg.innerHTML = errorMsgString;
+    displayError() {
+        alert("Error");
     } 
 
     // format/field checks 
