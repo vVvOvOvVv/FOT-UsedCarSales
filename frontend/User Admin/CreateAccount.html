@@ -82,6 +82,8 @@
             }
         </style>
     </head> 
+
+    <script type="module" src="../../backend/boundaries/adminFunctions/CreateUserAccountUI.js"></script>
       
     <body>
         <div id="nav">
@@ -119,25 +121,11 @@
                     <label for="password">Password</label><br/>
                     <input type="password" id="password" name="password" placeholder="Enter password" required /><br/><br/>
 
-                    <button class="button" id="submit" onclick="showAlert()">Submit</button>
+                    <button class="button" id="submit">Submit</button>
                 </form>
             </div>
         </div>
 
         <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
-
-        <script type="text/javascript">          
-            function showAlert(){
-                const profile = document.getElementById("profile").value;
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
-
-                if (profile==="" || name==="" || email==="" || password==="") 
-                    alert("Error");
-                else
-                    alert("Success");
-            }
-        </script>
     </body>
 </html>

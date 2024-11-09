@@ -6,29 +6,44 @@ class ViewUserAccountUI extends Boundary {
         try {
             var controller = new ViewUserAccountController();
             var accountArray = controller.viewUserAccount();
-            var accountsText = "";
 
             // turn data in array into text
             if (accountArray != null) {
                 if (accountArray.length != 0) {
+                    var backBtn = document.getElementById("back");
+                    if (backBtn == null)
+                        throw "Back button missing"
                     for (var i = 0; i < accountArray.length; i++) {
-                        accountsText +=
-                            `Account ID: ${accountArray[i].identifiers.accountId}\n` + 
-                            `Name: ${accountArray[i].entityInformation.name}\n` +
-                            `Profile ID: ${accountArray[i].entityInformation.profileId}\n` +
-                            `Email: ${accountArray[i].entityInformation.email}\n` +
-                            // password excluded for security reasons
-                            `Status: ${accountArray[i].entityInformation.status}\n`;
-                        if (i != accountArray.length - 1) // not the last element
-                            accountsText += `\n`; // for visual clarity
+                        // create elements
+                        var divItem = document.createElement("div");
+                        divItem.className = "container-fluid";
+                        // list
+                        var list = document.createElement("ul");
+                        var nameItem = document.createElement("li");
+                        var text = 
+                            document.createTextNode(`Name: ${accountArray[i].entityInformation.name}`);
+                        nameItem.appendChild(text);
+                        var emailItem = document.createElement("li");
+                        var text = 
+                            document.createTextNode(`Email: ${accountArray[i].entityInformation.email}`);
+                        emailItem.appendChild(text);
+                        var roleItem = document.createElement("li");
+                        var text = 
+                            document.createTextNode(`Profile ID: ${accountArray[i].entityInformation.profileId}`);
+                        roleItem.appendChild(text);
+                        // append to list
+                        list.appendChild(nameItem);
+                        list.appendChild(emailItem);
+                        list.appendChild(roleItem);
+                        // append to div
+                        divItem.appendChild(list);
+                        // add to page
+                        backBtn.insertAdjacentElement("beforebegin", divItem);
                     }
                 } else 
                     accountsText = "No accounts found";
             } else  // array == null - fail alt flow according to sequence diagram
                 accountsText = "Could not find account data";
-
-            // display to user
-            document.getElementById("accounts").innerHTML = accountsText;
             
         } catch (err) {
             console.log(err);
@@ -37,6 +52,4 @@ class ViewUserAccountUI extends Boundary {
 }
 
 const viewAccountUI = new ViewUserAccountUI();
-document.getElementById("view").addEventListener("click", () => {
-    viewAccountUI.displayPage();
-}); 
+document.getElementById("nav").addEventListener("load", (viewAccountUI.displayPage())); 

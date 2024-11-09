@@ -7,12 +7,12 @@ class UpdateUserProfileUI extends Boundary {
         var updateFlag = true;
 
         try {
-            var profileId = document.getElementById("profileId").value;
+            var profileId = document.getElementById("profile").value;
             var role = document.getElementById("role").value;
             var roleDesc = document.getElementById("roleDesc").value;
 
             if (profileId == "" | profileId == null)
-                throw "Account ID cannot be left empty";
+                throw "Profile cannot be left empty";
             if (role == "" & roleDesc == "")
                 throw "Both update fields cannot be left empty";
             

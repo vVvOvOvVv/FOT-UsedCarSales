@@ -1,9 +1,9 @@
 import UserAccount from "../../entities/UserAccount.js"
 
 class UpdateUserAccountController {
-    updateUserAccount(accountId, name, profileId) {
+    updateUserAccount(oldEmail, oldPass, profileId, newName, email, newPass) {
         var a = new UserAccount();
-        return a.updateUA(accountId, name, profileId);
+        return a.updateUA(oldEmail, oldPass, profileId, newName, email, newPass);
     }
 }
 

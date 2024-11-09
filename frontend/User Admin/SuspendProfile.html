@@ -73,6 +73,8 @@
             }      
         </style>
     </head> 
+
+    <script type="module" src="../../backend/boundaries/adminFunctions/SuspendUserProfileUI.js"></script>
       
     <body>
         <div id="nav">
@@ -100,31 +102,12 @@
                         </select>      
                     </div><br/>
 
-                    <button class="button" id="suspend" onclick="return confirmSuspend();">Suspend</button>
+                    <button class="button" id="suspend">Suspend</button>
                 </form>
             </div>
         </div>
 
         <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
-
-        <script type="text/javascript">
-            function confirmSuspend() {
-                const profile = document.getElementById("profile").value;
-
-                // Check if a profile is selected
-                if (!profile) {
-                    alert("Please select a profile to suspend.");
-                    return false;
-                }
-
-                // Display the confirmation popup
-                const confirmation = confirm(`Are you sure you want to suspend the ${profile} profile?`);
-                
-                // If the user clicks "OK", return true to proceed with form submission
-                // If the user clicks "Cancel", return false to stop the form submission
-                return confirmation;
-            }
-        </script>
 
     </body>
 </html>

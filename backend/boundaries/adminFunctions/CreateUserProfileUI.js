@@ -5,26 +5,23 @@ class CreateUserProfileUI extends Boundary {
     onSubmit() {
         // console.log("Submit button clicked!");
         var submitState = true;
-        var errorMsg = ""; 
 
         try {   
-            var role = document.getElementById("role").value.toLower();
-            if (role.length <= 0) {// no text entered
-                submitState = false;
-                throw "ERROR: role name cannot be empty";
-            } 
-            var roleDesc = document.getElementById("roleDesc").value; 
+            var role = document.getElementById("role").value.toLowerCase();
+            if (role == "" | role == null) // no text entered
+                throw "Role name cannot be empty";
+            var roleDesc = document.getElementById("roleDesc").value;
+            if (roleDesc == "" | roleDesc == null) // no text entered
+                throw "Role description cannot be empty";
             var controller = new CreateUserProfileController();
             submitState = controller.submitUserProfile(role, roleDesc); 
         } catch (err) {
-            console.error(err); 
-            errorMsg = err;
+            submitState = false;
+            this.displayError(err);
         }
         if (submitState) { // successful creation
             this.displaySuccess();
-        } else {
-            this.displayError(errorMsg);
-        } 
+        }
     }
 }
 

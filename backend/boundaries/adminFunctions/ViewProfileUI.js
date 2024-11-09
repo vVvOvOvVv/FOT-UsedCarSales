@@ -6,27 +6,39 @@ class ViewProfileUI extends Boundary {
         try {
             var controller = new ViewProfileController();
             var profileArray = controller.viewProfiles();
-            var profilesText = "";
 
             // turn data in array into text
             if (profileArray != null) {
                 if (profileArray.length != 0) {
+                    var container = document.getElementsByClassName("row p-3");
+                    if (container == null)
+                        throw "Back button is missing";
                     for (var i = 0; i < profileArray.length; i++) {
-                        profilesText += `Profile ID: ${profileArray[i].identifiers.profileId}\n` +
-                            `Profile role: ${profileArray[i].entityInformation.role}\n` +
-                            `Profile description: ${profileArray[i].entityInformation.roleDescription}` +
-                            `\n\n`; // line breaks
-                        if (i != profileArray.length - 1) // not the last element
-                            profilesText += `\n`; // for visual clarity
+                        // create elements
+                        var divItem = document.createElement("div");
+                        divItem.className = 
+                            "col-6 mb-4 d-flex flex-column align-items-center form-container";
+                        var role = document.createElement("h3");
+                        var text = document.createTextNode(profileArray[i].entityInformation.role);
+                        role.appendChild(text);
+                        var id = document.createElement("p");
+                        text = document.createTextNode(`Profile ID: ${
+                            profileArray[i].identifiers.profileId}`);
+                        id.appendChild(text);
+                        var desc = document.createElement("p");
+                        text = document.createTextNode(profileArray[i].entityInformation.roleDescription);
+                        desc.appendChild(text);
+                        // append to div
+                        divItem.appendChild(role);
+                        divItem.appendChild(id);
+                        divItem.appendChild(desc);
+                        // add to page
+                        container[0].appendChild(divItem);
                     }
                 } else 
                     profilesText = "No profiles found";
             } else  // array == null - fail alt flow according to sequence diagram
-                profilesText = "Could not find profile data";
-
-            // write to <pre> tag
-            document.getElementById("profiles").innerHTML = profilesText;
-            
+                profilesText = "Could not find profile data";            
         } catch (err) {
             console.log(err);
         }
@@ -34,6 +46,4 @@ class ViewProfileUI extends Boundary {
 }
 
 const viewProfileUI = new ViewProfileUI();
-document.getElementById("view").addEventListener("click", () => {
-    viewProfileUI.displayProfilePage();
-}); 
+document.getElementById("nav").addEventListener("load", (viewProfileUI.displayProfilePage())); 

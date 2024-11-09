@@ -47,6 +47,14 @@
                 width: 700px; 
                 text-align: center;
             }
+            .search-result {
+                background-color: #ececec;
+                padding: 10px 30px;
+                margin: 0px 10px;
+                border-radius: 15px;
+                width: 700px; 
+                text-align: left;
+            }
             header {
                 margin: 0 50px;
                 padding: 30px;
@@ -81,11 +89,10 @@
                 background-color: darkred; 
                 color: white; 
             }
-            .searchResult {
-                display: none;
-            }
         </style>
     </head> 
+
+    <script type="module" src="../../backend/boundaries/adminFunctions/SearchProfileUI.js"></script>
       
     <body>
         <div id="nav">
@@ -100,67 +107,19 @@
         <header>Search a User Profile</header><br/>
 
         <div class="container-fluid">            
-            <div class="form-container">
+            <div class="form-container" id="form">
                 <form onsubmit="return showResult();">
                     <div>
                         <label for="profile">Enter the profile name to search:</label>
                         <input type="text" id="profileId" placeholder="Enter profile ID" />
                     </div><br/>
 
-                    <button class="button" id="search" type="submit">Search</button>
+                    <button class="button" id="search" type="button">Search</button>
                 </form>
-            </div>
-
-            <div id="admin" class="searchResult form-container">
-                <h3>User Admin</h3>
-                <p>A user that manages the user profiles and user accounts</p>
-            </div>
-
-            <div id="buyer" class="searchResult form-container">
-                <h3>Buyer</h3>
-                <p>A user that wishes to buy a used car</p>
-            </div>
-
-            <div id="seller" class="searchResult form-container">
-                <h3>Seller</h3>
-                <p>A user that wishes to sell a used car</p>
-            </div>
-
-            <div id="agent" class="searchResult form-container">
-                <h3>Used Car Agent</h3>
-                <p>A user that manages the car listings and interacts with buyers and sellers</p>
             </div>
         </div>
 
         <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
 
-        <script type="text/javascript">
-        function showResult() {
-            const profileId = document.getElementById("profileId").value;
-
-            // Hide all results initially
-            document.getElementById("admin").style.display = "none";
-            document.getElementById("buyer").style.display = "none";
-            document.getElementById("seller").style.display = "none";
-            document.getElementById("agent").style.display = "none";
-
-            // Check if the input is 'user admin', then display the result
-            if (profileId === "0") {
-                document.getElementById("admin").style.display = "block"; // Show the div
-            } else if (profileId === "1") {
-                document.getElementById("buyer").style.display = "block";
-            } else if (profileId === "2") {
-                document.getElementById("seller").style.display = "block";
-            } else if (profileId === "3") {
-                document.getElementById("agent").style.display = "block";
-            } else {
-                alert("Profile not found");
-                document.getElementById("searchResult").style.display = "none"; // Hide the div if not found
-            }
-
-            // Prevent form submission
-            return false;
-        }
-    </script>
     </body>
 </html>

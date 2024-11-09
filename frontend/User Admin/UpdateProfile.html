@@ -82,6 +82,8 @@
             }
         </style>
     </head> 
+
+    <script type="module" src="../../backend/boundaries/adminFunctions/UpdateUserProfileUI.js"></script>
       
     <body>
         <div id="nav">
@@ -102,10 +104,10 @@
                         <select id="profile" name="profile" style="border: none;" required>
                             <option value="" disabled selected></option>
                             <!-- Other selectable options -->
-                            <option value="UserAdmin">User Admin</option>
-                            <option value="Buyer">Buyer</option>
-                            <option value="Seller">Seller</option> 
-                            <option value="UsedCarAgent">Used Car Agent</option>
+                            <option value="0">User Admin</option>
+                            <option value="1">Buyer</option>
+                            <option value="2">Seller</option> 
+                            <option value="3">Used Car Agent</option>
                         </select>
                     </div><br/>
 
@@ -116,24 +118,12 @@
                     <label for="roleDesc">Role description</label><br/>
                     <input type="text" id="roleDesc" placeholder="Enter short description" /><br/><br/>
 
-                    <button class="button" id="submit" onclick="showAlert()">Submit</button>
+                    <button class="button" id="update" type="button">Submit</button>
                 </form>
             </div>
         </div>
 
         <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
 
-        <script type="text/javascript">
-            function showAlert(){
-                const profile = document.getElementById("profile").value;
-                const role = document.getElementById("role").value;
-                const roleDesc = document.getElementById("roleDesc").value;
-
-                if (profile==="" || role==="" || roleDesc==="") 
-                    alert("Error");
-                else
-                    alert("Success");
-            }
-        </script>
     </body>
 </html>

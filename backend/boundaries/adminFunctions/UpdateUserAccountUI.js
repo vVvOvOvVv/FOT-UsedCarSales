@@ -3,30 +3,32 @@ import Boundary from "../UseCaseBoundary.js";
 
 class UpdateUserAccountUI extends Boundary {
     onUpdate() {
-        var resultMsg = "";
         var updateFlag = true;
 
         try {
-            var accountId = document.getElementById("accountId").value;
-            var name = document.getElementById("name").value;
-            var profileId = document.getElementById("profileId").value;
+            var oldEmail = document.getElementById("oldEmail").value;
+            var oldPass = document.getElementById("oldpassword").value;
+            
+            var profileId = document.getElementById("profile").value;
+            var newName = document.getElementById("newname").value;
+            var email = document.getElementById("email").value;
+            var newPass = document.getElementById("newpassword").value;
 
-            if (accountId == "" | accountId == null)
-                throw "Account ID cannot be left empty";
-            if (name == "" & profileId == "")
-                throw "Both update fields cannot be left empty";
+            if (oldEmail == "" | oldPass == "")
+                throw "Please fill in your current email and password"
+            if (profileId == "" & newName == "" & email == "" & newPass == "")
+                throw "At least one updated field must be filled in";
             
             var controller = new UpdateUserAccountController();
-            updateFlag = controller.updateUserAccount(accountId, name, profileId);
+            updateFlag = controller.
+                updateUserAccount(oldEmail, oldPass, profileId, newName, email, newPass);
         } catch (err) {
             updateFlag = false;
-            resultMsg = err;
+            this.displayError(err);
         }
 
         if (updateFlag)
             this.displaySuccess();
-        else
-            this.displayError(resultMsg);
     } 
 }
 

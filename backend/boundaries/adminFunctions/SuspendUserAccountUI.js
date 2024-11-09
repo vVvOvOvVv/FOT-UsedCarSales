@@ -4,26 +4,20 @@ import SuspendUserAccountController from "../../controllers/adminFunctions/Suspe
 class SuspendUserAccountUI extends Boundary {
     onSuspend() {
         var suspendState = true;
-        var errorMsg = "";
 
         try {
             var accountId = document.getElementById("accountId").value;
-            if (accountId.length <= 0) { // no text entered
-                suspendState = false; 
-                throw "ERROR: account ID cannot be left empty";
-            }
+            if (accountId == "" | accountId == null) // no text entered
+                throw "Account ID cannot be left empty";
 
             var controller = new SuspendUserAccountController();
             suspendState = controller.suspendUserAccount(accountId);
         } catch (err) {
+            this.displayError(err);
             suspendState = false;
-            errorMsg = err;
-        } finally {
-            if (suspendState) // successful creation
-                this.displaySuccess();
-            else
-                this.displayError(errorMsg);
-        }
+        } 
+        if (suspendState) // successful creation
+            this.displaySuccess();
     }
 }
 

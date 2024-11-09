@@ -3,58 +3,30 @@ import Boundary from "../UseCaseBoundary.js"
 
 class CreateUserAccountUI extends Boundary {
     onSubmit() {
-        console.log("Submit button clicked!");
-        var submitState = true;
-        var errorMsg = ""; 
-        var passErr = false;
-        var passConfirmErr = false;
-
         try {   
+            var submitState = false;
+            var profile = document.getElementById("profile").value;
             var name = document.getElementById("name").value;
             var email = document.getElementById("email").value;
-            var pass = document.getElementById("pass").value;
-            var passConfirm = document.getElementById("confirm pass").value;
+            var pass = document.getElementById("password").value;
             
             // error message
-            if (name == "" | name == null) {
-                submitState = false;
-                errorMsg = "Information entered is invalid, please try again"
-            }
-            if (email == "" | email == null) {
-                submitState = false;
-                errorMsg = "Information entered is invalid, please try again"
-            }
-            if (pass == "" | pass == null) {
-                submitState = false;
-                passErr = true;
-                errorMsg = "Information entered is invalid, please try again"
-            }
-            if (passConfirm == "" | passConfirm == null) {
-                submitState = false;
-                passConfirmErr = true;
-                errorMsg = "Information entered is invalid, please try again"
-            }
-            if (!passErr & !passConfirmErr & pass != passConfirm) {// mismatch between password and confirmation
-                submitState = false;
-                if (errorMsg != "") // already has an error
-                    errorMsg += "\n";
-                errorMsg += "Password and confirmation do not match"
-            }
-
-            // attempt to add to JSON
-            if (submitState) { // no errors in data entries
-                var controller = new SubmitUserAccountController();
-                submitState = controller.submitUserAccount(name, email, pass);
-            }
+            if (profile == "" | profile == null)
+                throw "Profile cannot be empty"
+            if (name == "" | name == null)
+                throw "Name cannot be empty"
+            if (email == "" | email == null)
+                throw "Email cannot be empty"
+            if (pass == "" | pass == null)
+                throw "Password cannot be empty"
+            // attempt to write to JSON
+            var controller = new SubmitUserAccountController();
+            submitState = controller.submitUserAccount(name, email, pass);
         } catch (err) { // errors from the controller or entity
-            console.error(err); 
-            errorMsg = err;
+            this.displayError(err);
         }
-        if (submitState) { // successful creation
+        if (submitState) // successful creation
             this.displaySuccess();
-        } else {
-            this.displayError(errorMsg);
-        } 
     }
 }
 

@@ -3,26 +3,32 @@ import Boundary from "../UseCaseBoundary.js";
 
 class SuspendUserProfileUI extends Boundary {
     onSuspend() {
-        var resultMsg = "";
         var suspendFlag = true;
 
         try {
-            var profileId = document.getElementById("profileId").value;
-
-            if (profileId == "" | profileId == null)
+            var profile = document.getElementById("profile").value;
+            if (profile == "" | profile == null)
                 throw "Account ID cannot be left empty";
+
+            if (profile == "UserAdmin")
+                var profileId = 0;
+            if (profile == "Buyer")
+                var profileId = 1;
+            if (profile == "Seller")
+                var profileId = 2;
+            if (profile == "UserCarAgent")
+                var profileId = 3;
             
             var controller = new SuspendUserProfileController();
             suspendFlag = controller.suspendUserProfile(profileId);
         } catch (err) {
             suspendFlag = false;
-            resultMsg = err;
+            this.displayError(err);
         }
-
-        if (suspendFlag)
-            this.displaySuccess();
-        else
-            this.displayError(resultMsg);
+        if (suspendFlag) {
+            if (confirm(`Are you sure you would like to suspend profile ${profileId}?`))
+                this.displaySuccess();
+        }
     } 
 }
 

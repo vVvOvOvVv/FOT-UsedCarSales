@@ -85,6 +85,8 @@
             }
         </style>
     </head> 
+
+    <script type="module" src="../../backend/boundaries/adminFunctions/UpdateUserAccountUI.js"></script>
       
     <body>
         <div id="nav">
@@ -100,13 +102,13 @@
             <div class="form-container">
                 <header>Update a User Account</header><br/>
                 <!-- to fetch details of existing account, show error if it doesn't match -->
-                <p>Enter username and password:</p>
+                <p>Enter old name and password:</p>
                 <form>
-                    <label for="oldname">Username</label><br/>
-                    <input type="text" id="oldname" name="oldname" placeholder="Enter username" required /><br/><br/>
+                    <label for="oldEmail">Email</label><br/>
+                    <input type="text" id="oldEmail" name="oldEmail" placeholder="Enter old email" required /><br/><br/>
 
                     <label for="oldpassword">Password</label><br/>
-                    <input type="password" id="oldpassword" name="oldpassword" placeholder="Enter password" required /><br/><br/>
+                    <input type="password" id="oldpassword" name="oldpassword" placeholder="Enter old password" required /><br/><br/>
                 </form>
                 <hr/>
 
@@ -117,43 +119,28 @@
                         <select id="profile" name="profile" style="border: none;" required>
                             <option value="" disabled selected></option>
                             <!-- Other selectable options -->
-                            <option value="UserAdmin">User Admin</option>
-                            <option value="Buyer">Buyer</option>
-                            <option value="Seller">Seller</option> 
-                            <option value="UsedCarAgent">Used Car Agent</option>
+                            <option value="0">User Admin</option>
+                            <option value="1">Buyer</option>
+                            <option value="2">Seller</option> 
+                            <option value="3">Used Car Agent</option>
                         </select>
                     </div><br/>
 
-                    <label for="newname">New Username</label><br/>
-                    <input type="text" id="newname" name="newname" placeholder="Enter new username" required /><br/><br/>
+                    <label for="newname">New Name</label><br/>
+                    <input type="text" id="newname" name="newname" placeholder="Enter new name" required /><br/><br/>
 
-                    <label for="email">Email</label><br/>
-                    <input type="email" id="email" name="email" placeholder="Enter email" required /><br/><br/>
+                    <label for="email">New Email</label><br/>
+                    <input type="email" id="email" name="email" placeholder="Enter new email" required /><br/><br/>
 
                     <label for="newpassword">New Password</label><br/>
                     <input type="password" id="newpassword" name="newpassword" placeholder="Enter new password" required /><br/><br/>
 
-                    <button class="button" id="submit" onclick="showAlert()">Submit</button>
+                    <button class="button" id="update" type="button">Submit</button>
                 </form>
             </div>
         </div>
 
         <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
 
-        <script type="text/javascript">          
-            function showAlert(){
-                const oldname = document.getElementById("oldname").value;
-                const oldpassword = document.getElementById("oldpassword").value;
-                const profile = document.getElementById("profile").value;
-                const newname = document.getElementById("newname").value;
-                const email = document.getElementById("email").value;
-                const newpassword = document.getElementById("newpassword").value;
-
-                if (oldname==="" || oldpassword==="" || profile==="" || newname==="" || email==="" || newpassword==="") 
-                    alert("Error");
-                else
-                    alert("Success");
-            }
-        </script>
     </body>
 </html>
