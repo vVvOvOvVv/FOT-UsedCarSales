@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audi Models</title>
+	
+		<style>
+        /* Your existing CSS styles for the services-container */
+        .services-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px,auto));
+            gap: 1rem;
+            margin-top: 2rem;
+            color: white;
+        }
+        .services-container .box{
+            padding: 10px;
+            border-radius: 1rem;
+            box-shadow: 1px 4px 41px rgba(0,0,0,0.1);
+        }
+        .services-container .box .box-img{
+            width: 100%;
+            height: 150px;
+        }
+        .services-container .box .box-img img{
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+            object-position: center;
+        }
+        .services-container .box p{
+            padding: 0 10px;
+            border: 1px solid ;
+            width: 58px;
+            border-radius: 0.5rem;
+            margin: 1rem 0 0.5rem;
+            color:black;
+        }
+        .services-container .box h3{
+            font-weight: 500;
+            color:black;
+        }
+
+        /* New CSS to style the buttons side by side */
+        .services-container .box .btn-container {
+            display: flex;
+            justify-content: space-between; /* Distribute buttons evenly */
+            gap: 10px; /* Add some space between the buttons */
+        }
+
+        .services-container .box .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #098b4c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 0.5rem;
+            flex: 1; /* Make the buttons flexible, so they take equal width */
+        }
+
+        .services-container .box .btn:hover {
+            background: lightgreen;
+        }
+
+        .services-container .box .btn.shortlist-btn {
+            background: #f39c12; /* You can use a different color for this button */
+        }
+
+        .services-container .box .btn.shortlist-btn:hover {
+            background: #f1c40f; /* Hover effect for shortlist button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Audi Vehicles</h1>
+	
+	<div class="services-container">
+        <div class="box">
+			<div class="box-img">
+				<img src="img/a4.png" alt="Audi A4 Sedan" data-car="a4"/>
+			</div>
+			<p>2023</p>
+			<h3>Audi A4 Sedan</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Audi%20A4%20Sedan&img=img/a4.png&brand=audi" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Audi A4 Sedan', 'img/a4.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/a6.png" alt="Audi A6 Saloon" data-car="a6"/>
+			</div>
+			<p>2023</p>
+			<h3>Audi A6 Saloon</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Audi%20A6%20Saloon&img=img/a6.png&brand=audi" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Audi A6 Saloon', 'img/a6.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/q5.png" alt="Audi Q5 Sportback" data-car="q5"/>
+			</div>
+			<p>2023</p>
+			<h3>Audi Q5 Sportback</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Audi%20Q5%20Sportback&img=img/q5.png&brand=audi" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Audi Q5 Sportback', 'img/q5.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/q7.png" alt="Audi Q7" data-car="q7"/>
+			</div>
+			<p>2023</p>
+			<h3>Audi Q7</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Audi%20Q7&img=img/q7.png&brand=audi" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Audi Q7', 'img/q7.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/etron.png" alt="Audi E-tron GT" data-car="etron"/>
+			</div>
+			<p>2023</p>
+			<h3>Audi E-tron GT</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Audi%20E-tron%20GT&img=img/etron.png&brand=audi" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Audi E-tron GT', 'img/etron.png')">Add to Shortlist</button>
+			</div>
+		</div>
+	</div>
+    <a href="Buyer.html">Back to Account</a>
+	
+	<script>
+		// Function to add a car to the shortlist
+		function addToShortlist(carName, carImage) {
+		// Get current shortlist from localStorage
+		let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
+
+		// Create a car object and add to the shortlist
+		const car = {
+			name: carName,
+			image: carImage
+		};
+		shortlist.push(car);
+
+		// Save the updated shortlist back to localStorage
+		localStorage.setItem('shortlist', JSON.stringify(shortlist));
+
+		// Optionally, show a message that the car has been added
+		alert(carName + " has been added to your shortlist!");	
+		}
+	</script>
+</body>
+</html>
+

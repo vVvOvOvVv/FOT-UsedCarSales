@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subaru Models</title>
+	
+		<style>
+        /* Your existing CSS styles for the services-container */
+        .services-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px,auto));
+            gap: 1rem;
+            margin-top: 2rem;
+            color: white;
+        }
+        .services-container .box{
+            padding: 10px;
+            border-radius: 1rem;
+            box-shadow: 1px 4px 41px rgba(0,0,0,0.1);
+        }
+        .services-container .box .box-img{
+            width: 100%;
+            height: 150px;
+        }
+        .services-container .box .box-img img{
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+            object-position: center;
+        }
+        .services-container .box p{
+            padding: 0 10px;
+            border: 1px solid ;
+            width: 58px;
+            border-radius: 0.5rem;
+            margin: 1rem 0 0.5rem;
+            color:black;
+        }
+        .services-container .box h3{
+            font-weight: 500;
+            color:black;
+        }
+
+        /* New CSS to style the buttons side by side */
+        .services-container .box .btn-container {
+            display: flex;
+            justify-content: space-between; /* Distribute buttons evenly */
+            gap: 10px; /* Add some space between the buttons */
+        }
+
+        .services-container .box .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #098b4c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 0.5rem;
+            flex: 1; /* Make the buttons flexible, so they take equal width */
+        }
+
+        .services-container .box .btn:hover {
+            background: lightgreen;
+        }
+
+        .services-container .box .btn.shortlist-btn {
+            background: #f39c12; /* You can use a different color for this button */
+        }
+
+        .services-container .box .btn.shortlist-btn:hover {
+            background: #f1c40f; /* Hover effect for shortlist button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Subaru Vehicles</h1>
+	
+    <div class="services-container">
+        <div class="box">
+			<div class="box-img">
+				<img src="img/outback.png" alt="Subaru Outback" data-car="outback"/>
+			</div>
+			<p>2023</p>
+			<h3>Subaru Outback</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Subaru%20Outback&img=img/outback.png&brand=subaru" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Subaru Outback', 'img/outback.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+        <div class="box">
+			<div class="box-img">
+				<img src="img/forester.png" alt="Subaru Forester" data-car="forester" />
+			</div>
+			<p>2023</p>
+			<h3>Subaru Forester</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Subaru%20Forester&img=img/forester.png&brand=subaru" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Subaru Forester', 'img/forester.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/impreza.png" alt="Subaru Impreza" data-car="impreza" />
+			</div>
+			<p>2023</p>
+			<h3>Subaru Impreza</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Subaru%20Impreza&img=img/impreza.png&brand=subaru" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Subaru Impreza', 'img/impreza.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/legacy.png" alt="Subaru Legacy" data-car="legacy"/>
+			</div>
+			<p>2023</p>
+			<h3>Subaru Legacy</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Subaru%20Legacy&img=img/legacy.png&brand=subaru" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Subaru Legacy', 'img/legacy.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/ascent.png" alt="Subaru Ascent" data-car="ascent"/>
+			</div>
+			<p>2023</p>
+			<h3>Subaru Ascent</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Subaru%20Ascent&img=img/ascent.png&brand=subaru" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Subaru Ascent', 'img/ascent.png')">Add to Shortlist</button>
+			</div>
+		</div>
+    </div>
+    <a href="Buyer.html">Back to Account</a>
+	
+	<script>
+		// Function to add a car to the shortlist
+		function addToShortlist(carName, carImage) {
+		// Get current shortlist from localStorage
+		let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
+
+		// Create a car object and add to the shortlist
+		const car = {
+			name: carName,
+			image: carImage
+		};
+		shortlist.push(car);
+
+		// Save the updated shortlist back to localStorage
+		localStorage.setItem('shortlist', JSON.stringify(shortlist));
+
+		// Optionally, show a message that the car has been added
+		alert(carName + " has been added to your shortlist!");	
+		}
+	</script>
+</body>
+</html>
+

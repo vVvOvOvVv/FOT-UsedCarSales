@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Models</title>
+	
+		<style>
+        /* Your existing CSS styles for the services-container */
+        .services-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px,auto));
+            gap: 1rem;
+            margin-top: 2rem;
+            color: white;
+        }
+        .services-container .box{
+            padding: 10px;
+            border-radius: 1rem;
+            box-shadow: 1px 4px 41px rgba(0,0,0,0.1);
+        }
+        .services-container .box .box-img{
+            width: 100%;
+            height: 150px;
+        }
+        .services-container .box .box-img img{
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+            object-position: center;
+        }
+        .services-container .box p{
+            padding: 0 10px;
+            border: 1px solid ;
+            width: 58px;
+            border-radius: 0.5rem;
+            margin: 1rem 0 0.5rem;
+            color:black;
+        }
+        .services-container .box h3{
+            font-weight: 500;
+            color:black;
+        }
+
+        /* New CSS to style the buttons side by side */
+        .services-container .box .btn-container {
+            display: flex;
+            justify-content: space-between; /* Distribute buttons evenly */
+            gap: 10px; /* Add some space between the buttons */
+        }
+
+        .services-container .box .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #098b4c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 0.5rem;
+            flex: 1; /* Make the buttons flexible, so they take equal width */
+        }
+
+        .services-container .box .btn:hover {
+            background: lightgreen;
+        }
+
+        .services-container .box .btn.shortlist-btn {
+            background: #f39c12; /* You can use a different color for this button */
+        }
+
+        .services-container .box .btn.shortlist-btn:hover {
+            background: #f1c40f; /* Hover effect for shortlist button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Honda Vehicles</h1>
+	
+    <div class="services-container">
+        <div class="box">
+			<div class="box-img">
+				<img src="img/civic.png" alt="Honda Civic" data-car="civic"/>
+			</div>
+			<p>2023</p>
+			<h3>Honda Civic</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Honda%20Civic&img=img/civic.png&brand=honda" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Honda Civic', 'img/civic.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/accord.png" alt="Honda Accord" data-car="accord" />
+			</div>
+			<p>2023</p>
+			<h3>Honda Accord</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Honda%20Accord&img=img/accord.png&brand=honda" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Honda Accord', 'img/accord.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/crv.png" alt="Honda CR-V" data-car="crv" />
+			</div>
+			<p>2021</p>
+			<h3>Honda CR-V</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Honda%20CR-V&img=img/crv.png&brand=honda" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Honda CR-V', 'img/crv.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/pilot.png" alt="Honda Pilot" data-car="pilot"/>
+			</div>
+			<p>2023</p>
+			<h3>Honda Pilot</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Honda%20Pilot&img=img/pilot.png&brand=honda" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Honda Pilot', 'img/pilot.png')">Add to Shortlist</button>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="box-img">
+				<img src="img/insight.png" alt="Honda Insight" data-car="insight"/>
+			</div>
+			<p>2020</p>
+			<h3>Honda Insight</h3>
+			<div class="btn-container">
+				<a href="View.html?car=Honda%20Insight&img=img/insight.png&brand=honda" class="btn">View Details</a>
+				<button class="btn shortlist-btn" onclick="addToShortlist('Honda Insight', 'img/insight.png')">Add to Shortlist</button>
+			</div>
+		</div>
+    </div>
+    <a href="Buyer.html">Back to Account</a>
+	
+	<script>
+		// Function to add a car to the shortlist
+		function addToShortlist(carName, carImage) {
+		// Get current shortlist from localStorage
+		let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
+
+		// Create a car object and add to the shortlist
+		const car = {
+			name: carName,
+			image: carImage
+		};
+		shortlist.push(car);
+
+		// Save the updated shortlist back to localStorage
+		localStorage.setItem('shortlist', JSON.stringify(shortlist));
+
+		// Optionally, show a message that the car has been added
+		alert(carName + " has been added to your shortlist!");	
+		}
+	</script>
+</body>
+</html>
+

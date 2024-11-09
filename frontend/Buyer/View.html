@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details</title>
+  <style>
+    .services-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 300px;
+    }
+    .box-img img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="services-container">
+  <div class="box">
+    <div class="box-img">
+      <img id="carImage" alt="Car image" src="" />
+    </div>
+    <h3 id="carName">Car Name</h3>
+    <p id="carDescription">Car description here</p>
+	<p><strong>Price:</strong> <span id="carPrice">Price here</span></p>
+    <p><strong>Rating:</strong> <span id="carRating">Rating here</span></p>
+    <p><strong>Review:</strong> <span id="carReview">Review here</span></p>
+    <button id="loanCalculatorButton">Calculate Loan</button>
+    <a id="backButton" href="#" class="btn">Back</a>
+  </div>
+</div>
+
+<script>
+  // Function to get URL parameters
+  function getURLParameter(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+	// Car details, including description, rating, and review
+	const carDetails = {
+	// Mercedes-Benz
+    "Mercedes-Benz A-Class": {
+    price: "$130,000",
+    description: "The Mercedes-Benz A-Class is a compact luxury hatchback offering modern technology, stylish design, and a premium driving experience.",
+    rating: "4.3/5",
+    review: "A youthful and high-tech option, great for urban dwellers seeking a small yet luxurious car."
+    },
+    "Mercedes-Benz C-Class": {
+        price: "$155,000",
+        description: "The Mercedes-Benz C-Class is a compact executive car offering luxury, high performance, and advanced technology in a sleek, comfortable design.",
+        rating: "4.5/5",
+        review: "An excellent choice for those looking for a blend of comfort, style, and technology."
+    },
+    "Mercedes-Benz E-Class": {
+        price: "$215,000",
+        description: "The Mercedes-Benz E-Class combines elegant design with powerful performance, featuring high-end interiors and advanced driver assistance systems.",
+        rating: "4.8/5",
+        review: "Top-notch luxury sedan with unmatched comfort and advanced safety features."
+    },
+    "Mercedes-Benz S-Class": {
+        price: "$400,000",
+        description: "The Mercedes-Benz S-Class epitomizes luxury with its advanced technology, smooth ride, and sophisticated design, perfect for executive-level comfort.",
+        rating: "5/5",
+        review: "The gold standard in luxury sedans, offering unparalleled comfort, innovation, and performance."
+    },
+    "Mercedes-Benz GLA": {
+        price: "$155,000",
+        description: "The Mercedes-Benz GLA is a compact SUV with a sporty design, advanced features, and the versatility needed for city driving.",
+        rating: "4.4/5",
+        review: "Ideal for those who want a small SUV that doesn’t compromise on luxury and style."
+    },
+    "Mercedes-Benz GLB": {
+        price: "$170,000",
+        description: "The Mercedes-Benz GLB offers a spacious interior with the option for seven seats, perfect for family adventures without sacrificing luxury.",
+        rating: "4.6/5",
+        review: "A versatile and spacious SUV, providing comfort and convenience for families in a premium package."
+    },
+    "Mercedes-Benz GLC": {
+        price: "$195,000",
+        description: "The Mercedes-Benz GLC is a stylish mid-sized SUV with a refined interior, dynamic performance, and advanced safety technology.",
+        rating: "4.7/5",
+        review: "A refined and luxurious SUV that offers excellent balance between performance and practicality."
+    },
+    "Mercedes-Benz GLE": {
+        price: "$275,000",
+        description: "The Mercedes-Benz GLE blends the versatility of an SUV with the luxury of the Mercedes-Benz brand, equipped with a spacious interior and advanced safety features.",
+        rating: "4.7/5",
+        review: "An impressive balance of luxury and performance in a spacious SUV, perfect for families and those seeking a refined driving experience."
+    },
+    "Mercedes-Benz GLS": {
+        price: "$350,000",
+        description: "The Mercedes-Benz GLS is a full-sized luxury SUV offering an opulent interior, powerful engine options, and cutting-edge technology for maximum comfort and convenience.",
+        rating: "4.8/5",
+        review: "A magnificent and spacious SUV, ideal for those needing ample room without compromising on luxury."
+    },
+    "Mercedes-Benz V-Class": {
+        price: "$210,000",
+        description: "The Mercedes-Benz V-Class is a luxury MPV with a spacious and versatile interior, perfect for families or executive transport with top-notch amenities.",
+        rating: "4.5/5",
+        review: "A premium people carrier, offering a luxurious and comfortable experience for passengers."
+    },
+
+        // Audi
+    "Audi A3": {
+        price: "$125,000",
+        description: "The Audi A3 is a stylish and compact premium car offering agile performance, advanced features, and a refined interior, ideal for urban driving.",
+        rating: "4.2/5",
+        review: "A great entry-level luxury car for city drivers, with a premium feel and efficient performance."
+    },
+    "Audi A4": {
+        price: "$180,000",
+        description: "The Audi A4 combines elegance with technology, featuring a smooth ride, spacious cabin, and cutting-edge infotainment system.",
+        rating: "4.5/5",
+        review: "A reliable and refined sedan that delivers a balanced and comfortable driving experience."
+    },
+    "Audi A5": {
+        price: "$200,000",
+        description: "The Audi A5 features a sleek and sporty design with powerful engine options and a luxurious interior, providing an exhilarating driving experience.",
+        rating: "4.6/5",
+        review: "A stylish coupe with plenty of power and luxury, perfect for those seeking a blend of performance and comfort."
+    },
+    "Audi A6": {
+        price: "$235,000",
+        description: "The Audi A6 is a luxury executive sedan offering top-notch technology, refined comfort, and a powerful performance on the road.",
+        rating: "4.7/5",
+        review: "An executive's dream car, offering a sophisticated experience with state-of-the-art features."
+    },
+    "Audi Q3": {
+        price: "$150,000",
+        description: "The Audi Q3 is a compact luxury SUV providing a high driving position, versatile interior, and a smooth ride, perfect for urban adventures.",
+        rating: "4.3/5",
+        review: "A practical and stylish small SUV that offers a good mix of comfort, technology, and efficiency."
+    },
+    "Audi Q5": {
+        price: "$220,000",
+        description: "The Audi Q5 is a mid-sized luxury SUV delivering a premium driving experience, with advanced safety features and a plush interior.",
+        rating: "4.6/5",
+        review: "A versatile and well-rounded SUV, great for families or anyone wanting a mix of performance and luxury."
+    },
+    "Audi Q7": {
+        price: "$300,000",
+        description: "The Audi Q7 is a full-sized luxury SUV that offers ample space, powerful engines, and advanced infotainment and driver assistance features.",
+        rating: "4.8/5",
+        review: "A top-tier family SUV, providing a smooth and luxurious ride with cutting-edge technology."
+    },
+    "Audi Q8": {
+        price: "$330,000",
+        description: "The Audi Q8 is a premium SUV coupe that combines sporty design with luxurious comfort, featuring high-end tech and impressive performance.",
+        rating: "4.7/5",
+        review: "A bold and luxurious SUV coupe, perfect for those wanting style and substance in one package."
+    },
+    "Audi e-tron": {
+        price: "$350,000",
+        description: "The Audi e-tron is an all-electric luxury SUV offering smooth and quiet performance, long-range capability, and a sophisticated interior.",
+        rating: "4.8/5",
+        review: "A fantastic electric SUV with all the luxury and performance you expect from Audi, great for eco-conscious drivers."
+    },
+    "Audi RS5": {
+        price: "$380,000",
+        description: "The Audi RS5 is a high-performance sports coupe delivering exhilarating speed, a powerful V6 engine, and precise handling, all in a sleek package.",
+        rating: "4.9/5",
+        review: "A thrilling sports car that delivers on power and agility while maintaining a touch of luxury."
+    },
+
+
+
+    // BMW
+    "BMW 1 Series": {
+    price: "$90,000",
+    description: "The BMW 1 Series is a compact and sporty hatchback offering agile handling, premium features, and an engaging driving experience.",
+    rating: "4.2/5",
+    review: "A fun and stylish hatchback, perfect for urban drivers looking for a compact luxury experience."
+  },
+  "BMW 2 Series": {
+    price: "$140,000",
+    description: "The BMW 2 Series is a dynamic and compact sports car that delivers thrilling performance with a sleek design and high-quality interior.",
+    rating: "4.4/5",
+    review: "A sporty and compact vehicle, offering a great balance of power and luxury in a small package."
+  },
+  "BMW 3 Series": {
+    price: "$230,000",
+    description: "The BMW 3 Series is a premium sedan known for its sporty handling, luxurious interior, and cutting-edge technology.",
+    rating: "4.7/5",
+    review: "An excellent all-rounder, blending performance and comfort, making it a favorite in the luxury sedan segment."
+  },
+  "BMW 5 Series": {
+    price: "$290,000",
+    description: "The BMW 5 Series offers executive-level comfort, a refined interior, and advanced driving assistance features, ideal for long-distance cruising.",
+    rating: "4.8/5",
+    review: "A top choice for executives, combining elegance, technology, and a smooth driving experience."
+  },
+  "BMW X1": {
+    price: "$170,000",
+    description: "The BMW X1 is a compact luxury SUV that provides a comfortable ride, versatile interior, and a range of tech features.",
+    rating: "4.3/5",
+    review: "A practical and stylish small SUV, perfect for urban adventures and small families."
+  },
+  "BMW X3": {
+    price: "$220,000",
+    description: "The BMW X3 is a mid-sized SUV that offers sporty handling, a luxurious cabin, and a variety of advanced features.",
+    rating: "4.5/5",
+    review: "A great choice for those who want an SUV with the performance and driving dynamics of a sports sedan."
+  },
+  "BMW X5": {
+    price: "$350,000",
+    description: "The BMW X5 is a luxury SUV known for its strong performance, spacious interior, and high-tech features, ideal for family journeys.",
+    rating: "4.7/5",
+    review: "A family-friendly SUV that doesn’t compromise on luxury or driving pleasure."
+  },
+  "BMW X7": {
+    price: "$400,000",
+    description: "The BMW X7 is a full-sized luxury SUV offering a plush interior, three rows of seats, and a commanding presence on the road.",
+    rating: "4.8/5",
+    review: "A massive and luxurious SUV, perfect for large families and those who want to make a statement."
+  },
+  "BMW iX": {
+    price: "$420,000",
+    description: "The BMW iX is a fully electric SUV that combines sustainable technology with luxury, featuring a futuristic design and impressive range.",
+    rating: "4.9/5",
+    review: "A forward-thinking electric SUV that offers a luxurious and eco-friendly driving experience."
+  },
+  "BMW Z4": {
+    price: "$180,000",
+    description: "The BMW Z4 is a sleek and sporty roadster, perfect for open-top driving with precise handling and a powerful engine.",
+    rating: "4.6/5",
+    review: "A thrilling and stylish convertible, ideal for those who love the joy of open-air driving."
+  },
+
+   	
+	 // Honda
+    "Honda Civic": {
+    price: "$80,000",
+    description: "The Honda Civic is a popular compact sedan known for its reliability, fuel efficiency, and advanced features, offering a smooth and engaging drive.",
+    rating: "4.5/5",
+    review: "A solid all-rounder, perfect for daily commuting and known for its impressive fuel economy and modern design."
+  },
+  "Honda Accord": {
+    price: "$90,000",
+    description: "The Honda Accord is a spacious and well-equipped sedan that delivers a comfortable ride, ample interior space, and cutting-edge safety features.",
+    rating: "4.6/5",
+    review: "A great choice for families or executives seeking a reliable and refined sedan with plenty of room and comfort."
+  },
+  "Honda Jazz": {
+    price: "$40,000",
+    description: "The Honda Jazz (or Fit) is a compact hatchback that offers a versatile interior, excellent fuel efficiency, and nimble handling, ideal for city driving.",
+    rating: "4.3/5",
+    review: "A practical and economical hatchback, loved for its roomy interior and easy maneuverability in tight spaces."
+  },
+  "Honda HR-V": {
+    price: "$65,000",
+    description: "The Honda HR-V is a compact SUV that blends style with practicality, featuring a flexible interior and smooth driving performance.",
+    rating: "4.4/5",
+    review: "A versatile and stylish small SUV, perfect for city dwellers who need extra space without sacrificing efficiency."
+  },
+  "Honda CR-V": {
+    price: "$95,000",
+    description: "The Honda CR-V is a well-rounded SUV known for its spacious cabin, advanced features, and efficient engine, offering a smooth and comfortable ride.",
+    rating: "4.7/5",
+    review: "A family-friendly SUV that provides great value with ample cargo space, comfort, and reliability."
+  },
+  "Honda Fit": {
+    price: "$50,000",
+    description: "The Honda Fit is a compact car that excels in fuel efficiency, offering a surprising amount of space and versatility for its size.",
+    rating: "4.2/5",
+    review: "An efficient and practical hatchback, ideal for young drivers or those looking for a budget-friendly urban car."
+  },
+  "Honda Freed": {
+    price: "$60,000",
+    description: "The Honda Freed is a compact MPV offering a flexible seating arrangement, a spacious interior, and advanced safety features, perfect for families.",
+    rating: "4.3/5",
+    review: "A compact MPV that packs a lot of practicality into a small package, ideal for city families."
+  },
+  "Honda Shuttle": {
+    price: "$55,000",
+    description: "The Honda Shuttle is a station wagon variant of the Fit, providing generous cargo space, efficient performance, and a comfortable ride.",
+    rating: "4.1/5",
+    review: "A practical and spacious option for those who need more cargo room without upgrading to a full-sized SUV."
+  },
+  "Honda Odyssey": {
+    price: "$75,000",
+    description: "The Honda Odyssey is a family-friendly MPV known for its spacious interior, comfortable ride, and advanced infotainment features.",
+    rating: "4.5/5",
+    review: "An excellent choice for large families, offering comfort and practicality with room for everyone."
+  },
+  "Honda Stepwagon": {
+    price: "$85,000",
+    description: "The Honda Stepwagon is a versatile MPV designed for families, featuring a spacious cabin, flexible seating, and a smooth driving experience.",
+    rating: "4.4/5",
+    review: "A practical and roomy MPV, great for road trips and everyday family needs, with clever use of space."
+  },
+
+
+    // Hyundai
+    "Hyundai Avante": {
+    price: "$25,000",
+    description: "The Hyundai Avante (Elantra) is a compact sedan offering a comfortable ride, modern design, and a reputation for reliability and fuel efficiency.",
+    rating: "4.1/5",
+    review: "A practical and budget-friendly sedan, great for daily commutes and known for its value-for-money features."
+  },
+  "Hyundai i30": {
+    price: "$30,000",
+    description: "The Hyundai i30 is a compact hatchback that combines stylish design with efficient performance and a spacious interior for its class.",
+    rating: "4.2/5",
+    review: "A solid and well-rounded hatchback, ideal for those seeking a compact car with modern features and good fuel economy."
+  },
+  "Hyundai Tucson": {
+    price: "$100,000",
+    description: "The Hyundai Tucson is a compact SUV known for its bold design, advanced technology, and a comfortable, high-quality interior.",
+    rating: "4.4/5",
+    review: "A great choice for small families or those looking for a stylish and feature-packed SUV at a reasonable price."
+  },
+  "Hyundai Santa Fe": {
+    price: "$120,000",
+    description: "The Hyundai Santa Fe is a midsize SUV that offers a spacious cabin, powerful engine options, and a host of safety and tech features.",
+    rating: "4.6/5",
+    review: "A reliable and well-equipped SUV that delivers comfort and performance, perfect for families and long trips."
+  },
+  "Hyundai Kona": {
+    price: "$65,000",
+    description: "The Hyundai Kona is a subcompact SUV with a striking design, efficient engines, and an impressive list of safety features.",
+    rating: "4.3/5",
+    review: "A stylish and nimble SUV that’s fun to drive, ideal for young families or urban dwellers."
+  },
+  "Hyundai Venue": {
+    price: "$70,000",
+    description: "The Hyundai Venue is a compact crossover that’s affordable, stylish, and packed with tech features, offering a great urban driving experience.",
+    rating: "4.2/5",
+    review: "An affordable and compact SUV, perfect for city driving with a surprisingly spacious interior."
+  },
+  "Hyundai Ioniq 5": {
+    price: "$150,000",
+    description: "The Hyundai Ioniq 5 is an all-electric crossover that boasts futuristic design, fast charging capabilities, and an impressive electric range.",
+    rating: "4.8/5",
+    review: "A standout electric vehicle with a bold design and advanced features, ideal for eco-conscious drivers."
+  },
+  "Hyundai Staria": {
+    price: "$90,000",
+    description: "The Hyundai Staria is a modern MPV that offers a spacious and futuristic interior, perfect for transporting large families or groups in comfort.",
+    rating: "4.5/5",
+    review: "An impressive MPV that combines space and style, making it a great choice for family travel or business use."
+  },
+  "Hyundai Palisade": {
+    price: "$180,000",
+    description: "The Hyundai Palisade is a full-size SUV that offers premium comfort, a luxurious interior, and advanced safety features, ideal for large families.",
+    rating: "4.7/5",
+    review: "A high-end SUV that provides a smooth and quiet ride with ample space for all passengers."
+  },
+  "Hyundai Elantra": {
+    price: "$75,000",
+    description: "The Hyundai Elantra is a compact sedan featuring a striking design, a spacious cabin, and a wide range of modern features.",
+    rating: "4.4/5",
+    review: "A sleek and stylish sedan, great for those seeking a mix of affordability, comfort, and technology."
+  },
+
+    // KIA
+    "Kia Cerato": {
+    price: "$30,000",
+    description: "The Kia Cerato is a compact sedan that delivers a comfortable ride, sleek design, and a wide array of tech features.",
+    rating: "4.2/5",
+    review: "A well-rounded sedan that provides excellent value for money, with a stylish exterior and a refined interior."
+  },
+  "Kia Stonic": {
+    price: "$35,000",
+    description: "The Kia Stonic is a sporty compact crossover with a stylish design, agile handling, and practical features for urban living.",
+    rating: "4.1/5",
+    review: "A fun and nimble crossover that's ideal for city drivers, offering a good mix of style and practicality."
+  },
+  "Kia Seltos": {
+    price: "$90,000",
+    description: "The Kia Seltos is a compact SUV that features a bold exterior, a spacious cabin, and an impressive array of safety features.",
+    rating: "4.4/5",
+    review: "A modern and feature-packed SUV, perfect for families seeking a balance of comfort and functionality."
+  },
+  "Kia Sportage": {
+    price: "$95,000",
+    description: "The Kia Sportage is a versatile SUV that provides a refined ride, powerful engine options, and a tech-forward interior.",
+    rating: "4.5/5",
+    review: "A standout SUV that combines style, performance, and advanced safety features, great for daily drives and weekend adventures."
+  },
+  "Kia Sorento": {
+    price: "$120,000",
+    description: "The Kia Sorento is a midsize SUV with a premium interior, advanced technology, and a strong focus on safety and comfort.",
+    rating: "4.6/5",
+    review: "A family-friendly SUV with plenty of space and luxury features, ideal for those needing extra room and comfort."
+  },
+  "Kia Carnival": {
+    price: "$40,000",
+    description: "The Kia Carnival is a full-size MPV designed for maximum comfort, offering a spacious cabin and a range of family-friendly features.",
+    rating: "4.3/5",
+    review: "An excellent choice for large families, providing a smooth ride and ample space for passengers and cargo."
+  },
+  "Kia Niro": {
+    price: "$70,000",
+    description: "The Kia Niro is a hybrid crossover that blends efficiency with practicality, featuring a modern design and a comfortable interior.",
+    rating: "4.4/5",
+    review: "A fuel-efficient and eco-friendly crossover, perfect for those looking to reduce their carbon footprint without sacrificing versatility."
+  },
+  "Kia EV6": {
+    price: "$150,000",
+    description: "The Kia EV6 is a cutting-edge electric crossover with a striking design, long electric range, and advanced technology.",
+    rating: "4.8/5",
+    review: "A game-changing electric vehicle that offers impressive performance, fast charging, and a futuristic design."
+  },
+  "Kia Optima": {
+    price: "$25,000",
+    description: "The Kia Optima is a midsize sedan known for its sleek design, comfortable interior, and a host of safety and convenience features.",
+    rating: "4.2/5",
+    review: "A stylish and comfortable sedan that offers great value, ideal for families and daily commutes."
+  },
+  "Kia Picanto": {
+    price: "$20,000",
+    description: "The Kia Picanto is a compact hatchback that's affordable, fun to drive, and perfect for navigating urban environments.",
+    rating: "4.0/5",
+    review: "A budget-friendly and practical city car, offering excellent maneuverability and a surprisingly spacious interior."
+  },
+
+    // Mazda
+  "Mazda 2": {
+    price: "$30,000",
+    description: "The Mazda 2 is a compact hatchback that combines a stylish design with nimble handling, making it perfect for urban driving.",
+    rating: "4.1/5",
+    review: "An economical and fun-to-drive hatchback, offering great fuel efficiency and a modern, upscale interior."
+  },
+  "Mazda 3": {
+    price: "$90,000",
+    description: "The Mazda 3 is a premium compact car that boasts an elegant design, refined interior, and engaging driving dynamics.",
+    rating: "4.5/5",
+    review: "A top pick in the compact car segment, known for its stylish looks, high-quality cabin, and sporty handling."
+  },
+  "Mazda 6": {
+    price: "$100,000",
+    description: "The Mazda 6 is a midsize sedan offering a blend of luxury, performance, and impressive driving dynamics.",
+    rating: "4.6/5",
+    review: "A refined and sporty sedan with a luxurious feel, perfect for those who want both comfort and a thrilling drive."
+  },
+  "Mazda CX-3": {
+    price: "$40,000",
+    description: "The Mazda CX-3 is a subcompact crossover that offers agile handling, a stylish design, and a well-crafted interior.",
+    rating: "4.2/5",
+    review: "A compact SUV that's fun to drive and features a premium interior, ideal for city dwellers who want a stylish ride."
+  },
+  "Mazda CX-5": {
+    price: "$95,000",
+    description: "The Mazda CX-5 is a compact SUV that provides a sporty driving experience, a refined interior, and advanced safety features.",
+    rating: "4.7/5",
+    review: "An excellent compact SUV with upscale features and a great balance of performance and comfort."
+  },
+  "Mazda CX-8": {
+    price: "$80,000",
+    description: "The Mazda CX-8 is a three-row SUV that delivers a smooth ride, elegant design, and spacious interior for family adventures.",
+    rating: "4.4/5",
+    review: "A practical and stylish SUV, perfect for families needing extra space without compromising on driving pleasure."
+  },
+  "Mazda CX-9": {
+    price: "$110,000",
+    description: "The Mazda CX-9 is a large SUV that offers a luxurious cabin, a powerful engine, and a sophisticated design.",
+    rating: "4.6/5",
+    review: "A top choice for large families, providing ample space, premium materials, and a smooth, enjoyable ride."
+  },
+  "Mazda MX-5": {
+    price: "$70,000",
+    description: "The Mazda MX-5 is a legendary roadster known for its lightweight design, engaging driving dynamics, and open-top thrills.",
+    rating: "4.8/5",
+    review: "An iconic sports car that delivers pure driving fun, perfect for enthusiasts seeking a thrilling and responsive ride."
+  },
+  "Mazda CX-30": {
+    price: "$85,000",
+    description: "The Mazda CX-30 is a stylish and sporty subcompact SUV with a well-crafted interior and an engaging driving experience.",
+    rating: "4.5/5",
+    review: "A sleek and versatile crossover that's easy to drive and comes loaded with advanced technology and safety features."
+  },
+  "Mazda RX8": {
+    price: "$25,000",
+    description: "The Mazda RX8 is a unique sports car featuring a rotary engine, a sleek design, and a blend of performance and practicality.",
+    rating: "4.3/5",
+    review: "A distinct and exciting sports coupe, known for its rotary engine and agile handling, ideal for driving enthusiasts."
+  },
+
+
+
+    //mitsubishi
+    "Mitsubishi Attrage": {
+    price: "$35,000",
+    description: "The Mitsubishi Attrage is a compact sedan known for its fuel efficiency, practical features, and affordable price.",
+    rating: "3.8/5",
+    review: "A budget-friendly sedan that's easy to drive and economical, perfect for city commutes."
+  },
+  "Mitsubishi Outlander": {
+    price: "$55,000",
+    description: "The Mitsubishi Outlander is a versatile SUV that offers spacious seating, advanced safety features, and a comfortable ride.",
+    rating: "4.2/5",
+    review: "A reliable and roomy SUV, great for families who need extra space and off-road capability."
+  },
+  "Mitsubishi ASX": {
+    price: "$40,000",
+    description: "The Mitsubishi ASX is a compact crossover that combines practicality, a high driving position, and a solid build quality.",
+    rating: "4.0/5",
+    review: "A dependable and compact SUV that offers decent performance and a roomy interior for its class."
+  },
+  "Mitsubishi Eclipse Cross": {
+    price: "$90,000",
+    description: "The Mitsubishi Eclipse Cross is a modern SUV with a sporty design, advanced tech features, and a smooth driving experience.",
+    rating: "4.3/5",
+    review: "A stylish and dynamic crossover with a bold design and plenty of technology, suited for urban and highway driving."
+  },
+  "Mitsubishi Lancer": {
+    price: "$15,000",
+    description: "The Mitsubishi Lancer is a classic sedan known for its sporty look, reliable performance, and affordability.",
+    rating: "3.9/5",
+    review: "An old favorite with a strong reputation for reliability and a sporty edge, still loved by enthusiasts."
+  },
+  "Mitsubishi Pajero": {
+    price: "$50,000",
+    description: "The Mitsubishi Pajero is a rugged off-road SUV with a reputation for durability, spaciousness, and powerful performance.",
+    rating: "4.5/5",
+    review: "A legendary SUV for adventure seekers, offering serious off-road capabilities and a comfortable ride."
+  },
+  "Mitsubishi Triton": {
+    price: "$45,000",
+    description: "The Mitsubishi Triton is a durable pickup truck that offers a blend of off-road capability, towing power, and a comfortable cabin.",
+    rating: "4.1/5",
+    review: "A robust and practical pickup truck, great for work and recreational activities alike."
+  },
+  "Mitsubishi Xpander": {
+    price: "$65,000",
+    description: "The Mitsubishi Xpander is a compact MPV designed for families, featuring a spacious interior and a smooth driving experience.",
+    rating: "4.2/5",
+    review: "A practical and affordable family MPV, offering plenty of room and comfort for long trips."
+  },
+  "Mitsubishi Delica": {
+    price: "$75,000",
+    description: "The Mitsubishi Delica is a unique van that combines a spacious cabin with off-road capabilities, perfect for family adventures.",
+    rating: "4.0/5",
+    review: "A rugged and versatile van, ideal for camping trips and outdoor adventures with the family."
+  },
+  "Mitsubishi Space Star": {
+    price: "$30,000",
+    description: "The Mitsubishi Space Star is a compact hatchback that emphasizes affordability, fuel efficiency, and easy maneuverability.",
+    rating: "3.7/5",
+    review: "A small and efficient hatchback, great for budget-conscious drivers looking for a simple and reliable ride."
+  },
+
+    // Toyota
+    "Toyota Corolla Altis": {
+    price: "$35,000",
+    description: "The Toyota Corolla Altis is a reliable and fuel-efficient sedan known for its practicality, durability, and smooth driving experience.",
+    rating: "4.2/5",
+    review: "A dependable and economical choice, perfect for daily commutes and long drives with family."
+  },
+  "Toyota Camry": {
+    price: "$145,000",
+    description: "The Toyota Camry is a mid-size sedan offering refined comfort, advanced safety features, and impressive performance.",
+    rating: "4.6/5",
+    review: "A luxurious and smooth sedan that provides a premium experience and top-tier reliability."
+  },
+  "Toyota Vios": {
+    price: "$45,000",
+    description: "The Toyota Vios is a compact and affordable sedan that excels in fuel efficiency and ease of maintenance.",
+    rating: "4.0/5",
+    review: "A budget-friendly and reliable choice, great for city driving and first-time car owners."
+  },
+  "Toyota Yaris Cross": {
+    price: "$110,000",
+    description: "The Toyota Yaris Cross is a compact SUV that blends modern design with practicality, offering advanced safety features and hybrid options.",
+    rating: "4.3/5",
+    review: "A stylish and efficient crossover that's perfect for urban lifestyles and adventurous trips."
+  },
+  "Toyota RAV4": {
+    price: "$160,000",
+    description: "The Toyota RAV4 is a spacious and versatile SUV known for its off-road capabilities, fuel efficiency, and comfortable interior.",
+    rating: "4.5/5",
+    review: "A top choice for families and adventure seekers, combining reliability with modern features."
+  },
+  "Toyota Harrier": {
+    price: "$180,000",
+    description: "The Toyota Harrier is a luxury SUV offering a sleek design, smooth performance, and a premium cabin experience.",
+    rating: "4.7/5",
+    review: "A sophisticated and refined SUV that stands out for its elegance and advanced technology."
+  },
+  "Toyota Fortuner": {
+    price: "$80,000",
+    description: "The Toyota Fortuner is a rugged SUV built for off-road adventures, with a powerful engine and robust construction.",
+    rating: "4.4/5",
+    review: "A durable and powerful SUV, great for those who love outdoor escapades and need a reliable off-roader."
+  },
+  "Toyota Hiace": {
+    price: "$60,000",
+    description: "The Toyota Hiace is a versatile van designed for commercial use, offering ample space and proven reliability for business needs.",
+    rating: "4.1/5",
+    review: "A workhorse van that delivers on practicality and dependability, ideal for businesses and transport services."
+  },
+  "Toyota Alphard": {
+    price: "$150,000",
+    description: "The Toyota Alphard is a luxurious MPV known for its spacious interior, high-end features, and smooth ride, perfect for family travels.",
+    rating: "4.8/5",
+    review: "An ultra-comfortable and spacious luxury van that redefines convenience and elegance for large families."
+  },
+  "Toyota Prius": {
+    price: "$30,000",
+    description: "The Toyota Prius is a pioneer in hybrid technology, offering exceptional fuel efficiency, eco-friendliness, and a unique design.",
+    rating: "4.3/5",
+    review: "An eco-friendly hybrid car that's perfect for those looking to minimize their carbon footprint while enjoying reliable performance."
+  }
+	};
+
+    function setupLoanCalculatorButton(carName) {
+    const button = document.getElementById('loanCalculatorButton');
+    const car = carDetails[carName];
+
+    if (button && car) {
+      button.addEventListener('click', function() {
+        // Redirect to the LoanCalculator page with car price as a URL parameter
+        const carPrice = car.price.replace('$', '').replace(',', ''); // Clean the price format
+        window.location.href = `LoanCalculator.html?carPrice=${encodeURIComponent(carPrice)}`;
+      });
+    }
+  }
+
+  // Retrieve car name and image path from URL
+  const carName = getURLParameter("car");
+  const carImagePath = getURLParameter("img");
+
+  // Display car name, image, description, rating, and review
+  document.getElementById("carName").textContent = carName || "Car not specified";
+  document.getElementById("carImage").src = carImagePath || "";
+  document.getElementById("carImage").alt = carName || "Car image";
+
+  // Check if car details are available
+  const carInfo = carDetails[carName];
+  if (carInfo) {
+    document.getElementById("carPrice").textContent = carInfo.price || "Price not available";
+    document.getElementById("carDescription").textContent = carInfo.description || "Description not available";
+    document.getElementById("carRating").textContent = carInfo.rating || "Rating not available";
+    document.getElementById("carReview").textContent = carInfo.review || "Review not available";
+
+    // Setup loan calculator button
+    setupLoanCalculatorButton(carName);
+  } else {
+    document.getElementById("carPrice").textContent = "Price not available";
+    document.getElementById("carDescription").textContent = "Description not available";
+    document.getElementById("carRating").textContent = "Rating not available";
+    document.getElementById("carReview").textContent = "Review not available";
+  }
+
+  // Set the back button link based on the referrer or brand
+  const referrer = getURLParameter('referrer');
+  const brand = getURLParameter('brand');
+  const backButton = document.getElementById('backButton');
+
+  // Navigate back to the shortlist or brand page depending on referrer
+  if (referrer === 'shortlist') {
+    backButton.href = 'shortlist.html';
+  } else {
+    backButton.href = brand ? `${brand.charAt(0).toUpperCase() + brand.slice(1)}.html` : 'Cars.html';
+  }
+</script>
+
+</body>
+</html>
+</script>
+
+</body>
+</html>

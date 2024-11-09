@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .loan-container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .loan-container h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    .car-price {
+      font-size: 1.2rem;
+      color: #2e9c88;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    input[type="number"], select {
+      background-color: #f9f9f9;
+    }
+
+    button {
+      background-color: #2e9c88;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #267d66;
+    }
+
+    .result {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #333;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="loan-container">
+  <h3>Car Loan Calculator</h3>
+
+  <p class="car-price" id="loanCarPrice">Loading...</p>
+
+  <label for="downpayment">Downpayment Amount (SGD)</label>
+  <input type="number" id="downpayment" placeholder="Enter downpayment amount" />
+
+  <label for="loanYears">Loan Duration (Years)</label>
+  <select id="loanYears">
+    <option value="1">1 Year</option>
+    <option value="2">2 Years</option>
+    <option value="3">3 Years</option>
+    <option value="4">4 Years</option>
+    <option value="5">5 Years</option>
+    <option value="6">6 Years</option>
+    <option value="7">7 Years</option>
+  </select>
+
+  <label for="interestRate">Interest Rate (Annual)</label>
+  <input type="number" id="interestRate" value="2.48" step="0.01" max="2.48" disabled />
+
+  <button id="calculateBtn">Calculate Monthly Payment</button>
+
+  <p class="result" id="result"></p>
+  
+  <p class="error" id="errorMessage"></p>
+
+  <!-- Back Button -->
+  <button onclick="goBackToCars()" style="margin-top: 20px;">Back to Cars</button>
+  
+  <!-- Buy Button -->
+  <button onclick="buyCar()" style="margin-top: 20px; background-color: #ff6347;">Buy This Car</button>
+</div>
+
+<script>
+  // Retrieve car price from the URL parameter
+  const carPrice = new URLSearchParams(window.location.search).get('carPrice');
+  const loanCarPriceElement = document.getElementById('loanCarPrice');
+  loanCarPriceElement.textContent = carPrice ? `$${carPrice}` : "Price not available";
+
+  // CalculateLoan function for calculating the monthly payment
+  function CalculateLoan() {
+    const downpayment = parseFloat(document.getElementById('downpayment').value) || 0;
+    const loanYears = parseInt(document.getElementById('loanYears').value);
+    const interestRate = parseFloat(document.getElementById('interestRate').value);
+
+    const carPriceNumber = parseFloat(carPrice.replace('$', '').replace(',', ''));
+
+    // Validation: Ensure downpayment is not more than the car price
+    if (downpayment > carPriceNumber) {
+      document.getElementById('errorMessage').textContent = "Downpayment cannot be more than the car price.";
+      document.getElementById('result').textContent = "";  // Clear previous result
+    } else if (downpayment < 0 || isNaN(downpayment)) {
+      document.getElementById('errorMessage').textContent = "Please enter a valid downpayment amount.";
+      document.getElementById('result').textContent = "";  // Clear previous result
+    } else {
+      document.getElementById('errorMessage').textContent = "";  // Clear error message
+      const monthlyPayment = calculateMonthlyPayment(carPriceNumber, downpayment, loanYears, interestRate);
+      document.getElementById('result').textContent = `Your Monthly Payment: $${monthlyPayment}`;
+    }
+  }
+
+  // Helper function to calculate monthly payment
+  function calculateMonthlyPayment(price, downpayment, years, interestRate) {
+    const principal = price - downpayment; // Loan amount after downpayment
+    const monthlyInterestRate = interestRate / 100 / 12; // Monthly interest rate
+    const numberOfPayments = years * 12; // Total payments (loan years * 12)
+
+    const numerator = monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments);
+    const denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
+
+    const monthlyPayment = (principal * numerator) / denominator;
+
+    return monthlyPayment.toFixed(2); // Return rounded monthly payment
+  }
+
+  // Event listener for the calculate button
+  document.getElementById('calculateBtn').addEventListener('click', CalculateLoan);
+
+  // Back Button Function
+  function goBackToCars() {
+    window.location.href = 'Cars.html'; // Redirect to Cars.html
+  }
+
+  // Buy Button Function
+  function buyCar() {
+    // Show confirmation message using alert
+    alert('You have successfully bought the car!');
+    
+    // Redirect to CarAgentReview.html after the confirmation
+    window.location.href = 'CarAgentReview.html'; // Redirect to the agent review page
+  }
+</script>
+
+</body>
+</html>

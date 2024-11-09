@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Shortlist</title>
+  <style>
+    .car-card {
+      display: flex;
+      align-items: center;
+      margin: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .car-card img {
+      width: 100px;
+      height: auto;
+      margin-right: 10px;
+    }
+    .car-card h3 {
+      margin: 0;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: auto;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Shortlist</h1>
+  <div id="shortlist-container"></div>
+
+  <script>
+	// Function to display cars from the shortlist
+	function displayShortlist() {
+	// Get shortlist from localStorage
+	let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
+	
+	// Get the container element
+	const container = document.getElementById('shortlist-container');
+	container.innerHTML = ''; // Clear the container before rendering
+
+	// Loop through the shortlist and display each car
+	shortlist.forEach((car, index) => {
+    const carCard = document.createElement('div');
+    carCard.classList.add('car-card');
+
+    const carImage = document.createElement('img');
+    carImage.src = car.image;
+    carCard.appendChild(carImage);
+
+    // Make the car name a clickable link that leads to View.html, adding referrer parameter
+    const carName = document.createElement('h3');
+    const carLink = document.createElement('a');
+    const referrer = 'shortlist';  // Add 'shortlist' as referrer when navigating from shortlist
+    carLink.href = `View.html?car=${encodeURIComponent(car.name)}&img=${encodeURIComponent(car.image)}&referrer=${encodeURIComponent(referrer)}`;
+    carLink.textContent = car.name;
+    carName.appendChild(carLink);
+    carCard.appendChild(carName);
+
+    // Create a delete button for each car
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-btn');
+    deleteButton.onclick = function() {
+		// Confirm deletion
+		const confirmation = confirm(`Are you sure you want to remove ${car.name} from your shortlist?`);
+		if (confirmation) {
+			// Remove the car from the shortlist array
+			shortlist.splice(index, 1);
+
+			// Save the updated shortlist to localStorage
+			localStorage.setItem('shortlist', JSON.stringify(shortlist));
+
+			// Re-display the updated shortlist
+			displayShortlist();
+		}
+	};
+    carCard.appendChild(deleteButton);
+
+    container.appendChild(carCard);
+	});
+
+		// If no cars are in the shortlist, show a message
+		if (shortlist.length === 0) {
+		container.innerHTML = '<p>No cars in your shortlist.</p>';
+		}
+	}
+
+// Display the shortlist when the page loads
+displayShortlist();
+  </script>
+  <a href="Buyer.html">Back to Account</a>
+</body>
+</html>
