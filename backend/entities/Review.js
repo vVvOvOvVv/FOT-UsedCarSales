@@ -5,7 +5,8 @@ static reviews = [
             {"accountId": "c1"},
         "entityInformation":
             {"reviews": [
-                {"rating": 5,
+                {"carBrand": "Toyota",
+                "rating": 5,
                 "review": "Quick to respond and very friendly!"},
                 {"rating": 4.5,
                 "review": "Very friendly"
@@ -13,5 +14,32 @@ static reviews = [
 */
 
 class Review {
-    
+    searchR(brand) {
+        var reviews = [];
+        try {
+            if (Data.reviews == null)
+                throw "Data could not be found";
+            else {
+                if (Data.reviews.length == 0)
+                    throw "No reviews found";
+                else {
+                    for (var i = 0; i < Data.reviews.length; i++) {
+                        if (Data.reviews[i].identifiers.accountId == Data.currentUser) {
+                            var accountR = Data.reviews[i].entityInformation.reviews;
+                            if (accountR.length == 0 | accountR == null)
+                                throw "You do not have any reviews yet";
+                            else {
+                                for (var j = 0; j < accountR.length; j++) {
+                                    if (accountR[j].carBrand == brand) 
+                                        reviews.push(accountR[j]);
+                                }
+                                if (reviews.length == 0 | reviews == null)
+                                    throw `No reviews found under the brand ${brand}`;
+            }}}}}
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return reviews;
+    }
 }
+export default Review;

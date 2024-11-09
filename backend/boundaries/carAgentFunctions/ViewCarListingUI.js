@@ -59,7 +59,7 @@ class ViewCarListingUI extends Boundary {
                 list.appendChild(agentItem);
                 // append to container
                 carList.appendChild(list);
-                // append to <center>
+                // append to page
                 body.insertAdjacentElement("afterend", carList);
             }
         } catch (err) {

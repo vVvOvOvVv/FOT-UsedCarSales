@@ -82,13 +82,15 @@
                 color: white; 
             }    
             .searchResult {
-                display: none;
                 text-align: left;
             }  
         </style>
     </head>
+
+    <script type="module" src="../../backend/boundaries/carAgentFunctions/SearchReviewUI.js"></script>
     
     <body>
+        <center>
         <div id="nav">
             <div id="username">
                 <span style="color:white">Used Car Agent:xxxxxx</span><!--Placeholder for name-->
@@ -98,7 +100,7 @@
             </div>
         </div>
 
-        <div class="container-fluid">            
+        <div class="container-fluid" id="form">            
             <div class="form-container">
                 <header>Search Review by Car Listing</header>
                 <form onsubmit="return showResult();">
@@ -107,54 +109,12 @@
                         <input type="text" id="brand" placeholder="Enter car brand" />
                     </div><br/>
 
-                    <button class="button" id="search" type="submit">Search</button>
+                    <button class="button" id="search" type="button">Search</button>
                 </form>
-            </div>
-
-            <div id="b1" class="searchResult form-container">
-                <ul><!-- xxx - placeholders-->
-                    <li>Used Car Agent (ID): xxx</li>
-                    <li>Review given by (ID): xxx</li>
-                    <li>Profile: Buyer</li>
-                    <li>Rating: 5</li>
-                    <li>Review: Quick to respond and very friendly!</li>
-                </ul>
-            </div>
-
-            <div id="b2" class="searchResult form-container">
-                <ul><!-- xxx - placeholders-->
-                    <li>Used Car Agent (ID): xxx</li>
-                    <li>Review given by (ID): xxx</li>
-                    <li>Profile: Seller</li>
-                    <li>Rating: 4.5</li>
-                    <li>Review: Very friendly</li>
-                </ul>
             </div>
         </div>
 
-        <center><a href="AgentHomePage.html"><button class="button">Back</button></a></center>
-
-        <script type="text/javascript">
-            function showResult() {
-                const brand = document.getElementById("brand").value.toLowerCase();
-
-                // Hide all results initially
-                document.getElementById("b1").style.display = "none";
-                document.getElementById("b2").style.display = "none";
-
-                // Check if the input is 'user admin', then display the result
-                if (brand === "toyota") {
-                    document.getElementById("b1").style.display = "block"; // Show the div
-                } else if (brand === "hyundai") {
-                    document.getElementById("b2").style.display = "block";
-                } else {
-                    alert("Review not found");
-                    document.getElementById("searchResult").style.display = "none"; // Hide the div if not found
-                }
-
-                // Prevent form submission
-                return false;
-            }
-        </script>
+        <a href="AgentHomePage.html"><button class="button">Back</button></a>
+        </center>
     </body>
 </html>

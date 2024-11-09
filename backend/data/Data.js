@@ -12,7 +12,7 @@ class Data {
         {"identifiers":
             {"accountId": 0},
         "entityInformation":
-            {"name": "Alex",
+            {"name": "alex",
             "profileId": 0, // admin
             "email": "alex@gmail.com",
             "password": "a1",
@@ -21,7 +21,7 @@ class Data {
         {"identifiers":
             {"accountId": 1},
         "entityInformation":
-            {"name": "Bob",
+            {"name": "bob",
             "profileId": 1, // seller
             "email": "bob@gmail.com",
             "password": "b1",
@@ -31,7 +31,7 @@ class Data {
         {"identifiers":
             {"accountId": 2},
         "entityInformation":
-            {"name": "Cassandra",
+            {"name": "cassandra",
             "profileId": 2, // buyer, 3 = agent
             "email": "cass@gmail.com",
             "password": "c1",
@@ -42,8 +42,8 @@ class Data {
         {"identifiers":
             {"carId": "0" /*liscence plate, hence a string*/},
         "entityInformation": // keep simple, no need to bloat
-            {"brand": "Toyota",
-            "model": "Prius",
+            {"brand": "toyota",
+            "model": "prius",
             "mileage": 1000, // in km
             "year": 2015,
             "price": 500,
@@ -60,10 +60,11 @@ class Data {
     }];
     static reviews = [
         {"identifiers":
-            {"accountId": "c1"},
+            {"accountId": 2},
         "entityInformation":
             {"reviews": [
-                {"rating": 5,
+                {"carBrand": "toyota",
+                "rating": 5,
                 "review": "Quick to respond and very friendly!"},
                 {"rating": 4.5,
                 "review": "Very friendly"
