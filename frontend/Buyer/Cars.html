@@ -115,6 +115,7 @@
         <option value="Audi">Audi</option>
     </select>
   </div>
+  
 
   <div class="services-container">
     <!-- Generating 100 car listings -->
@@ -241,77 +242,80 @@
       ];
      
 
-      const container = document.querySelector('.services-container');
-const searchBar = document.getElementById('searchBar');
-const brandFilter = document.getElementById('brandFilter');
+ const container = document.querySelector('.services-container');
+    const searchBar = document.getElementById('searchBar');
+    const brandFilter = document.getElementById('brandFilter');
 
-// Function to render cars
-function renderCars(filteredVehicles) {
-  container.innerHTML = '';  // Clear existing cars
-  filteredVehicles.forEach(vehicle => {
-    const box = document.createElement('div');
-    box.classList.add('box');
+    // Function to render cars
+    function renderCars(filteredVehicles) {
+        container.innerHTML = '';  // Clear existing cars
+        filteredVehicles.forEach(vehicle => {
+            const box = document.createElement('div');
+            box.classList.add('box');
 
-    const imgContainer = document.createElement('div');
-    imgContainer.classList.add('box-img');
-    const img = document.createElement('img');
-    img.src = vehicle.img;
-    img.alt = vehicle.name;
-    imgContainer.appendChild(img);
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('box-img');
+            const img = document.createElement('img');
+            img.src = vehicle.img;
+            img.alt = vehicle.name;
+            imgContainer.appendChild(img);
 
-    const year = document.createElement('p');
-    year.textContent = vehicle.year;
+            const year = document.createElement('p');
+            year.textContent = vehicle.year;
 
-    const name = document.createElement('h3');
-    name.textContent = vehicle.name;
+            const name = document.createElement('h3');
+            name.textContent = vehicle.name;
 
-    const btnContainer = document.createElement('div');
-    btnContainer.classList.add('btn-container');
-    const viewBtn = document.createElement('a');
-    viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}&img=${encodeURIComponent(vehicle.img)}`;
-    viewBtn.classList.add('btn');
-    viewBtn.textContent = 'View Details';
-    
-    const shortlistBtn = document.createElement('button');
-    shortlistBtn.classList.add('btn', 'shortlist-btn');
-    shortlistBtn.textContent = 'Add to Shortlist';
-    shortlistBtn.addEventListener('click', () => {
-      alert(`${vehicle.name} has been added to your shortlist!`);
+            const btnContainer = document.createElement('div');
+            btnContainer.classList.add('btn-container');
+            const viewBtn = document.createElement('a');
+            viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}&img=${encodeURIComponent(vehicle.img)}`;
+            viewBtn.textContent = 'View';
+            viewBtn.classList.add('btn');
+            const shortlistBtn = document.createElement('a');
+            shortlistBtn.href = '#';
+            shortlistBtn.textContent = 'Shortlist';
+            shortlistBtn.classList.add('btn', 'shortlist-btn');
+
+            btnContainer.appendChild(viewBtn);
+            btnContainer.appendChild(shortlistBtn);
+
+            box.appendChild(imgContainer);
+            box.appendChild(name);
+            box.appendChild(year);
+            box.appendChild(btnContainer);
+
+            container.appendChild(box);
+        });
+    }
+
+    // Function to filter vehicles based on search query and brand
+    function filterVehicles() {
+        const searchTerm = searchBar.value.toLowerCase();
+        const selectedBrand = brandFilter.value;
+
+        const filteredVehicles = vehicles.filter(vehicle => {
+            const matchesSearch = vehicle.name.toLowerCase().includes(searchTerm);
+            const matchesBrand = selectedBrand === 'all' || vehicle.brand === selectedBrand;
+            return matchesSearch && matchesBrand;
+        });
+
+        renderCars(filteredVehicles);
+    }
+
+    // Event listener for search bar
+    searchBar.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            filterVehicles();
+        }
     });
 
-    btnContainer.appendChild(viewBtn);
-    btnContainer.appendChild(shortlistBtn);
+    // Event listener for brand filter
+    brandFilter.addEventListener('change', filterVehicles);
 
-    box.appendChild(imgContainer);
-    box.appendChild(year);
-    box.appendChild(name);
-    box.appendChild(btnContainer);
-
-    container.appendChild(box);
-  });
-}
-
-// Filter vehicles based on brand and search query
-function filterVehicles() {
-  const searchTerm = searchBar.value.toLowerCase();
-  const selectedBrand = brandFilter.value;
-
-  const filteredVehicles = vehicles.filter(vehicle => {
-    const matchesBrand = selectedBrand === 'all' || vehicle.brand === selectedBrand;
-    const matchesSearch = vehicle.name.toLowerCase().includes(searchTerm);
-    return matchesBrand && matchesSearch;
-  });
-
-  renderCars(filteredVehicles);
-}
-
-// Event listeners for search and brand filter
-searchBar.addEventListener('input', filterVehicles);
-brandFilter.addEventListener('change', filterVehicles);
-
-// Initially render all cars
-renderCars(vehicles);
-    </script>
+    // Initially render all cars
+    renderCars(vehicles);
+</script>
   </div>
 </body>
 </html>
