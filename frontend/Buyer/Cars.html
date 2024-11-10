@@ -7,13 +7,14 @@
 	
 	<style>
         /* Your existing CSS styles for the services-container */
-        .services-container{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px,auto));
-            gap: 1rem;
-            margin-top: 2rem;
-            color: white;
+        .services-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensures columns maintain their size */
+        gap: 1rem;
+        margin-top: 2rem;
+        color: white;
         }
+        
         .services-container .box{
             padding: 10px;
             border-radius: 1rem;
@@ -90,6 +91,12 @@
 </head>
 <body>
   <h1>Vehicles</h1>
+
+
+  <div class="search-container">
+    <label for="searchBar">Search for a car:</label>
+    <input type="text" id="searchBar" placeholder="Search by car name...">
+  </div>
 
   <!-- Search Filter for Brands -->
   <div class="filter-container">
@@ -235,74 +242,75 @@
      
 
       const container = document.querySelector('.services-container');
+const searchBar = document.getElementById('searchBar');
+const brandFilter = document.getElementById('brandFilter');
 
-      // Function to render cars based on selected brand
-      function renderCars(filteredVehicles) {
-        container.innerHTML = '';  // Clear existing cars
-        filteredVehicles.forEach(vehicle => {
-          const box = document.createElement('div');
-          box.classList.add('box');
+// Function to render cars
+function renderCars(filteredVehicles) {
+  container.innerHTML = '';  // Clear existing cars
+  filteredVehicles.forEach(vehicle => {
+    const box = document.createElement('div');
+    box.classList.add('box');
 
-          const imgContainer = document.createElement('div');
-          imgContainer.classList.add('box-img');
-          const img = document.createElement('img');
-          img.src = vehicle.img;
-          img.alt = vehicle.name;
-          imgContainer.appendChild(img);
+    const imgContainer = document.createElement('div');
+    imgContainer.classList.add('box-img');
+    const img = document.createElement('img');
+    img.src = vehicle.img;
+    img.alt = vehicle.name;
+    imgContainer.appendChild(img);
 
-          const year = document.createElement('p');
-          year.textContent = vehicle.year;
+    const year = document.createElement('p');
+    year.textContent = vehicle.year;
 
-          const name = document.createElement('h3');
-          name.textContent = vehicle.name;
+    const name = document.createElement('h3');
+    name.textContent = vehicle.name;
 
-          const btnContainer = document.createElement('div');
-          btnContainer.classList.add('btn-container');
-          const viewBtn = document.createElement('a');
-          viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}&img=${encodeURIComponent(vehicle.img)}`;
-          viewBtn.classList.add('btn');
-          viewBtn.textContent = 'View Details';
-          
-          const shortlistBtn = document.createElement('button');
-          shortlistBtn.classList.add('btn', 'shortlist-btn');
-          shortlistBtn.textContent = 'Add to Shortlist';
-          shortlistBtn.onclick = () => addToShortlist(vehicle.name, vehicle.img);
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+    const viewBtn = document.createElement('a');
+    viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}&img=${encodeURIComponent(vehicle.img)}`;
+    viewBtn.classList.add('btn');
+    viewBtn.textContent = 'View Details';
+    
+    const shortlistBtn = document.createElement('button');
+    shortlistBtn.classList.add('btn', 'shortlist-btn');
+    shortlistBtn.textContent = 'Add to Shortlist';
+    shortlistBtn.addEventListener('click', () => {
+      alert(`${vehicle.name} has been added to your shortlist!`);
+    });
 
-          btnContainer.appendChild(viewBtn);
-          btnContainer.appendChild(shortlistBtn);
+    btnContainer.appendChild(viewBtn);
+    btnContainer.appendChild(shortlistBtn);
 
-          box.appendChild(imgContainer);
-          box.appendChild(year);
-          box.appendChild(name);
-          box.appendChild(btnContainer);
+    box.appendChild(imgContainer);
+    box.appendChild(year);
+    box.appendChild(name);
+    box.appendChild(btnContainer);
 
-          container.appendChild(box);
-        });
-      }
+    container.appendChild(box);
+  });
+}
 
-      // Initial render of all vehicles
-      renderCars(vehicles);
+// Filter vehicles based on brand and search query
+function filterVehicles() {
+  const searchTerm = searchBar.value.toLowerCase();
+  const selectedBrand = brandFilter.value;
 
-      // Filter cars when brand is selected
-      document.getElementById('brandFilter').addEventListener('change', function() {
-        const selectedBrand = this.value;
-        const filteredVehicles = selectedBrand === 'all'
-          ? vehicles
-          : vehicles.filter(vehicle => vehicle.brand === selectedBrand);
-        renderCars(filteredVehicles);
-      });
+  const filteredVehicles = vehicles.filter(vehicle => {
+    const matchesBrand = selectedBrand === 'all' || vehicle.brand === selectedBrand;
+    const matchesSearch = vehicle.name.toLowerCase().includes(searchTerm);
+    return matchesBrand && matchesSearch;
+  });
 
-      function addToShortlist(carName, carImage) {
-        let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
-        const existingCar = shortlist.find(car => car.name === carName);
-        if (existingCar) {
-          existingCar.shortlistedCount = (existingCar.shortlistedCount || 1) + 1;
-        } else {
-          shortlist.push({ name: carName, image: carImage, shortlistedCount: 1, views: 0 });
-        }
-        localStorage.setItem('shortlist', JSON.stringify(shortlist));
-        alert(`${carName} has been added to your shortlist!`);
-      }
+  renderCars(filteredVehicles);
+}
+
+// Event listeners for search and brand filter
+searchBar.addEventListener('input', filterVehicles);
+brandFilter.addEventListener('change', filterVehicles);
+
+// Initially render all cars
+renderCars(vehicles);
     </script>
   </div>
 </body>
