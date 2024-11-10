@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Views Number</title>
+    <!-- Link to Font Awesome for the eye icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .car-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .car-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .car-item h3 {
+            margin: 0;
+        }
+        .car-item p {
+            margin: 5px 0;
+        }
+        .view-count {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .view-count i {
+            margin-right: 5px;
+        }
+        .car-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .back-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="goBack()">Back</button>
+    <h1>My Cars for Sale</h1>
+    <ul class="car-list" id="carList"></ul>
+
+    <script>
+        // Define an array of car objects
+        const cars = [
+            {
+                name: "Toyota Prius",
+                brand: "Toyota",
+                year: 2012,
+                img: "img/prius.png",
+                price: "$15,000",
+                views: 0
+            }
+           
+            // Add more cars as needed
+        ];
+
+        // Function to render cars dynamically
+        function renderCars() {
+            const carList = document.getElementById('carList');
+            carList.innerHTML = '';  // Clear the list first
+
+            cars.forEach((car, index) => {
+                const carItem = document.createElement('li');
+                carItem.classList.add('car-item');
+                carItem.innerHTML = `
+                    <h3>${car.name} (${car.year})</h3>
+                    <p>Brand: ${car.brand}</p>
+                    <p>Price: ${car.price}</p>
+                    <img src="${car.img}" alt="${car.name}" class="car-img">
+                    <p class="view-count"><i class="fas fa-eye"></i> Views: <span id="views${index}">${car.views}</span></p>
+                `;
+                carList.appendChild(carItem);
+
+                // Simulate view increment for every car loaded on the page
+                incrementViewCount(index);
+            });
+        }
+
+        // Function to increment view count for a car
+        function incrementViewCount(index) {
+            cars[index].views++;  // Increase the view count
+            document.getElementById(`views${index}`).textContent = cars[index].views;  // Update the display
+        }
+
+         // Function to go back to the seller page
+        function goBack() {
+            window.location.href = 'seller.html'; // Change this path if necessary
+        }
+
+        // Render the cars when the page loads
+        window.onload = renderCars;
+    </script>
+    
+</body>
+</html>

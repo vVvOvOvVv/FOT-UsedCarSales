@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales Agent Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .feedback-form input, .feedback-form select, .feedback-form textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .feedback-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .feedback-form button:hover {
+            background-color: #45a049;
+        }
+        .success, .error {
+            display: none;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        .star {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+        .star.selected, .star:hover {
+            color: #ffcc00;
+        }
+        .back-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button class="back-btn" onclick="goBack()">Back</button>
+    <div class="header">
+        <h1>Car Sales Agent Feedback</h1>
+        <p>Your feedback helps us improve our services. Please fill out the form below.</p>
+    </div>
+
+    <div class="feedback-form">
+        <label for="agent-name">Agent Name:</label>
+        <input type="text" id="agent-name" name="agent-name" required>
+
+        <label for="car-model">Car Model:</label>
+        <input type="text" id="car-model" name="car-model" required>
+
+        <label for="rating">Rating (1-5 stars):</label>
+        <div class="star-rating" id="rating">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+        </div>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+
+        <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+    </div>
+
+    <div class="success" id="successMessage">
+        <strong>Success!</strong> Your feedback has been submitted.
+    </div>
+
+    <div class="error" id="errorMessage">
+        <strong>Error!</strong> There was a problem with your submission. Please try again.
+    </div>
+</div>
+
+<script>
+    // Function to handle star selection
+    const stars = document.querySelectorAll('.star');
+    let ratingValue = 0;
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            ratingValue = star.getAttribute('data-value');
+            updateStarRating();
+        });
+        star.addEventListener('mouseover', () => {
+            updateStarRating(star.getAttribute('data-value'));
+        });
+        star.addEventListener('mouseout', () => {
+            updateStarRating();
+        });
+    });
+
+    function updateStarRating(highlightedRating = ratingValue) {
+        stars.forEach(star => {
+            if (star.getAttribute('data-value') <= highlightedRating) {
+                star.classList.add('selected');
+            } else {
+                star.classList.remove('selected');
+            }
+        });
+    }
+
+    // Function to simulate feedback submission and redirect
+    function submitFeedback() {
+        const agentName = document.getElementById("agent-name").value;
+        const carModel = document.getElementById("car-model").value;
+        const comments = document.getElementById("comments").value;
+
+        // Validate the required fields and rating
+        if (agentName && carModel && ratingValue && comments) {
+            displaySuccess();
+            setTimeout(() => {
+                window.location.href = "Seller.html"; // Redirect to Seller.html after success
+            }, 2000); // Redirect after 2 seconds
+        } else {
+            displayError();
+        }
+    }
+
+    // Display success message
+    function displaySuccess() {
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("errorMessage").style.display = "none";
+    }
+
+    // Display error message
+    function displayError() {
+        document.getElementById("errorMessage").style.display = "block";
+        document.getElementById("successMessage").style.display = "none";
+    }
+
+    // Function to go back to the seller page
+    function goBack() {
+        window.location.href = 'Seller.html'; // Redirect to Seller.html page
+    }
+
+    // Display the feedback form page initially
+    function displayPage() {
+        document.getElementById("successMessage").style.display = "none";
+        document.getElementById("errorMessage").style.display = "none";
+    }
+
+    // Call displayPage() when the page is loaded
+    window.onload = displayPage;
+</script>
+
+</body>
+</html>
