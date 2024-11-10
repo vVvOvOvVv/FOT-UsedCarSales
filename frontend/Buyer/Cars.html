@@ -272,10 +272,12 @@
             viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}&img=${encodeURIComponent(vehicle.img)}`;
             viewBtn.textContent = 'View';
             viewBtn.classList.add('btn');
+
             const shortlistBtn = document.createElement('a');
-            shortlistBtn.href = '#';
+            //shortlistBtn.href = '#';
             shortlistBtn.textContent = 'Shortlist';
             shortlistBtn.classList.add('btn', 'shortlist-btn');
+            shortlistBtn.onclick = () => addToShortlist(vehicle.name, vehicle.img);
 
             btnContainer.appendChild(viewBtn);
             btnContainer.appendChild(shortlistBtn);
@@ -315,6 +317,19 @@
 
     // Initially render all cars
     renderCars(vehicles);
+
+
+     function addToShortlist(carName, carImage) {
+        let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
+        const existingCar = shortlist.find(car => car.name === carName);
+        if (existingCar) {
+          existingCar.shortlistedCount = (existingCar.shortlistedCount || 1) + 1;
+        } else {
+          shortlist.push({ name: carName, image: carImage, shortlistedCount: 1, views: 0 });
+        }
+        localStorage.setItem('shortlist', JSON.stringify(shortlist));
+        alert(`${carName} has been added to your shortlist!`);
+      }
 </script>
   </div>
 </body>
