@@ -139,6 +139,26 @@ class CarListing {
         return successFlag;
     }
 
+    getCarDetails(carId) {
+        var car;
+        var successFlag;
+        try {
+            if (Data.carListing == null)
+                throw "Data could not be found";
+            for (var i = 0; i < Data.carListing.length; i++) {
+                if (Data.carListing[i].identifiers.carId == carId) { 
+                    car = JSON.stringify(Data.carListing[i]);
+                    successFlag = true;
+                }
+            }
+            if (!successFlag)
+                throw `Car with ID ${carId} could not be found`;
+        } catch (err) {
+            throw err; //propagate to boundary
+        }
+        return car;
+    }
+
     writeJSON(data) {
         try {
             Data.carListing.push(data)
