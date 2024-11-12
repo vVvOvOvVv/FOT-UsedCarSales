@@ -86,24 +86,27 @@
         }
     </style>
 </head>
+
+<script type="module" src="../../backend/boundaries/sellerFunctions/ReviewUsedCarAgentUI.js"></script>
+
 <body>
 
 <div class="container">
-    <button class="back-btn" onclick="goBack()">Back</button>
+    <a href="./Seller.html"><button class="back-btn">Back</button></a>
     <div class="header">
         <h1>Car Sales Agent Feedback</h1>
         <p>Your feedback helps us improve our services. Please fill out the form below.</p>
     </div>
 
     <div class="feedback-form">
-        <label for="agent-name">Agent Name:</label>
-        <input type="text" id="agent-name" name="agent-name" required>
+        <label for="agent-id">Agent ID:</label>
+        <input type="text" id="agent-id" name="agent-id" required>
 
-        <label for="car-model">Car Model:</label>
-        <input type="text" id="car-model" name="car-model" required>
+        <label for="car-brand">Car Brand:</label>
+        <input type="text" id="car-brand" name="car-brand" required>
 
         <label for="rating">Rating (1-5 stars):</label>
-        <div class="star-rating" id="rating">
+        <div class="star-rating" id="rating" data-value=0>
             <span class="star" data-value="1">&#9733;</span>
             <span class="star" data-value="2">&#9733;</span>
             <span class="star" data-value="3">&#9733;</span>
@@ -114,26 +117,19 @@
         <label for="comments">Comments:</label>
         <textarea id="comments" name="comments" rows="4" required></textarea>
 
-        <button type="button" onclick="submitFeedback()">Submit Feedback</button>
-    </div>
-
-    <div class="success" id="successMessage">
-        <strong>Success!</strong> Your feedback has been submitted.
-    </div>
-
-    <div class="error" id="errorMessage">
-        <strong>Error!</strong> There was a problem with your submission. Please try again.
+        <button type="button" id="submit">Submit Feedback</button>
     </div>
 </div>
+
+
 
 <script>
     // Function to handle star selection
     const stars = document.querySelectorAll('.star');
-    let ratingValue = 0;
 
     stars.forEach(star => {
         star.addEventListener('click', () => {
-            ratingValue = star.getAttribute('data-value');
+            document.getElementById("rating").dataset.value = star.getAttribute('data-value');
             updateStarRating();
         });
         star.addEventListener('mouseover', () => {
@@ -144,7 +140,7 @@
         });
     });
 
-    function updateStarRating(highlightedRating = ratingValue) {
+    function updateStarRating(highlightedRating = document.getElementById("rating").dataset.value) {
         stars.forEach(star => {
             if (star.getAttribute('data-value') <= highlightedRating) {
                 star.classList.add('selected');
@@ -153,49 +149,6 @@
             }
         });
     }
-
-    // Function to simulate feedback submission and redirect
-    function submitFeedback() {
-        const agentName = document.getElementById("agent-name").value;
-        const carModel = document.getElementById("car-model").value;
-        const comments = document.getElementById("comments").value;
-
-        // Validate the required fields and rating
-        if (agentName && carModel && ratingValue && comments) {
-            displaySuccess();
-            setTimeout(() => {
-                window.location.href = "Seller.html"; // Redirect to Seller.html after success
-            }, 2000); // Redirect after 2 seconds
-        } else {
-            displayError();
-        }
-    }
-
-    // Display success message
-    function displaySuccess() {
-        document.getElementById("successMessage").style.display = "block";
-        document.getElementById("errorMessage").style.display = "none";
-    }
-
-    // Display error message
-    function displayError() {
-        document.getElementById("errorMessage").style.display = "block";
-        document.getElementById("successMessage").style.display = "none";
-    }
-
-    // Function to go back to the seller page
-    function goBack() {
-        window.location.href = 'Seller.html'; // Redirect to Seller.html page
-    }
-
-    // Display the feedback form page initially
-    function displayPage() {
-        document.getElementById("successMessage").style.display = "none";
-        document.getElementById("errorMessage").style.display = "none";
-    }
-
-    // Call displayPage() when the page is loaded
-    window.onload = displayPage;
 </script>
 
 </body>
