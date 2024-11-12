@@ -77,15 +77,22 @@
     </style>
 </head>
 
+<!--Search Used Car-->
 <script type="module" src="../../backend/boundaries/buyerFunctions/SearchUsedCarUI.js"></script>
+<!--View Used Car-->
+<script type="module" src="../../backend/boundaries/buyerFunctions/ViewUsedCarUI.js"></script>
 
 <body>
     <h1>Vehicles</h1>
-        <div class="search-container">
-        <label for="searchBar">Search for a car:</label>
-        <input type="text" id="searchBar" placeholder="Search by car name...">
-        <button id="searchButton">Search</button>
+    <div class="search-container">
+        <label for="carId">Search for a car:</label>
+        <input type="text" id="carId" placeholder="Search by car ID...">
+        <button id="viewDetails">Search</button>
+        <button  onclick="window.location.href='LoanCalculator.html'" class="btn">
+            Calculate a Loan
+        </button>
     </div>
+    <div class="services-container" id="searchResults"></div>
     <div class="services-container" id="services"></div>
 </body>
 </html>

@@ -62,4 +62,4 @@ class SearchUsedCarUI extends Boundary {
     }
 }
 var searchCarUI = new SearchUsedCarUI();
-document.getElementById("searchBar").addEventListener("load", (searchCarUI.searchUsedCar()));
+document.getElementById("carId").addEventListener("load", (searchCarUI.searchUsedCar()));

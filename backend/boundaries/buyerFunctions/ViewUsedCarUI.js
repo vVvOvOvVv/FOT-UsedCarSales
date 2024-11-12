@@ -17,7 +17,19 @@ class ViewUsedCarUI extends Boundary {
                 var results = document.getElementById("searchResults");
                 if (results == null)
                     throw "Error with display";
+                var box = document.createElement("div");
+                box.className = "box";
+
+                var header = document.createElement("h3");
+                header.innerHTML = `Search Results (Car ID ${carId})`;
+                var image = document.createElement("div");
+                image.className = "box-img";
+                var img = document.createElement("img");
+                img.alt = "Car image";
+                img.src = "../../../frontend/assets/placeholder.png";
+                image.appendChild(img);
                 
+                // info
                 var list = document.createElement("ul");
                 var brand = document.createElement("li");
                 var text = document.createTextNode(`Brand: ${car.entityInformation.brand}`);
@@ -47,6 +59,8 @@ class ViewUsedCarUI extends Boundary {
                 var text = document.createTextNode(`Views: ${car.entityInformation.views}`);
                 views.appendChild(text);
                 // append to list
+                list.appendChild(header);
+                list.appendChild(image);
                 list.appendChild(brand);
                 list.appendChild(model);
                 list.appendChild(mileage);
@@ -56,8 +70,10 @@ class ViewUsedCarUI extends Boundary {
                 list.appendChild(carAgent);
                 list.appendChild(status);
                 list.appendChild(views);
+                list.style.color = "black";
                 // add to display
-                results.appendChild(list);
+                box.appendChild(list);
+                results.appendChild(box);
                 console.log(results);
             }
         } catch (err) { 
