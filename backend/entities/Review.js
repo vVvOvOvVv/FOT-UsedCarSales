@@ -41,5 +41,34 @@ class Review {
         }
         return reviews;
     }
+
+    submitR(accountId, brand, rating, review) {
+        try {
+            var successFlag = false;
+            if (Data.reviews == null)
+                throw "Data could not be found";
+            // form data set
+            var data = {"carBrand": brand,
+                "rating": rating,
+                "review": review}
+            // first check if agent has any registered reviews
+            var alreadyRegistered = false;
+            for (var i = 0; i < Data.reviews.length; i++) {
+                if (Data.reviews[i].identifiers.accountId == accountId) {
+                    alreadyRegistered = true;
+                    successFlag = true;
+                    Data.reviews[i].entityInformation.reviews.push(data);
+                }
+            }
+            if (!alreadyRegistered) { // create registry
+                Data.reviews.push({"identifiers": {"accountId": accountId},
+                "entityInformation": {"reviews": [data]}});
+                successFlag = true;
+            }
+        } catch (err) {
+            throw err; // propagate to boundary 
+        }
+        return successFlag;
+    }
 }
 export default Review;

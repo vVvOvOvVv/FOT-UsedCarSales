@@ -7,7 +7,7 @@ class Boundary { // to be used as a base class for other boundaries
      * @param url {string} url of the target page to be displayed
      */
     displayPage(url) {
-        window.open(url, __self); // open specified url in the same tab
+        window.open(url, "__self"); // open specified url in the same tab
     }
 
     displaySuccess() {
