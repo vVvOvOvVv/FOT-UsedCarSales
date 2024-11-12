@@ -44,6 +44,7 @@ class SearchUsedCarUI extends Boundary {
                 const shortlistBtn = document.createElement('a');
                 shortlistBtn.textContent = 'Shortlist';
                 shortlistBtn.classList.add('btn', 'shortlist-btn');
+                shortlistBtn.dataset.carId = car.identifiers.carId;
                 btnContainer.appendChild(shortlistBtn);
                 // append to box
                 box.appendChild(image);

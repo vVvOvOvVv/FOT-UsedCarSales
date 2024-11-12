@@ -81,15 +81,20 @@
 <script type="module" src="../../backend/boundaries/buyerFunctions/SearchUsedCarUI.js"></script>
 <!--View Used Car-->
 <script type="module" src="../../backend/boundaries/buyerFunctions/ViewUsedCarUI.js"></script>
+<!--Shortlist Car-->
+<script type="module" src="../../backend/boundaries/buyerFunctions/SaveUsedCarUI.js"></script>
 
 <body>
     <h1>Vehicles</h1>
     <div class="search-container">
         <label for="carId">Search for a car:</label>
         <input type="text" id="carId" placeholder="Search by car ID...">
-        <button id="viewDetails">Search</button>
+        <button id="viewDetails">View Details</button>
         <button  onclick="window.location.href='LoanCalculator.html'" class="btn">
             Calculate a Loan
+        </button>
+        <button  onclick="window.location.href='Buyer.html'" class="btn">
+            Back
         </button>
     </div>
     <div class="services-container" id="searchResults"></div>

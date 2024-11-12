@@ -56,7 +56,7 @@ class Data {
         {"identifiers":
             {"accountId": 0}, // each account will have a shortlist, containing 0+ cars 
         "entityInformation":
-            {"cars": [{"carId": "a1"}]}
+            {"cars": [{"carId": 0}]}
     }];
     static reviews = [
         {"identifiers":

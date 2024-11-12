@@ -17,6 +17,7 @@ class ViewUsedCarUI extends Boundary {
                 var results = document.getElementById("searchResults");
                 if (results == null)
                     throw "Error with display";
+                
                 var box = document.createElement("div");
                 box.className = "box";
 
