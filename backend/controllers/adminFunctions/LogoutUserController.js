@@ -1,9 +1,9 @@
 import UserAccount from "../../entities/UserAccount.js"
 
 class LogoutUserController {
-    logoutUser(accountId) {
+    logoutUser() {
         var a = new UserAccount();
-        return a.logout(accountId);
+        return a.logoutU();
     }
 }
 

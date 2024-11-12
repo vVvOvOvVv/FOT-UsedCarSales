@@ -182,22 +182,30 @@ class UserAccount {
         return successFlag;
     }
 
-    logout(accountId) {
-        // just ensure logging out is successful
-        // i.e. logging out of a valid account
+    logoutB() {
         var successFlag = false;
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            for (var i = 0; i < Data.userAccounts.length; i++) {
-                if (Data.userAccounts[i].identifiers.accountId == accountId) {
-                    successFlag = true;
-                    currentUser = null;
-                    break;
-                }
-            }
-            if (!successFlag)
-                throw "Invalid account that you are attempting to log out of";
+            if (Data.currentUser == null)
+                throw "Error logging out"
+            Data.currentUser = 0;
+            successFlag = true;
+        } catch (err) {
+            throw err;
+        }
+        return successFlag;
+    }
+
+    logoutU() {
+        var successFlag = false;
+        try {
+            if (Data.userAccounts == null)
+                throw "Account data missing";
+            if (Data.currentUser == null)
+                throw "Error logging out"
+            Data.currentUser = 0;
+            successFlag = true;
         } catch (err) {
             throw err;
         }

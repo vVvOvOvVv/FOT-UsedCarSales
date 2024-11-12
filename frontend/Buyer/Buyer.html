@@ -83,18 +83,19 @@
         }
     </style>
 </head>
+
+<script type="module" src="../../backend/boundaries/buyerFunctions/LogoutBuyerUI.js"></script>
+
 <body>
 
 <div class="account-container">
     <div class="profile-header">
         <div class="profile-pic"></div>
-        <div class="user-name">John Doe</div>
-        <div class="user-email">johndoe@example.com</div>
     </div>   
     <div class="settings-section">   
         <button class="settings-button" onclick="window.location.href='Cars.html'">View Cars</button>
 		<button class="settings-button" onclick="window.location.href='shortlist.html'">Shortlist</button>
-        <button class="settings-button" style="background-color: #e63946;">Log Out</button>
+        <button class="settings-button" style="background-color: #e63946;" id="logout">Log Out</button>
 	</div>
 </div>
 
