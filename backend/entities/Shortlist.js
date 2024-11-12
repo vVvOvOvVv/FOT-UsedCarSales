@@ -63,5 +63,22 @@ class Shortlist {
         }
         return shortlistedCars;
     }
+
+    getNumOfShortlists(carId) {
+        try {
+            if (Data.shortlists == null)
+                throw "Data could not be found";
+            var num = 0;
+            Data.shortlists.forEach(shortlist => {
+                shortlist.entityInformation.cars.forEach(car => {
+                    if (car.carId == carId)
+                        num++;
+                });
+            });
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return num;
+    }
 }
 export default Shortlist;
