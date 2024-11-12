@@ -42,5 +42,26 @@ class Shortlist {
         }
         return successFlag;
     }
+
+    getShortlist() {
+        try {
+            var shortlistedCars;
+            if (Data.shortlists == null)
+                throw "Data could not be found";
+            var shortlistsExists = false;
+            for (var i = 0; i < Data.shortlists.length; i++) {
+                if (Data.shortlists[i].identifiers.accountId == Data.currentUser) {
+                    shortlistsExists = true;
+                    shortlistedCars = Data.shortlists[i].entityInformation.cars;
+                    break;
+                }
+            }
+            if (!shortlistsExists)
+                throw "No cars have been shortlisted";
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return shortlistedCars;
+    }
 }
 export default Shortlist;

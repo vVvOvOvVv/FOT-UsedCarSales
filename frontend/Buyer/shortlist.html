@@ -31,10 +31,25 @@
     }
   </style>
 </head>
+
+<script type="module" src="../../backend/boundaries/buyerFunctions/ViewShortlistUI.js"></script>
+
 <body>
   <h1>Your Shortlist</h1>
-  <div id="shortlist-container"></div>
+  <div class="search-container">
+      <label for="carId">View shortlisted car details: </label>
+      <input type="text" id="carId" placeholder="Search by car ID">
+      <button id="viewDetails">View Details</button>
 
+      <label for="delCarId">Remove from shortlist: </label>
+      <input type="text" id="delCarId" placeholder="Enter a car ID to remove">
+      <button id="del">Delete from Shortlist</button>
+  </div>
+
+  <div class="services-container" id="searchResults"></div>
+
+  <div id="shortlist-container"></div>
+  <!--
   <script>
 	// Function to display cars from the shortlist
 	function displayShortlist() {
@@ -94,7 +109,7 @@
 
 // Display the shortlist when the page loads
 displayShortlist();
-  </script>
+  </script> -->
   <a href="Buyer.html">Back to Account</a>
 </body>
 </html>

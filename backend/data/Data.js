@@ -54,7 +54,7 @@ class Data {
     }];
     static shortlists = [
         {"identifiers":
-            {"accountId": 0}, // each account will have a shortlist, containing 0+ cars 
+            {"accountId": 2}, // each account will have a shortlist, containing 0+ cars 
         "entityInformation":
             {"cars": [{"carId": 0}]}
     }];
