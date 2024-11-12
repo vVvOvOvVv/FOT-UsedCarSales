@@ -1,4 +1,4 @@
-import SearchReviewController from "../../controllers/carAgentFunctions/SeachReviewController.js";
+import SearchReviewController from "../../controllers/carAgentFunctions/SearchReviewController.js";
 import Boundary from "../UseCaseBoundary.js"
 
 class SearchReviewUI extends Boundary {
