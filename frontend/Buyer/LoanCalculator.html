@@ -102,6 +102,8 @@
     }
   </style>
 </head>
+
+<script type="module" src="../../backend/boundaries/buyerFunctions/CalculateLoanUI.js"></script>
 <body>
 
 <div class="loan-container">
@@ -109,6 +111,8 @@
 
   <p class="car-price" id="loanCarPrice">Loading...</p>
 
+  <label for="carId">Car ID</label>
+  <input id="carId" placeholder="Enter the Car ID you wish to calculate a loan for" />
   <label for="downpayment">Downpayment Amount (SGD)</label>
   <input type="number" id="downpayment" placeholder="Enter downpayment amount" />
 
@@ -140,50 +144,6 @@
 </div>
 
 <script>
-  // Retrieve car price from the URL parameter
-  const carPrice = new URLSearchParams(window.location.search).get('carPrice');
-  const loanCarPriceElement = document.getElementById('loanCarPrice');
-  loanCarPriceElement.textContent = carPrice ? `$${carPrice}` : "Price not available";
-
-  // CalculateLoan function for calculating the monthly payment
-  function CalculateLoan() {
-    const downpayment = parseFloat(document.getElementById('downpayment').value) || 0;
-    const loanYears = parseInt(document.getElementById('loanYears').value);
-    const interestRate = parseFloat(document.getElementById('interestRate').value);
-
-    const carPriceNumber = parseFloat(carPrice.replace('$', '').replace(',', ''));
-
-    // Validation: Ensure downpayment is not more than the car price
-    if (downpayment > carPriceNumber) {
-      document.getElementById('errorMessage').textContent = "Downpayment cannot be more than the car price.";
-      document.getElementById('result').textContent = "";  // Clear previous result
-    } else if (downpayment < 0 || isNaN(downpayment)) {
-      document.getElementById('errorMessage').textContent = "Please enter a valid downpayment amount.";
-      document.getElementById('result').textContent = "";  // Clear previous result
-    } else {
-      document.getElementById('errorMessage').textContent = "";  // Clear error message
-      const monthlyPayment = calculateMonthlyPayment(carPriceNumber, downpayment, loanYears, interestRate);
-      document.getElementById('result').textContent = `Your Monthly Payment: $${monthlyPayment}`;
-    }
-  }
-
-  // Helper function to calculate monthly payment
-  function calculateMonthlyPayment(price, downpayment, years, interestRate) {
-    const principal = price - downpayment; // Loan amount after downpayment
-    const monthlyInterestRate = interestRate / 100 / 12; // Monthly interest rate
-    const numberOfPayments = years * 12; // Total payments (loan years * 12)
-
-    const numerator = monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments);
-    const denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
-
-    const monthlyPayment = (principal * numerator) / denominator;
-
-    return monthlyPayment.toFixed(2); // Return rounded monthly payment
-  }
-
-  // Event listener for the calculate button
-  document.getElementById('calculateBtn').addEventListener('click', CalculateLoan);
-
   // Back Button Function
   function goBackToCars() {
     window.location.href = 'Cars.html'; // Redirect to Cars.html

@@ -32,7 +32,7 @@ class ViewUsedCarUI extends Boundary {
                 var text = document.createTextNode(`Year manufactured: ${car.entityInformation.year}`);
                 year.appendChild(text);
                 var price = document.createElement("li");
-                var text = document.createTextNode(`Price: $${car.entityInformation.price}`);
+                var text = document.createTextNode(`Price: SGD${car.entityInformation.price}`);
                 price.appendChild(text);
                 var carSeller = document.createElement("li");
                 var text = document.createTextNode(`Seller: ${car.entityInformation.carSeller}`);

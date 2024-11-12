@@ -174,6 +174,29 @@ class CarListing {
         return cars;
     }
 
+    calculateL(carId) {
+        var price;
+        var successFlag = false;
+        try {
+            if (Data.carListing == null)
+                throw "Data could not be found";
+            if (Data.carListing.length == 0)
+                throw "No cars in the database";
+            for (var i = 0; i < Data.carListing.length; i++) {
+                if (Data.carListing[i].identifiers.carId == carId) {
+                    successFlag = true;
+                    price = Data.carListing[i].entityInformation.price;
+                    break;
+                }
+            }
+            if (!successFlag)
+                throw `Car with ID ${carId} could not be found`;
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return price;
+    }
+
     writeJSON(data) {
         try {
             Data.carListing.push(data)
