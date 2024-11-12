@@ -36,6 +36,7 @@ class SearchShortlistUI extends Boundary{
                 container.appendChild(carCard);
 
                 this.displaySuccess();
+                window.open("../../../frontend/User Admin/AdminHomePage.html", "__self");
             }
             
         } catch (err) {
