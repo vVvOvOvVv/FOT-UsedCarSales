@@ -4,53 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Models</title>
-	
-	<style>
-        /* Your existing CSS styles for the services-container */
+    <style>
         .services-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensures columns maintain their size */
-        gap: 1rem;
-        margin-top: 2rem;
-        color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            color: white;
         }
-        
-        .services-container .box{
+        .services-container .box {
             padding: 10px;
             border-radius: 1rem;
             box-shadow: 1px 4px 41px rgba(0,0,0,0.1);
         }
-        .services-container .box .box-img{
+        .services-container .box .box-img {
             width: 100%;
             height: 150px;
         }
-        .services-container .box .box-img img{
+        .services-container .box .box-img img {
             width: 100%;
             height: 100%;
             border-radius: 1rem;
             object-fit: cover;
             object-position: center;
         }
-        .services-container .box p{
+        .services-container .box p {
             padding: 0 10px;
-            border: 1px solid ;
+            border: 1px solid;
             width: 58px;
             border-radius: 0.5rem;
             margin: 1rem 0 0.5rem;
-            color:black;
+            color: black;
         }
-        .services-container .box h3{
+        .services-container .box h3 {
             font-weight: 500;
-            color:black;
+            color: black;
         }
-
-        /* New CSS to style the buttons side by side */
         .services-container .box .btn-container {
             display: flex;
-            justify-content: space-between; /* Distribute buttons evenly */
-            gap: 10px; /* Add some space between the buttons */
+            justify-content: space-between;
+            gap: 10px;
         }
-
         .services-container .box .btn {
             display: inline-flex;
             justify-content: center;
@@ -59,65 +53,39 @@
             color: #fff;
             padding: 10px;
             border-radius: 0.5rem;
-            flex: 1; /* Make the buttons flexible, so they take equal width */
+            flex: 1;
         }
-
         .services-container .box .btn:hover {
             background: lightgreen;
         }
-
         .services-container .box .btn.shortlist-btn {
-            background: #f39c12; /* You can use a different color for this button */
+            background: #f39c12;
         }
-
         .services-container .box .btn.shortlist-btn:hover {
-            background: #f1c40f; /* Hover effect for shortlist button */
+            background: #f1c40f;
         }
-
-        /* Style for the search filter */
-        .filter-container {
+        .search-container {
             margin: 20px;
             text-align: center;
         }
-
-        .filter-container select {
+        .search-container input {
             padding: 10px;
             font-size: 16px;
             border-radius: 0.5rem;
             border: 1px solid #ccc;
-            background-color: #fff;
+            width: 300px;
         }
     </style>
 </head>
 <body>
-  <h1>Vehicles</h1>
+    <h1>Vehicles</h1>
+        <div class="search-container">
+        <label for="searchBar">Search for a car:</label>
+        <input type="text" id="searchBar" placeholder="Search by car name...">
+        <button id="searchButton">Search</button>
+    </div>
+    <div class="services-container"></div>
 
-
-  <div class="search-container">
-    <label for="searchBar">Search for a car:</label>
-    <input type="text" id="searchBar" placeholder="Search by car name...">
-  </div>
-
-  <!-- Search Filter for Brands -->
-  <div class="filter-container">
-    <label for="brandFilter">Filter by Brand: </label>
-    <select id="brandFilter">
-        <option value="all">All Brands</option>
-        <option value="Mercedes-Benz">Mercedes-Benz</option>
-        <option value="Toyota">Toyota</option>
-        <option value="BMW">BMW</option>
-        <option value="Honda">Honda</option>
-        <option value="Mitsubishi">Mitsubishi</option>
-        <option value="Kia">Kia</option>
-        <option value="Nissan">Nissan</option>
-        <option value="Hyundai">Hyundai</option>
-        <option value="Mazda">Mazda</option>
-        <option value="Audi">Audi</option>
-    </select>
-  </div>
-  
-
-  <div class="services-container">
     <!-- Generating 100 car listings -->
     <script>
       const vehicles = [
@@ -242,95 +210,67 @@
       ];
      
 
- const container = document.querySelector('.services-container');
-    const searchBar = document.getElementById('searchBar');
-    const brandFilter = document.getElementById('brandFilter');
+const container = document.querySelector('.services-container');
+        const searchBar = document.getElementById('searchBar');
 
-    // Function to render cars
-    function renderCars(filteredVehicles) {
-        container.innerHTML = '';  // Clear existing cars
-        filteredVehicles.forEach(vehicle => {
-            const box = document.createElement('div');
-            box.classList.add('box');
+       // Function to render cars
+        function renderCars(filteredVehicles) {
+            container.innerHTML = ''; // Clear existing cars
+            filteredVehicles.forEach(vehicle => {
+                const box = document.createElement('div');
+                box.classList.add('box');
 
-            const imgContainer = document.createElement('div');
-            imgContainer.classList.add('box-img');
-            const img = document.createElement('img');
-            img.src = vehicle.img;
-            img.alt = vehicle.name;
-            imgContainer.appendChild(img);
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('box-img');
+                const img = document.createElement('img');
+                img.src = vehicle.img;
+                img.alt = vehicle.name;
+                imgContainer.appendChild(img);
 
-            const year = document.createElement('p');
-            year.textContent = vehicle.year;
+                const year = document.createElement('p');
+                year.textContent = vehicle.year;
 
-            const name = document.createElement('h3');
-            name.textContent = vehicle.name;
+                const name = document.createElement('h3');
+                name.textContent = vehicle.name;
 
-            const btnContainer = document.createElement('div');
-            btnContainer.classList.add('btn-container');
-            const viewBtn = document.createElement('a');
-            viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}&img=${encodeURIComponent(vehicle.img)}`;
-            viewBtn.textContent = 'View';
-            viewBtn.classList.add('btn');
+                const btnContainer = document.createElement('div');
+                btnContainer.classList.add('btn-container');
 
-            const shortlistBtn = document.createElement('a');
-            //shortlistBtn.href = '#';
-            shortlistBtn.textContent = 'Shortlist';
-            shortlistBtn.classList.add('btn', 'shortlist-btn');
-            shortlistBtn.onclick = () => addToShortlist(vehicle.name, vehicle.img);
+                const viewBtn = document.createElement('a');
+                viewBtn.href = `View.html?car=${encodeURIComponent(vehicle.name)}`;
+                viewBtn.classList.add('btn');
+                viewBtn.textContent = 'View';
 
-            btnContainer.appendChild(viewBtn);
-            btnContainer.appendChild(shortlistBtn);
+                const shortlistBtn = document.createElement('a');
+                shortlistBtn.href = '#';
+                shortlistBtn.classList.add('btn', 'shortlist-btn');
+                shortlistBtn.textContent = 'Shortlist';
 
-            box.appendChild(imgContainer);
-            box.appendChild(name);
-            box.appendChild(year);
-            box.appendChild(btnContainer);
+                btnContainer.appendChild(viewBtn);
+                btnContainer.appendChild(shortlistBtn);
 
-            container.appendChild(box);
-        });
-    }
+                box.appendChild(imgContainer);
+                box.appendChild(year);
+                box.appendChild(name);
+                box.appendChild(btnContainer);
 
-    // Function to filter vehicles based on search query and brand
-    function filterVehicles() {
-        const searchTerm = searchBar.value.toLowerCase();
-        const selectedBrand = brandFilter.value;
-
-        const filteredVehicles = vehicles.filter(vehicle => {
-            const matchesSearch = vehicle.name.toLowerCase().includes(searchTerm);
-            const matchesBrand = selectedBrand === 'all' || vehicle.brand === selectedBrand;
-            return matchesSearch && matchesBrand;
-        });
-
-        renderCars(filteredVehicles);
-    }
-
-    // Event listener for search bar
-    searchBar.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            filterVehicles();
+                container.appendChild(box);
+            });
         }
-    });
 
-    // Event listener for brand filter
-    brandFilter.addEventListener('change', filterVehicles);
+        // Initial rendering
+        renderCars(vehicles);
 
-    // Initially render all cars
-    renderCars(vehicles);
+        // Search functionality when pressing the button
+        searchButton.addEventListener('click', () => {
+            const searchQuery = searchBar.value.toLowerCase();
+            const filteredVehicles = vehicles.filter(vehicle =>
+                vehicle.name.toLowerCase().includes(searchQuery)
+            );
+            renderCars(filteredVehicles);
+        });
 
-
-     function addToShortlist(carName, carImage) {
-        let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
-        const existingCar = shortlist.find(car => car.name === carName);
-        if (existingCar) {
-          existingCar.shortlistedCount = (existingCar.shortlistedCount || 1) + 1;
-        } else {
-          shortlist.push({ name: carName, image: carImage, shortlistedCount: 1, views: 0 });
-        }
-        localStorage.setItem('shortlist', JSON.stringify(shortlist));
-        alert(`${carName} has been added to your shortlist!`);
-      }
-</script>
-  </div>
+      
+    </script>
 </body>
 </html>
