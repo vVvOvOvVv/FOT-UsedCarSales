@@ -54,62 +54,16 @@
         }
     </style>
 </head>
+
+<script type="module" src="../../backend/boundaries/sellerFunctions/DisplayViewsUI.js"></script>
+
 <body>
-    <button class="back-btn" onclick="goBack()">Back</button>
     <h1>My Cars for Sale</h1>
+    <label for="carId">Enter a Car ID to see its views: </label>
+    <input type="text" id="carId" required/>
+    <button class="back-btn" id="seeViews">See Views</button>
+    <button class="back-btn" onclick="goBack()">Back</button>
     <ul class="car-list" id="carList"></ul>
-
-    <script>
-        // Define an array of car objects
-        const cars = [
-            {
-                name: "Toyota Prius",
-                brand: "Toyota",
-                year: 2012,
-                img: "img/prius.png",
-                price: "$15,000",
-                views: 0
-            }
-           
-            // Add more cars as needed
-        ];
-
-        // Function to render cars dynamically
-        function renderCars() {
-            const carList = document.getElementById('carList');
-            carList.innerHTML = '';  // Clear the list first
-
-            cars.forEach((car, index) => {
-                const carItem = document.createElement('li');
-                carItem.classList.add('car-item');
-                carItem.innerHTML = `
-                    <h3>${car.name} (${car.year})</h3>
-                    <p>Brand: ${car.brand}</p>
-                    <p>Price: ${car.price}</p>
-                    <img src="${car.img}" alt="${car.name}" class="car-img">
-                    <p class="view-count"><i class="fas fa-eye"></i> Views: <span id="views${index}">${car.views}</span></p>
-                `;
-                carList.appendChild(carItem);
-
-                // Simulate view increment for every car loaded on the page
-                incrementViewCount(index);
-            });
-        }
-
-        // Function to increment view count for a car
-        function incrementViewCount(index) {
-            cars[index].views++;  // Increase the view count
-            document.getElementById(`views${index}`).textContent = cars[index].views;  // Update the display
-        }
-
-         // Function to go back to the seller page
-        function goBack() {
-            window.location.href = 'seller.html'; // Change this path if necessary
-        }
-
-        // Render the cars when the page loads
-        window.onload = renderCars;
-    </script>
     
 </body>
 </html>

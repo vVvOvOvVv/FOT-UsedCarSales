@@ -196,6 +196,29 @@ class CarListing {
         return price;
     }
 
+    getViews(carId) {
+        try {
+            var views;
+            if (Data.carListing == null)
+                throw "Data could not be found";
+            if (Data.carListing.length == 0)
+                throw "No cars in the database";
+            var foundFlag = false;
+            for (var i = 0; i < Data.carListing.length; i++) {
+                var car = Data.carListing[i];
+                if (car.identifiers.carId == carId) {
+                    foundFlag = true;
+                    views = car.entityInformation.views;
+                }
+            }
+            if (!foundFlag)
+                throw `Car with ID ${carId} could not be found`;
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return views;
+    }
+
     writeJSON(data) {
         try {
             Data.carListing.push(data)
