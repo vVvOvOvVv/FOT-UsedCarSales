@@ -33,83 +33,30 @@
 </head>
 
 <script type="module" src="../../backend/boundaries/buyerFunctions/ViewShortlistUI.js"></script>
+<script type="module" src="../../backend/boundaries/buyerFunctions/SearchShortlistUI.js"></script>
+<script type="module" src="../../backend/boundaries/buyerFunctions/ViewUsedCarUI.js"></script>
 
 <body>
   <h1>Your Shortlist</h1>
   <div class="search-container">
-      <label for="carId">View shortlisted car details: </label>
-      <input type="text" id="carId" placeholder="Search by car ID">
+      <label for="carId-shortlist">View shortlisted car details: </label>
+      <input type="text" id="carId-shortlist" placeholder="Search by car ID">
+      <button id="search">Search</button>
+      
+      <label for="carId">View car details: </label>
+      <input type="text" id="carId" placeholder="Search by car ID...">
       <button id="viewDetails">View Details</button>
+      <a href="./LoanCalculator.html"><button>Calculate a Loan</button></a>
 
+      <!-- OPTIONAL USE CASE
       <label for="delCarId">Remove from shortlist: </label>
       <input type="text" id="delCarId" placeholder="Enter a car ID to remove">
-      <button id="del">Delete from Shortlist</button>
+      <button id="del">Delete from Shortlist</button>-->
   </div>
 
   <div class="services-container" id="searchResults"></div>
 
   <div id="shortlist-container"></div>
-  <!--
-  <script>
-	// Function to display cars from the shortlist
-	function displayShortlist() {
-	// Get shortlist from localStorage
-	let shortlist = JSON.parse(localStorage.getItem('shortlist')) || [];
-	
-	// Get the container element
-	const container = document.getElementById('shortlist-container');
-	container.innerHTML = ''; // Clear the container before rendering
-
-	// Loop through the shortlist and display each car
-	shortlist.forEach((car, index) => {
-    const carCard = document.createElement('div');
-    carCard.classList.add('car-card');
-
-    const carImage = document.createElement('img');
-    carImage.src = car.image;
-    carCard.appendChild(carImage);
-
-    // Make the car name a clickable link that leads to View.html, adding referrer parameter
-    const carName = document.createElement('h3');
-    const carLink = document.createElement('a');
-    const referrer = 'shortlist';  // Add 'shortlist' as referrer when navigating from shortlist
-    carLink.href = `View.html?car=${encodeURIComponent(car.name)}&img=${encodeURIComponent(car.image)}&referrer=${encodeURIComponent(referrer)}`;
-    carLink.textContent = car.name;
-    carName.appendChild(carLink);
-    carCard.appendChild(carName);
-
-    // Create a delete button for each car
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.classList.add('delete-btn');
-    deleteButton.onclick = function() {
-		// Confirm deletion
-		const confirmation = confirm(`Are you sure you want to remove ${car.name} from your shortlist?`);
-		if (confirmation) {
-			// Remove the car from the shortlist array
-			shortlist.splice(index, 1);
-
-			// Save the updated shortlist to localStorage
-			localStorage.setItem('shortlist', JSON.stringify(shortlist));
-
-			// Re-display the updated shortlist
-			displayShortlist();
-		}
-	};
-    carCard.appendChild(deleteButton);
-
-    container.appendChild(carCard);
-	});
-
-		// If no cars are in the shortlist, show a message
-		if (shortlist.length === 0) {
-		container.innerHTML = '<p>No cars in your shortlist.</p>';
-		}
-	}
-
-// Display the shortlist when the page loads
-displayShortlist();
-  </script> -->
   <a href="Buyer.html">Back to Account</a>
 </body>
 </html>
