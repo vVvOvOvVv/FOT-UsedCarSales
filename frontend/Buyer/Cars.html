@@ -34,7 +34,6 @@
         .services-container .box p{
             padding: 0 10px;
             border: 1px solid ;
-            width: 58px;
             border-radius: 0.5rem;
             margin: 1rem 0 0.5rem;
             color:black;
@@ -89,6 +88,9 @@
         }
     </style>
 </head>
+
+<script type="module" src="../../backend/boundaries/buyerFunctions/SearchUsedCarUI.js"></script>
+
 <body>
   <h1>Vehicles</h1>
 
@@ -117,7 +119,7 @@
   </div>
   
 
-  <div class="services-container">
+  <div class="services-container" id="services">
     <!-- Generating 100 car listings -->
     <script>
       const vehicles = [

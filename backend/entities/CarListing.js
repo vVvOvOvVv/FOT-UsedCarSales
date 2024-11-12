@@ -141,13 +141,14 @@ class CarListing {
 
     getCarDetails(carId) {
         var car;
-        var successFlag;
+        var successFlag = false;
         try {
             if (Data.carListing == null)
                 throw "Data could not be found";
             for (var i = 0; i < Data.carListing.length; i++) {
                 if (Data.carListing[i].identifiers.carId == carId) { 
                     car = JSON.stringify(Data.carListing[i]);
+                    Data.carListing[i].entityInformation.views += 1;
                     successFlag = true;
                 }
             }
@@ -157,6 +158,20 @@ class CarListing {
             throw err; //propagate to boundary
         }
         return car;
+    }
+
+    searchUC() {
+        var cars;
+        try {
+            if (Data.carListing == null)
+                throw "Data could not be found";
+            if (Data.carListing.length == 0)
+                throw "No cars in the database";
+            cars = Data.carListing;
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return cars;
     }
 
     writeJSON(data) {
