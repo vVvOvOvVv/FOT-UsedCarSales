@@ -148,6 +148,7 @@ class CarListing {
             for (var i = 0; i < Data.carListing.length; i++) {
                 if (Data.carListing[i].identifiers.carId == carId) { 
                     car = JSON.stringify(Data.carListing[i]);
+                    Data.carListing[i].entityInformation.views++;
                     successFlag = true;
                 }
             }
