@@ -210,7 +210,7 @@ class UserAccount {
                 throw "Account data missing";
             if (Data.currentUser == null)
                 throw "Error logging out"
-            Data.currentUser = 0;
+            Data.currentUser = null;
             successFlag = true;
         } catch (err) {
             throw err;
@@ -225,7 +225,22 @@ class UserAccount {
                 throw "Account data missing";
             if (Data.currentUser == null)
                 throw "Error logging out"
-            Data.currentUser = 0;
+            Data.currentUser = null;
+            successFlag = true;
+        } catch (err) {
+            throw err;
+        }
+        return successFlag;
+    }
+
+    logoutS() {
+        var successFlag = false;
+        try {
+            if (Data.userAccounts == null)
+                throw "Account data missing";
+            if (Data.currentUser == null)
+                throw "Error logging out"
+            Data.currentUser = null;
             successFlag = true;
         } catch (err) {
             throw err;

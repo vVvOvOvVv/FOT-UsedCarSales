@@ -32,9 +32,18 @@ class Data {
             {"accountId": 2},
         "entityInformation":
             {"name": "cassandra",
-            "profileId": 2, // buyer, 3 = agent
+            "profileId": 2, // buyer
             "email": "cass@gmail.com",
             "password": "c1",
+            "status": "active"
+            },
+        {"identifiers":
+            {"accountId": 3},
+        "entityInformation":
+            {"name": "daniela",
+            "profileId": 3, // agent
+            "email": "dani@gmail.com",
+            "password": "d1",
             "status": "active"
             }
     }];
