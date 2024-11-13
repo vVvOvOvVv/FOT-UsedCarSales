@@ -66,9 +66,9 @@ class Shortlist {
 
     getNumOfShortlists(carId) {
         try {
+            var num = 0;
             if (Data.shortlists == null)
                 throw "Data could not be found";
-            var num = 0;
             Data.shortlists.forEach(shortlist => {
                 shortlist.entityInformation.cars.forEach(car => {
                     if (car.carId == carId)
