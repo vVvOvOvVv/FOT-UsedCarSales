@@ -70,5 +70,26 @@ class Review {
         }
         return successFlag;
     }
+
+    viewR() {
+        var reviews;
+        try {
+            if (Data.reviews == null)
+                throw "Data could not be found";
+            var foundFlag = false;
+            for (var i = 0; i < Data.reviews.length; i++) {
+                if (Data.currentUser == Data.reviews[i].identifiers.accountId) {
+                    reviews = Data.reviews[i].entityInformation.reviews;
+                    foundFlag = true;
+                    break
+                }
+            }
+            if (!foundFlag)
+                throw "You don't have any reviews";
+        } catch (err) {
+            throw err; // propagate to boundary
+        }
+        return reviews
+    }
 }
 export default Review;

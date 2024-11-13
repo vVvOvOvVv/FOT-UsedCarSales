@@ -76,7 +76,8 @@ class Data {
                 {"carBrand": "toyota",
                 "rating": 5,
                 "review": "Quick to respond and very friendly!"},
-                {"rating": 4.5,
+                {"carBrand": "toyota",
+                "rating": 4,
                 "review": "Very friendly"
     }]}}];
     static currentUser = 2; // account ID of current user
