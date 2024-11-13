@@ -268,5 +268,20 @@ class UserAccount {
         }
         return successFlag;
     }
+
+    logoutUCA() {
+        var successFlag = false;
+        try {
+            if (Data.userAccounts == null)
+                throw "Account data missing";
+            if (Data.currentUser == null)
+                throw "Error logging out"
+            Data.currentUser = null;
+            successFlag = true;
+        } catch (err) {
+            throw err;
+        }
+        return successFlag;
+    }
 }
 export default UserAccount;
