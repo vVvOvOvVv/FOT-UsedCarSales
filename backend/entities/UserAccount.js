@@ -203,6 +203,27 @@ class UserAccount {
         return successFlag;
     }
 
+    UCADoSignInWithEmailAndPassword(email, pass) {
+        var successFlag = false;
+        try {
+            if (Data.userAccounts == null)
+                throw "Account data missing";
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].entityInformation.email == email &
+                    Data.userAccounts[i].entityInformation.password == pass &
+                    Data.userAccounts[i].entityInformation.profileId == 3) {
+                    successFlag = true;
+                    Data.currentUser = Data.userAccounts[i].identifiers.accountId;
+                }
+            }
+            if (!successFlag)
+                throw "Login credentials do not match"
+        } catch (err) {
+            throw err;
+        }
+        return successFlag;
+    }
+
     logoutB() {
         var successFlag = false;
         try {

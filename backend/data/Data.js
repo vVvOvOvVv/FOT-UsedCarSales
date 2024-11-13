@@ -36,7 +36,8 @@ class Data {
             "email": "cass@gmail.com",
             "password": "c1",
             "status": "active"
-            },
+            }
+        },
         {"identifiers":
             {"accountId": 3},
         "entityInformation":
