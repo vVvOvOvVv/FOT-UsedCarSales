@@ -16,17 +16,17 @@ static carListing = [
 */
 
 class CarListing {
-    static lastCarId = 1; // carListing with id 0 already exists in Data
+    static lastCarId = 100; // carListing with id 0 already exists in Data
     
     init() { 
         if (CarListing.lastCarId == null)
-            CarListing.lastCarId  = 1; // carListing with id 0 already exists in Data 
+            CarListing.lastCarId = 100;
     }
 
     submitCL(brand, model, mileage, year, price, seller, agent, status) {
         this.init();
         var successFlag = true;
-        var carId = lastCarId++;
+        var carId = CarListing.lastCarId++;
 
         try {
             var data = {

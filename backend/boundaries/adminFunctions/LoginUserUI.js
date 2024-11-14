@@ -22,7 +22,7 @@ class LoginUserUI extends Boundary {
 
         if (successFlag) {
             this.displaySuccess();
-            window.open("../../../frontend/User Admin/AdminHomePage.html", "__self");
+            window.open("../../../frontend/User Admin/AdminHomePage.html", "_self");
         }
     }
 }

@@ -21,7 +21,7 @@ class LoginUsedCarAgentUI extends Boundary {
 
         if (successFlag) {
             this.displaySuccess();
-            window.open("../../../frontend/Used Car Agent/AgentHomePage.html", "__self");
+            window.open("../../../frontend/Used Car Agent/AgentHomePage.html", "_self");
         }
     }
 }

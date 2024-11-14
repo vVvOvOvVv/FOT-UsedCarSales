@@ -9,7 +9,7 @@ class LogoutSellerUI extends Boundary {
 
             if (successFlag) {
                 this.displaySuccess();
-                window.open("../../../frontend/LoginPage.html", "__self");
+                window.open("../../../frontend/LoginPage.html", "_self");
             }
         } catch (err) {
             this.displayError(err);
