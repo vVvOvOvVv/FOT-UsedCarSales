@@ -229,7 +229,7 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (localStorage.getItem("currentUsed") == null)
+            if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
             localStorage.removeItem("currentUser");
             successFlag = true;
@@ -244,7 +244,7 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (localStorage.getItem("currentUsed") == null)
+            if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
             localStorage.removeItem("currentUser");
             successFlag = true;
@@ -259,7 +259,7 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (localStorage.getItem("currentUsed") == null)
+            if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
             localStorage.removeItem("currentUser");
             successFlag = true;
@@ -274,7 +274,7 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (localStorage.getItem("currentUsed") == null)
+            if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
             localStorage.removeItem("currentUser");
             successFlag = true;
