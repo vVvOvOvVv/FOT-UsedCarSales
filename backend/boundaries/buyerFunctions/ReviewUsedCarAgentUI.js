@@ -28,6 +28,7 @@ class ReviewUsedCarAgentUI extends Boundary {
             var successFlag = controller.submitReview(accountId, brand, rating, review);
             if (successFlag)
                 this.displaySuccess();
+            window.location.href = "Buyer.html"; 
         } catch (err) {
             this.displayError(err);
         }
