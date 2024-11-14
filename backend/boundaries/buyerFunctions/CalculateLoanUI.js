@@ -34,6 +34,7 @@ class CalculateLoanUI {
             var denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
         
             var monthlyPayment = (principal * numerator) / denominator;
+            monthlyPayment = monthlyPayment.toFixed(2);
             console.log(price);
             // display results
             var result = document.getElementById("result");
