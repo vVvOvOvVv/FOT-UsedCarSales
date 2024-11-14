@@ -44,12 +44,11 @@ class ViewUserAccountUI extends Boundary {
                     accountsText = "No accounts found";
             } else  // array == null - fail alt flow according to sequence diagram
                 accountsText = "Could not find account data";
-            
         } catch (err) {
             console.log(err);
         }
     }
-}
+} export default ViewUserAccountUI
 
 const viewAccountUI = new ViewUserAccountUI();
 document.getElementById("nav").addEventListener("load", (viewAccountUI.displayPage())); 

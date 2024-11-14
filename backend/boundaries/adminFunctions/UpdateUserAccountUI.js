@@ -30,7 +30,7 @@ class UpdateUserAccountUI extends Boundary {
         if (updateFlag)
             this.displaySuccess();
     } 
-}
+} export default UpdateUserAccountUI;
 
 const updateAccountUI = new UpdateUserAccountUI();
 document.getElementById("update").addEventListener("click", () => {

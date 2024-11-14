@@ -50,7 +50,7 @@ class SearchAccountUI extends Boundary {
             alert(err);
         }
     }
-}
+} export default SearchAccountUI;
 
 const searchAccountUI = new SearchAccountUI();
 document.getElementById("search").addEventListener("click", () => {

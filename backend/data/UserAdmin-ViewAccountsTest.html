@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Test View Accounts Page</title>
+    </head>
+
+    <body>
+        <h2 style="margin-top: 30px; color:orangered;"><center>Test: View User Accounts</center></h2><br/>     
+          <div id="viewResult"></div>
+          <div id="back"></div> <!--To allow loading-->
+    </body>
+<script type="module">
+    // JSON data
+    import Data from "./Data.js";
+    // boundary classes
+    import ViewUserAccountUI from "../boundaries/adminFunctions/ViewUserAccountUI.js";
+
+    function viewTest() {
+        const resultsDiv = document.getElementById("viewResult");
+        resultsDiv.innerHTML = "<h3>Running Tests...</h3>";
+
+        let successCount = 0;
+        let failureCount = 0;
+        
+        const viewUI = new ViewUserAccountUI();
+        var isSuccess = viewUI.displayPage();
+        if (isSuccess) {
+            console.log(`Load test passed!`);
+            successCount++;
+        } else {
+            console.error(`Load test failed!}`);
+            failureCount++;
+        }
+
+        resultsDiv.innerHTML += `<p>Tests completed: ${successCount} passed, ${failureCount} failed.</p>`;
+    }
+    document.getElementById("viewResult").addEventListener("load", (viewTest())); 
+
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Test Create Account Page</title>
+    </head>
+
+    <body>
+        <h2 style="margin-top: 30px; color:orangered;"><center>Test: Create User Account</center></h2><br/>     
+        <div class="container-fluid">
+          <div class="form-container">
+            <label for="profile">Profile ID</label>
+            <input type="text" id="profile"/>
+            <label for="name">Name</label>
+            <input type="text" id="name"/>
+            <label for="email">Email</label>
+            <input type="text" id="email"/>
+            <label for="password">Password</label>
+            <input type="text" id="password"/>
+            <button type="button" id="submit">Create User Account</button>
+          </div>
+          <div id="createResult"></div>
+        </div>
+    </body>
+<script type="module">
+    // JSON data
+    import Data from "./Data.js";
+    // boundary classes
+    import CreateUserAccountUI from "../boundaries/adminFunctions/CreateUserAccountUI.js";
+
+    function createTest() {
+        const resultsDiv = document.getElementById("createResult");
+        resultsDiv.innerHTML = "<h3>Running Tests...</h3>";
+
+        let successCount = 0;
+        let failureCount = 0;
+        
+        const createUI = new CreateUserAccountUI();
+        Data.userAccounts.forEach(user => {
+            document.getElementById("profile").value = user.entityInformation.profileId;
+            document.getElementById("name").value = user.entityInformation.name;
+            document.getElementById("email").value = user.entityInformation.email;
+            document.getElementById("password").value = user.entityInformation.password;
+
+            var isSuccess = createUI.onSubmit();
+            if (isSuccess) {
+                console.log(`Logout test passed for ${user.identifiers.accountId}`);
+                successCount++;
+            } else {
+                console.error(`Logout test failed for ${user.identifiers.accountId}`);
+                failureCount++;
+            }
+        });
+
+        resultsDiv.innerHTML += `<p>Tests completed: ${successCount} passed, ${failureCount} failed.</p>`;
+    }
+    document.getElementById("submit").addEventListener("click", () => {
+        createTest();
+    }); 
+
+</script>
+</html>

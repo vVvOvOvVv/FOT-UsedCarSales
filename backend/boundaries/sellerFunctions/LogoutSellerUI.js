@@ -8,14 +8,13 @@ class LogoutSellerUI extends Boundary {
             var successFlag = controller.logoutSeller();
 
             if (successFlag) {
-                // this.displaySuccess();
-                // window.open("../../../frontend/LoginPage.html", "_self");
+                this.displaySuccess();
+                window.open("../../../frontend/LoginPage.html", "_self");
             }
         } catch (err) {
             successFlag = false;
-            // this.displayError(err);
+            this.displayError(err);
         }
-        return successFlag;
     }
 } export default LogoutSellerUI;
 var logoutUI = new LogoutSellerUI();

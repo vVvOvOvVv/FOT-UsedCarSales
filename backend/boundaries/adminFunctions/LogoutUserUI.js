@@ -16,7 +16,6 @@ class LogoutUserUI extends Boundary {
             this.displaySuccess();
             window.open("../../../frontend/LoginPage.html", "_self");
         }
-        return successFlag;
     }
 } export default LogoutUserUI;
 

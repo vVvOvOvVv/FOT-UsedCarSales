@@ -150,7 +150,8 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 0) {
                     successFlag = true;
-                    localStorage.setItem("currentUser", toString(Data.userAccounts[i].identifiers.accountId));
+                    localStorage.clear();
+                    localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
             if (!successFlag)
@@ -171,6 +172,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 2) {
                     successFlag = true;
+                    localStorage.clear();
                     localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
@@ -192,6 +194,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 1) {
                     successFlag = true;
+                    localStorage.clear();
                     localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
@@ -213,6 +216,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 3) {
                     successFlag = true;
+                    localStorage.clear();
                     localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
@@ -236,6 +240,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.profileId == 2) {
                     localStorage.removeItem("currentUser");
                     successFlag = true;
+                    break;
                 }
             }
             if (!successFlag)
@@ -254,18 +259,20 @@ class UserAccount {
             if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
             for (var i = 0; i < Data.userAccounts.length; i++) {
-                if (Data.userAccounts[i].identifiers.accountId == localStorage.getItem("currentUser") &
+                console.log(localStorage.getItem("currentUser"))
+                if (Data.userAccounts[i].identifiers.accountId == parseInt(localStorage.getItem("currentUser")) &
                     Data.userAccounts[i].entityInformation.profileId == 0) {
                     localStorage.removeItem("currentUser");
                     successFlag = true;
+                    break;
                 }
             }
             if (!successFlag)
                 throw "Current user and profile mismatch"
-            successFlag = true;
         } catch (err) {
             throw err;
         }
+        console.log(successFlag);
         return successFlag;
     }
 
@@ -281,6 +288,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.profileId == 1) {
                     localStorage.removeItem("currentUser");
                     successFlag = true;
+                    break;
                 }
             }
             if (!successFlag)
@@ -304,6 +312,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.profileId == 3) {
                     localStorage.removeItem("currentUser");
                     successFlag = true;
+                    break;
                 }
             }
             if (!successFlag)
