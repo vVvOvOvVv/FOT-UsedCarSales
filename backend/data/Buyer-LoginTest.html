@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Logins Page</title>
+  </head>
+
+  <body>
+      <h2 style="margin-top: 30px; color:orangered;"><center>Test: Buyer Login</center></h2><br/>     
+      <div class="container-fluid">
+        <div class="form-container">
+          <header>Login to Your Account</header><br/>
+          <form style="font-size: 20px;">
+            <label for="email">Email</label><br/>
+            <input type="email" placeholder="Email" id="email" required />
+            <br/><br/>
+
+            <label for="pass">Password</label><br/>
+            <input type="password" placeholder="Password" id="pass" required />
+            <br/><br/>
+
+            <button class="button" id="button" type="button">Login</button>
+          </form>
+        </div>
+        <div id="loginResult"></div>
+      </div>
+  </body>
+
+  <!--Module to simulate log in-->
+  <script type="module"> 
+    // JSON data
+    import Data from "./Data.js";
+    // boundary classes
+    // buyer
+    import LoginBuyerUI from "../boundaries/buyerFunctions/LoginBuyerUI.js";
+    
+    // Function to run automated tests using userAccounts data
+    function runLoginTests() {
+        const resultsDiv = document.getElementById("loginResult");
+        resultsDiv.innerHTML = "<h3>Running Tests...</h3>";
+
+        let successCount = 0;
+        let failureCount = 0;
+
+        const loginUI = new LoginBuyerUI();
+
+        Data.userAccounts.forEach(user => {
+            const email = user.entityInformation.email;
+            const password = user.entityInformation.password;
+
+            // Set the input values
+            document.getElementById("email").value = email;
+            document.getElementById("pass").value = password;
+
+            // Simulate a button click to test the login
+            const isSuccess = loginUI.onLogin();
+
+            if (isSuccess) {
+                console.log(`Login test passed for ${email}`);
+                successCount++;
+            } else {
+                console.error(`Login test failed for ${email}`);
+                failureCount++;
+            }
+        });
+
+        resultsDiv.innerHTML += `<p>Tests completed: ${successCount} passed, ${failureCount} failed.</p>`;
+    }
+    document.getElementById("button").addEventListener("click", () => {
+        runLoginTests();
+    }); 
+  </script>
+</html>

@@ -16,11 +16,11 @@ class LogoutUserUI extends Boundary {
             this.displaySuccess();
             window.open("../../../frontend/LoginPage.html", "_self");
         }
+        return successFlag;
     }
-}
+} export default LogoutUserUI;
 
 const logoutUI = new LogoutUserUI();
 document.getElementById("logout").addEventListener("click", () => {
     logoutUI.onLogout();
 }); 
-window.onload(logoutUI.displayPage());

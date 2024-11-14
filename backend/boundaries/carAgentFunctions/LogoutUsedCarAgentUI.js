@@ -12,10 +12,11 @@ class LogoutUsedCarAgentUI extends Boundary {
                 window.open("../../../frontend/LoginPage.html", "_self");
             }
         } catch (err) {
+            successFlag = false;
             this.displayError(err);
         }
     }
-}
+} export default LogoutUsedCarAgentUI;
 var logoutUI = new LogoutUsedCarAgentUI();
 document.getElementById("logout").addEventListener("click", () => {
     logoutUI.onLogout();

@@ -8,8 +8,8 @@ class LogoutBuyerUI extends Boundary {
             var controller = new LogoutBuyerController();
             successFlag = controller.logoutBuyer();
         } catch (err) {
-            this.displayError(err);
             successFlag = false;
+            this.displayError(err);
         }
 
         if (successFlag) {
@@ -17,7 +17,8 @@ class LogoutBuyerUI extends Boundary {
             window.open("../../../frontend/LoginPage.html", "_self");
         }
     }
-}
+} export default LogoutBuyerUI;
+
 var logoutUI = new LogoutBuyerUI();
 document.getElementById("logout").addEventListener("click", () => {
     logoutUI.onLogout();

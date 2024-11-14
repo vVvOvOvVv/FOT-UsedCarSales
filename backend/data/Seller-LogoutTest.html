@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Test Logout Page</title>
+    </head>
+
+    <body>
+        <h2 style="margin-top: 30px; color:orangered;"><center>Test: Seller Logout</center></h2><br/>     
+        <div class="container-fluid">
+          <div class="form-container">
+            <button type="button" id="logout">Logout</button>
+          </div>
+          <div id="loginResult"></div>
+        </div>
+    </body>
+<script type="module">
+    // JSON data
+    import Data from "./Data.js";
+    // boundary classes
+    // seller
+    import LogoutSellerUI from "../boundaries/sellerFunctions/LogoutSellerUI.js";
+
+    function logoutTest() {
+        const resultsDiv = document.getElementById("loginResult");
+        resultsDiv.innerHTML = "<h3>Running Tests...</h3>";
+
+        let successCount = 0;
+        let failureCount = 0;
+        
+        const logoutUI = new LogoutSellerUI();
+        Data.userAccounts.forEach(user => {
+            // simulate log in
+            localStorage.setItem("currentUser", user.identifiers.accountId);
+
+            var isSuccess = logoutUI.onLogout();
+            if (isSuccess) {
+                console.log(`Logout test passed for ${user.identifiers.accountId}`);
+                successCount++;
+            } else {
+                console.error(`Logout test failed for ${user.identifiers.accountId}`);
+                failureCount++;
+            }
+        });
+
+        resultsDiv.innerHTML += `<p>Tests completed: ${successCount} passed, ${failureCount} failed.</p>`;
+    }
+    document.getElementById("logout").addEventListener("click", () => {
+        logoutTest();
+    }); 
+
+</script>
+</html>

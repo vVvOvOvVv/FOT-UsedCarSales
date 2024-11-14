@@ -9,6 +9,15 @@ class LoginUsedCarAgentUI extends Boundary {
             var successFlag = true;
             if (email == "")
                 throw "Email cannot be left empty";
+            var containsAtSign = false;
+            for (var i = 0; i < email.toString().length; i++) {
+                if (email.toString()[i] == "@") {
+                    containsAtSign = true;
+                    break;
+                }
+            }
+            if (!containsAtSign)
+                throw "Invalid email entered";
             if (pass == "")
                 throw "Password cannot be left empty";
 
@@ -24,7 +33,7 @@ class LoginUsedCarAgentUI extends Boundary {
             window.open("../../../frontend/Used Car Agent/AgentHomePage.html", "_self");
         }
     }
-}
+} export default LoginUsedCarAgentUI;
 
 var loginUI = new LoginUsedCarAgentUI();
 document.getElementById("button").addEventListener("click", () => {

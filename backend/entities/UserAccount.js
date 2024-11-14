@@ -231,8 +231,15 @@ class UserAccount {
                 throw "Account data missing";
             if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
-            localStorage.removeItem("currentUser");
-            successFlag = true;
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].identifiers.accountId == localStorage.getItem("currentUser") &
+                    Data.userAccounts[i].entityInformation.profileId == 2) {
+                    localStorage.removeItem("currentUser");
+                    successFlag = true;
+                }
+            }
+            if (!successFlag)
+                throw "Current user and profile mismatch"
         } catch (err) {
             throw err;
         }
@@ -246,7 +253,15 @@ class UserAccount {
                 throw "Account data missing";
             if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
-            localStorage.removeItem("currentUser");
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].identifiers.accountId == localStorage.getItem("currentUser") &
+                    Data.userAccounts[i].entityInformation.profileId == 0) {
+                    localStorage.removeItem("currentUser");
+                    successFlag = true;
+                }
+            }
+            if (!successFlag)
+                throw "Current user and profile mismatch"
             successFlag = true;
         } catch (err) {
             throw err;
@@ -261,7 +276,15 @@ class UserAccount {
                 throw "Account data missing";
             if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
-            localStorage.removeItem("currentUser");
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].identifiers.accountId == localStorage.getItem("currentUser") &
+                    Data.userAccounts[i].entityInformation.profileId == 1) {
+                    localStorage.removeItem("currentUser");
+                    successFlag = true;
+                }
+            }
+            if (!successFlag)
+                throw "Current user and profile mismatch"
             successFlag = true;
         } catch (err) {
             throw err;
@@ -276,7 +299,15 @@ class UserAccount {
                 throw "Account data missing";
             if (localStorage.getItem("currentUser") == null)
                 throw "Error logging out"
-            localStorage.removeItem("currentUser");
+            for (var i = 0; i < Data.userAccounts.length; i++) {
+                if (Data.userAccounts[i].identifiers.accountId == localStorage.getItem("currentUser") &
+                    Data.userAccounts[i].entityInformation.profileId == 3) {
+                    localStorage.removeItem("currentUser");
+                    successFlag = true;
+                }
+            }
+            if (!successFlag)
+                throw "Current user and profile mismatch"
             successFlag = true;
         } catch (err) {
             throw err;
