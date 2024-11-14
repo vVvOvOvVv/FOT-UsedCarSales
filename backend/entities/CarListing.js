@@ -59,8 +59,7 @@ class CarListing {
                 throw "Data could not be found"
             else {
                 for (var i = 0; i < Data.carListing.length; i++) {
-                    console.log(JSON.stringify(Data.carListing[i]));
-                    if (Data.carListing[i].entityInformation.carAgent == Data.currentUser)
+                    if (Data.carListing[i].entityInformation.carAgent == localStorage.getItem("currentUser"))
                         cars.push(Data.carListing[i]);
                 }
             }

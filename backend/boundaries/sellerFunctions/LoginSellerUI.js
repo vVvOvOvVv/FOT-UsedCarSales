@@ -21,7 +21,7 @@ class LoginSellerUI extends Boundary {
 
         if (successFlag) {
             this.displaySuccess();
-            window.open("../../../frontend/Seller/Seller.html", "__self");
+            window.open("../../../frontend/Seller/Seller.html", "_self");
         }
     }
 }

@@ -150,7 +150,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 0) {
                     successFlag = true;
-                    Data.currentUser = Data.userAccounts[i].identifiers.accountId;
+                    localStorage.setItem("currentUser", toString(Data.userAccounts[i].identifiers.accountId));
                 }
             }
             if (!successFlag)
@@ -171,7 +171,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 2) {
                     successFlag = true;
-                    Data.currentUser = Data.userAccounts[i].identifiers.accountId;
+                    localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
             if (!successFlag)
@@ -192,7 +192,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 1) {
                     successFlag = true;
-                    Data.currentUser = Data.userAccounts[i].identifiers.accountId;
+                    localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
             if (!successFlag)
@@ -213,7 +213,7 @@ class UserAccount {
                     Data.userAccounts[i].entityInformation.password == pass &
                     Data.userAccounts[i].entityInformation.profileId == 3) {
                     successFlag = true;
-                    Data.currentUser = Data.userAccounts[i].identifiers.accountId;
+                    localStorage.setItem("currentUser", Data.userAccounts[i].identifiers.accountId);
                 }
             }
             if (!successFlag)
@@ -229,9 +229,9 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (Data.currentUser == null)
+            if (localStorage.getItem("currentUsed") == null)
                 throw "Error logging out"
-            Data.currentUser = null;
+            localStorage.removeItem("currentUser");
             successFlag = true;
         } catch (err) {
             throw err;
@@ -244,9 +244,9 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (Data.currentUser == null)
+            if (localStorage.getItem("currentUsed") == null)
                 throw "Error logging out"
-            Data.currentUser = null;
+            localStorage.removeItem("currentUser");
             successFlag = true;
         } catch (err) {
             throw err;
@@ -259,9 +259,9 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (Data.currentUser == null)
+            if (localStorage.getItem("currentUsed") == null)
                 throw "Error logging out"
-            Data.currentUser = null;
+            localStorage.removeItem("currentUser");
             successFlag = true;
         } catch (err) {
             throw err;
@@ -274,9 +274,9 @@ class UserAccount {
         try {
             if (Data.userAccounts == null)
                 throw "Account data missing";
-            if (Data.currentUser == null)
+            if (localStorage.getItem("currentUsed") == null)
                 throw "Error logging out"
-            Data.currentUser = null;
+            localStorage.removeItem("currentUser");
             successFlag = true;
         } catch (err) {
             throw err;

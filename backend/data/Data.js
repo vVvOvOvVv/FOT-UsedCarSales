@@ -1996,6 +1996,51 @@ class Data {
         }
     ];
     
-    static currentUser; // account ID of current user
+    static shortlists = [
+        {"identifiers":
+            {"accountId": 2}, 
+        "entityInformation":
+            {"cars": [{"carId": 0}, {"carId": 2}, {"carId": 5}, {"carId": 23}, {"carId": 67}, {"carId": 12}]}
+    }, {"identifiers":
+            {"accountId": 30}, 
+        "entityInformation":
+            {"cars": [{"carId": 1}, {"carId": 3}, {"carId": 2}, {"carId": 2}, {"carId": 12}, {"carId": 12}]}
+    }, {"identifiers":
+            {"accountId": 34}, 
+        "entityInformation":
+            {"cars": [{"carId": 2}, {"carId": 3}, {"carId": 2}, {"carId": 58}, {"carId": 12}, {"carId": 12}]}
+    }, {"identifiers":
+            {"accountId": 38}, 
+        "entityInformation":
+            {"cars": [{"carId": 0}, {"carId": 3}, {"carId": 2}, {"carId": 4}, {"carId": 12}, {"carId": 12}]}
+    }, {"identifiers":
+            {"accountId": 6}, 
+        "entityInformation":
+            {"cars": [{"carId": 0}, {"carId": 3}, {"carId": 2}, {"carId": 70}, {"carId": 12}, {"carId": 12}]}
+    }, {"identifiers":
+            {"accountId": 59}, 
+        "entityInformation":
+            {"cars": [{"carId": 0}, {"carId": 23}, {"carId": 2}, {"carId": 6}, {"carId": 12}, {"carId": 0}]}
+    }, {"identifiers":
+            {"accountId": 14}, 
+        "entityInformation":
+            {"cars": [{"carId": 98}, {"carId": 4}, {"carId": 56}, {"carId": 23}, {"carId": 12}, {"carId": 5}]}
+    }, {"identifiers":
+            {"accountId": 22}, 
+        "entityInformation":
+            {"cars": [{"carId": 98}, {"carId": 4}, {"carId": 56}, {"carId": 23}, {"carId": 12}, {"carId": 5}]}
+    }, {"identifiers":
+            {"accountId": 50}, 
+        "entityInformation":
+            {"cars": [{"carId": 98}, {"carId": 4}, {"carId": 56}, {"carId": 23}, {"carId": 12}, {"carId": 5}]}
+    }, {"identifiers":
+            {"accountId": 54}, 
+        "entityInformation":
+            {"cars": [{"carId": 98}, {"carId": 4}, {"carId": 56}, {"carId": 23}, {"carId": 12}, {"carId": 5}]}
+    }, {"identifiers":
+            {"accountId": 62}, 
+        "entityInformation":
+            {"cars": [{"carId": 98}, {"carId": 4}, {"carId": 56}, {"carId": 23}, {"carId": 12}, {"carId": 5}]}
+    }];
 } 
 export default Data;

@@ -17,7 +17,7 @@ class Shortlist {
 
             var shortlistsExists = false;
             Data.shortlists.forEach(shortlist => {
-                if (shortlist.identifiers.accountId == Data.currentUser) {
+                if (shortlist.identifiers.accountId == localStorage.getItem("currentUser")) {
                     // shortlist for this user exists
                     shortlistsExists = true;
                     // check if car has already been shortlisted
@@ -31,7 +31,7 @@ class Shortlist {
             if (!shortlistsExists) {
                 // create new shortlist for this user
                 Data.shortlists.push({
-                    "identifiers": {"accountId": Data.currentUser},
+                    "identifiers": {"accountId": localStorage.getItem("currentUser")},
                     "entityInformation":
                         {"cars": [{"carId": carId}]}
                 });
@@ -50,7 +50,7 @@ class Shortlist {
                 throw "Data could not be found";
             var shortlistsExists = false;
             for (var i = 0; i < Data.shortlists.length; i++) {
-                if (Data.shortlists[i].identifiers.accountId == Data.currentUser) {
+                if (Data.shortlists[i].identifiers.accountId == localStorage.getItem("currentUser")) {
                     shortlistsExists = true;
                     shortlistedCars = Data.shortlists[i].entityInformation.cars;
                     break;

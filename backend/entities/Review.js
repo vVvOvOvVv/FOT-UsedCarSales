@@ -24,7 +24,7 @@ class Review {
                     throw "No reviews found";
                 else {
                     for (var i = 0; i < Data.reviews.length; i++) {
-                        if (Data.reviews[i].identifiers.accountId == Data.currentUser) {
+                        if (Data.reviews[i].identifiers.accountId == localStorage.getItem("currentUser")) {
                             var accountR = Data.reviews[i].entityInformation.reviews;
                             if (accountR.length == 0 | accountR == null)
                                 throw "You do not have any reviews yet";
@@ -78,7 +78,7 @@ class Review {
                 throw "Data could not be found";
             var foundFlag = false;
             for (var i = 0; i < Data.reviews.length; i++) {
-                if (Data.currentUser == Data.reviews[i].identifiers.accountId) {
+                if (localStorage.getItem("currentUser") == Data.reviews[i].identifiers.accountId) {
                     reviews = Data.reviews[i].entityInformation.reviews;
                     foundFlag = true;
                     break
