@@ -35,22 +35,13 @@ class UserAccount {
                 "status": "active"
         }};
         try{
-            this.writeJSON(data);
+            Data.userAccounts.push(data);
         } catch (err) {
             isSuccess = false;
             throw err;
         } finally {
             return isSuccess;
         }
-    }
-
-    writeJSON(data) {  
-        // write data into JSON
-        try {
-            Data.userAccounts.push(data);
-        } catch (err) {  
-            throw "Unable to write to JSON"; 
-        } 
     }
 
     suspendUA(accountId) {

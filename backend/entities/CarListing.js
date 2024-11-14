@@ -43,7 +43,7 @@ class CarListing {
                 "status": status.toLowerCase(),
                 "views": 1}
             };
-            this.writeJSON(data)
+            Data.carListing.push(data)
         } catch (err) {
             successFlag = false;
             throw (err);
@@ -217,14 +217,6 @@ class CarListing {
             throw err; // propagate to boundary
         }
         return views;
-    }
-
-    writeJSON(data) {
-        try {
-            Data.carListing.push(data)
-        } catch (err) {
-            throw "Unable to write to JSON";
-        }
     }
 }
 

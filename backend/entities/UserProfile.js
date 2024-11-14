@@ -23,7 +23,7 @@ class UserProfile{
                 "status": "active"
         }}
         try {
-            this.writeJSON(data);   
+            Data.userProfiles.push(data);  
         } catch (err) {  
             isSuccess = false; 
             throw err;
@@ -108,15 +108,6 @@ class UserProfile{
             throw err;
         }
         return profile;
-    }
-
-    writeJSON(data) {  
-        // write data into JSON
-        try {
-            Data.userProfiles.push(data);
-        } catch (err) {  
-            throw "Unable to write to JSON"; 
-        } 
     }
 } 
 export default UserProfile;
