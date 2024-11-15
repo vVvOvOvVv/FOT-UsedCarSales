@@ -1,4 +1,3 @@
-import Data from "../data/Data.js" 
 /* example structure ===================================
 static carListing = [
         {"identifiers":
@@ -16,17 +15,15 @@ static carListing = [
 */
 
 class CarListing {
-    static lastCarId = 100; // carListing with id 0 already exists in Data
-    
     init() { 
-        if (CarListing.lastCarId == null)
-            CarListing.lastCarId = 100;
+        if (localStorage.getItem("nextCarId") == null)
+            localStorage.setItem("nextCarId", 100);
     }
 
     submitCL(brand, model, mileage, year, price, seller, agent, status) {
         this.init();
         var successFlag = true;
-        var carId = CarListing.lastCarId++;
+        var carId = localStorage.getItem("nextCarId");
 
         try {
             var data = {
@@ -36,14 +33,17 @@ class CarListing {
                 {"brand": brand,
                 "model": model,
                 "mileage": mileage,
-                "year manufactured": year,
+                "year": year,
                 "price": price,
                 "carSeller": seller,
                 "carAgent": agent,
                 "status": status.toLowerCase(),
                 "views": 1}
             };
-            Data.carListing.push(data)
+            localStorage.setItem("nextCarId", carId++);
+            var savedData = JSON.parse(localStorage.getItem("carListing"));
+            savedData.push(data)
+            localStorage.setItem("carListing", JSON.stringify(savedData));
         } catch (err) {
             successFlag = false;
             throw (err);
@@ -55,12 +55,13 @@ class CarListing {
         var cars = [];
 
         try {
-            if (Data.carListing == null)
+            var data = JSON.parse(localStorage.getItem("carListing"));
+            if (data == null)
                 throw "Data could not be found"
             else {
-                for (var i = 0; i < Data.carListing.length; i++) {
-                    if (Data.carListing[i].entityInformation.carAgent == localStorage.getItem("currentUser"))
-                        cars.push(Data.carListing[i]);
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].entityInformation.carAgent == localStorage.getItem("currentUser"))
+                        cars.push(data[i]);
                 }
             }
         } catch (err) {
@@ -72,13 +73,14 @@ class CarListing {
     updateCL(carId, brand, model, mileage, year, price, seller, agent, status) {
         try {
             var foundFlag = false;
-            if (Data.carListing == null)
+            var data = JSON.parse(localStorage.getItem("carListing"));
+            if (data == null)
                 throw "Data could not be found";
             else { // search for car withID carId
-                for (var i = 0; i < Data.carListing.length; i++) {
-                    if (Data.carListing[i].identifiers.carId == carId.toString()) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].identifiers.carId == carId.toString()) {
                         foundFlag = true;
-                        var carData = Data.carListing[i];
+                        var carData = data[i];
                         // change  - only if values aren't empty
                         if (brand == "" & model == "" & mileage == "" &
                             year == "" & price == "" & seller == "" &
@@ -107,6 +109,8 @@ class CarListing {
                         
                         if (status != "" & status != null)
                             carData.entityInformation.status = status;
+                        data[i] = carData;
+                        localStorage.setItem("carListing", JSON.stringify(data));
                         return true;
                     }
                 }
@@ -121,12 +125,14 @@ class CarListing {
 
     deleteCL(carId) {
         var successFlag = false;
+        var data = JSON.parse(localStorage.getItem("carListing"));
         try {
-            if (Data.carListing == null)
+            if (data == null)
                 throw "Data could not be found";
-            for (var i = 0; i < Data.carListing.length; i++) {
-                if (Data.carListing[i].identifiers.carId == carId) {
-                    Data.carListing.splice(i, 1);
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].identifiers.carId == carId) {
+                    data.splice(i, 1);
+                    localStorage.setItem("carListing", JSON.stringify(data));
                     successFlag = true;
                 }
             }
@@ -141,13 +147,15 @@ class CarListing {
     getCarDetails(carId) {
         var car;
         var successFlag = false;
+        var data = JSON.parse(localStorage.getItem("carListing"));
         try {
-            if (Data.carListing == null)
+            if (data== null)
                 throw "Data could not be found";
-            for (var i = 0; i < Data.carListing.length; i++) {
-                if (Data.carListing[i].identifiers.carId == carId) { 
-                    car = JSON.stringify(Data.carListing[i]);
-                    Data.carListing[i].entityInformation.views++;
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].identifiers.carId == carId) { 
+                    car = JSON.stringify(data[i]);
+                    data[i].entityInformation.views++;
+                    localStorage.setItem("carListing", JSON.stringify(data));
                     successFlag = true;
                 }
             }
@@ -161,12 +169,13 @@ class CarListing {
 
     searchUC() {
         var cars;
+        var data = JSON.parse(localStorage.getItem("carListing"));
         try {
-            if (Data.carListing == null)
+            if (data == null)
                 throw "Data could not be found";
-            if (Data.carListing.length == 0)
+            if (data.length == 0)
                 throw "No cars in the database";
-            cars = Data.carListing;
+            cars = data;
         } catch (err) {
             throw err; // propagate to boundary
         }
@@ -175,16 +184,17 @@ class CarListing {
 
     calculateL(carId) {
         var price;
+        var data = JSON.parse(localStorage.getItem("carListing"));
         var successFlag = false;
         try {
-            if (Data.carListing == null)
+            if (data == null)
                 throw "Data could not be found";
-            if (Data.carListing.length == 0)
+            if (data.length == 0)
                 throw "No cars in the database";
-            for (var i = 0; i < Data.carListing.length; i++) {
-                if (Data.carListing[i].identifiers.carId == carId) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].identifiers.carId == carId) {
                     successFlag = true;
-                    price = Data.carListing[i].entityInformation.price;
+                    price = data[i].entityInformation.price;
                     break;
                 }
             }
@@ -198,14 +208,15 @@ class CarListing {
 
     getViews(carId) {
         try {
+            var data = JSON.parse(localStorage.getItem("carListing"));
             var views;
-            if (Data.carListing == null)
+            if (data == null)
                 throw "Data could not be found";
-            if (Data.carListing.length == 0)
+            if (data.length == 0)
                 throw "No cars in the database";
             var foundFlag = false;
-            for (var i = 0; i < Data.carListing.length; i++) {
-                var car = Data.carListing[i];
+            for (var i = 0; i < data.length; i++) {
+                var car = data[i];
                 if (car.identifiers.carId == carId) {
                     foundFlag = true;
                     views = car.entityInformation.views;

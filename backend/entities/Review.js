@@ -1,4 +1,3 @@
-import Data from "../data/Data.js" 
 /* example structure ===================================
 static reviews = [
         {"identifiers":
@@ -16,16 +15,17 @@ static reviews = [
 class Review {
     searchR(brand) {
         var reviews = [];
+        var data = JSON.parse(localStorage.getItem("reviews"));
         try {
-            if (Data.reviews == null)
+            if (data == null)
                 throw "Data could not be found";
             else {
-                if (Data.reviews.length == 0)
+                if (data.length == 0)
                     throw "No reviews found";
                 else {
-                    for (var i = 0; i < Data.reviews.length; i++) {
-                        if (Data.reviews[i].identifiers.accountId == localStorage.getItem("currentUser")) {
-                            var accountR = Data.reviews[i].entityInformation.reviews;
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].identifiers.accountId == localStorage.getItem("currentUser")) {
+                            var accountR = data[i].entityInformation.reviews;
                             if (accountR.length == 0 | accountR == null)
                                 throw "You do not have any reviews yet";
                             else {
@@ -44,8 +44,9 @@ class Review {
 
     submitR(accountId, brand, rating, review) {
         try {
+            var rData = JSON.parse(localStorage.getItem("reviews"));
             var successFlag = false;
-            if (Data.reviews == null)
+            if (rData == null)
                 throw "Data could not be found";
             // form data set
             var data = {"carBrand": brand,
@@ -53,16 +54,18 @@ class Review {
                 "review": review}
             // first check if agent has any registered reviews
             var alreadyRegistered = false;
-            for (var i = 0; i < Data.reviews.length; i++) {
-                if (Data.reviews[i].identifiers.accountId == accountId) {
+            for (var i = 0; i < rData.length; i++) {
+                if (rData[i].identifiers.accountId == accountId) {
                     alreadyRegistered = true;
                     successFlag = true;
-                    Data.reviews[i].entityInformation.reviews.push(data);
+                    rData[i].entityInformation.reviews.push(data);
+                    localStorage.setItem("reviews", JSON.stringify(rData));
                 }
             }
             if (!alreadyRegistered) { // create registry
-                Data.reviews.push({"identifiers": {"accountId": accountId},
+                rData.push({"identifiers": {"accountId": accountId},
                 "entityInformation": {"reviews": [data]}});
+                localStorage.setItem("reviews", JSON.stringify(rData));
                 successFlag = true;
             }
         } catch (err) {
@@ -73,13 +76,14 @@ class Review {
 
     viewR() {
         var reviews;
+        var data = JSON.parse(localStorage.getItem("reviews"));
         try {
-            if (Data.reviews == null)
+            if (data == null)
                 throw "Data could not be found";
             var foundFlag = false;
-            for (var i = 0; i < Data.reviews.length; i++) {
-                if (localStorage.getItem("currentUser") == Data.reviews[i].identifiers.accountId) {
-                    reviews = Data.reviews[i].entityInformation.reviews;
+            for (var i = 0; i < data.length; i++) {
+                if (localStorage.getItem("currentUser") == data[i].identifiers.accountId) {
+                    reviews = data[i].entityInformation.reviews;
                     foundFlag = true;
                     break
                 }

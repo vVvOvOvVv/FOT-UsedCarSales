@@ -93,14 +93,7 @@
                 <form>
                     <div>
                         <label for="profile">Choose a profile to suspend:</label>
-                        <select id="profile" name="profile" style="border: none;" required>
-                            <option value="" disabled selected></option>
-                            <!-- Other selectable options -->
-                            <option value="UserAdmin">User Admin</option>
-                            <option value="Buyer">Buyer</option>
-                            <option value="Seller">Seller</option> 
-                            <option value="UsedCarAgent">Used Car Agent</option>
-                        </select>      
+                        <select id="profile" name="profile" style="border: none;" required></select>      
                     </div><br/>
 
                     <button class="button" id="suspend" type="button">Suspend</button>
@@ -111,4 +104,15 @@
         <center><a href="AdminHomePage.html"><button class="button">Back</button></a></center>
 
     </body>
+
+    <!--Update dropdown menu-->
+    <script type="module">
+        var data = JSON.parse(localStorage.getItem("userProfiles"));
+
+        var dropdown = document.getElementById("profile");
+        data.forEach(profile => {
+            dropdown.innerHTML += 
+            `<option value="${profile.identifiers.profileId}">${profile.entityInformation.role}</option>`;
+        });
+    </script>
 </html>

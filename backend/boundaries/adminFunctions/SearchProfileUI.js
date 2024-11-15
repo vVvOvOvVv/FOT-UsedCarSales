@@ -20,10 +20,10 @@ class SearchProfileUI extends Boundary {
                 var text = document.createTextNode(`Profile ID: ${profile.identifiers.profileId}`);
                 idItem.appendChild(text);
                 var roleItem = document.createElement("li");
-                var text = document.createTextNode(`Profile ID: ${profile.entityInformation.role}`);
+                var text = document.createTextNode(`Profile name/role: ${profile.entityInformation.role}`);
                 roleItem.appendChild(text);
                 var descItem = document.createElement("li");
-                var text = document.createTextNode(`Profile ID: ${profile.entityInformation.roleDescription}`);
+                var text = document.createTextNode(`Role description: ${profile.entityInformation.roleDescription}`);
                 descItem.appendChild(text);
                 // append to list
                 ulItem.appendChild(idItem);

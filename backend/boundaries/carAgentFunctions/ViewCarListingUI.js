@@ -31,23 +31,23 @@ class ViewCarListingUI extends Boundary {
                 modelItem.appendChild(text);
                 // mileage
                 var mileItem = document.createElement("li");
-                text = document.createTextNode(`Model: ${cars[i].entityInformation.mileage}`);
+                text = document.createTextNode(`Mileage: ${cars[i].entityInformation.mileage}`);
                 mileItem.appendChild(text);
                 // manufacturing year
                 var yrItem = document.createElement("li");
-                text = document.createTextNode(`Model: ${cars[i].entityInformation.year}`);
+                text = document.createTextNode(`Year manufactured: ${cars[i].entityInformation.year}`);
                 yrItem.appendChild(text);
                 // price
                 var priceItem = document.createElement("li");
-                text = document.createTextNode(`Model: ${cars[i].entityInformation.price}`);
+                text = document.createTextNode(`Price (SGD): ${cars[i].entityInformation.price}`);
                 priceItem.appendChild(text);
                 // seller
                 var sellerItem = document.createElement("li");
-                text = document.createTextNode(`Model: ${cars[i].entityInformation.carSeller}`);
+                text = document.createTextNode(`Seller ID: ${cars[i].entityInformation.carSeller}`);
                 sellerItem.appendChild(text);
                 // model
                 var agentItem = document.createElement("li");
-                text = document.createTextNode(`Model: ${cars[i].entityInformation.carAgent}`);
+                text = document.createTextNode(`Agent ID: ${cars[i].entityInformation.carAgent}`);
                 agentItem.appendChild(text);
                 // append to the list
                 list.appendChild(brandItem);

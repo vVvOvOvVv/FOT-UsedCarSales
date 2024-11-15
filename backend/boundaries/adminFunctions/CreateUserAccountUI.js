@@ -32,7 +32,7 @@ class CreateUserAccountUI extends Boundary {
                 throw "Password cannot be empty"
             // attempt to write to JSON
             var controller = new SubmitUserAccountController();
-            submitState = controller.submitUserAccount(name, email, pass);
+            submitState = controller.submitUserAccount(name, profile, email, pass);
         } catch (err) { // errors from the controller or entity
             submitState = false;
             this.displayError(err);

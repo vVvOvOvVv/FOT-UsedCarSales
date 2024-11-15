@@ -1,18 +1,16 @@
-import Data from "../data/Data.js" 
-
-class UserProfile{   
-    static lastProfileId = 1;
-    
+class UserProfile {   
     init() { 
-        if (UserProfile.lastProfileId == null)
-            UserProfile.lastProfileId = 1;
+        if (localStorage.getItem("nextProfileId") == null)
+            localStorage.setItem("nextProfileId", 4);
     }
 
     submitUP(role, roleDesc) {
         this.init();
         // attempt to enter into the JSON 
         var isSuccess = true;
-        var profileId = UserProfile.lastProfileId++;
+        var profileId = localStorage.getItem("nextProfileId");
+        localStorage.setItem("nextProfileId", profileId++);
+        var profileData = JSON.parse(localStorage.getItem("userProfiles"));
 
         var data = { 
             "identifiers": 
@@ -23,7 +21,8 @@ class UserProfile{
                 "status": "active"
         }}
         try {
-            Data.userProfiles.push(data);  
+            profileData.push(data);  
+            localStorage.setItem("userProfiles", JSON.stringify(profileData));
         } catch (err) {  
             isSuccess = false; 
             throw err;
@@ -33,28 +32,36 @@ class UserProfile{
     } 
 
     getProfiles() {
-        if (Data.userProfiles == null)
+        var data = JSON.parse(localStorage.getItem("userProfiles"));
+        if (data == null)
                 return null;
         else
-            return Data.userProfiles;
+            return data;
     }
 
     updateUP(profileId, role, roleDesc) {
         var profile;
         var successFlag = true;
-        for (var i = 0; i < Data.userProfiles.length; i++) {
-            if (profileId == Data.userProfiles[i].identifiers.profileId) {
-                profile = Data.userProfiles[i];
+        var data = JSON.parse(localStorage.getItem("userProfiles"));
+        var idx;
+        if (data == null)
+            throw "Data could not be found";
+        for (var i = 0; i < data.length; i++) {
+            if (profileId == data[i].identifiers.profileId) {
+                profile = data[i];
+                idx = i;
                 break;
             }
         }
 
         try {
-            if (profile != null) {
+            if (profile != null & idx != null) {
                 if (role != "")
                     profile.entityInformation.role = role;
                 if (roleDesc != "")
                     profile.entityInformation.roleDescription = roleDesc;
+                data[idx] = profile;
+                localStorage.setItem("userProfiles", JSON.stringify(data));
             } else
                 throw `Profile with ID ${profileId} could not be found`;
         } catch (err) {
@@ -67,19 +74,25 @@ class UserProfile{
     suspendUP(profileId) {
         var profile;
         var successFlag = true;
-        for (var i = 0; i < Data.userProfiles.length; i++) {
-            if (profileId == Data.userProfiles[i].identifiers.profileId) {
-                profile = Data.userProfiles[i];
+        var data = JSON.parse(localStorage.getItem("userProfiles"));
+        var idx;
+        for (var i = 0; i < data.length; i++) {
+            if (profileId == data[i].identifiers.profileId) {
+                profile = data[i];
+                idx = i;
                 break;
             }
         }
 
         try {
-            if (profile != null) {
+            if (profile != null & idx != null) {
                 if (profile.entityInformation.status == "suspended")
                     throw `Profile with ID ${profileId} is already suspended`;
-                else
+                else {
                     profile.entityInformation.status = "suspended";
+                    data[idx] = profile;
+                    localStorage.setItem("userProfiles", JSON.stringify(data));
+                }
             } else
                 throw `Profile with ID ${profileId} could not be found`;
         } catch (err) {
@@ -91,13 +104,14 @@ class UserProfile{
 
     searchProfile(profileId) {
         var profile;
+        var data = JSON.parse(localStorage.getItem("userProfiles"));
         try {
-            if (Data.userAccounts == null)
+            if (data == null)
                 throw "Profile data missing"
             else {
-                for (var i = 0; i < Data.userProfiles.length; i++) {
-                    if (Data.userProfiles[i].identifiers.profileId == profileId) {
-                        profile = Data.userProfiles[i];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].identifiers.profileId == profileId) {
+                        profile = data[i];
                         break;
                     }
                 }

@@ -132,7 +132,7 @@ static userAccounts = [
     {"identifiers": {"accountId": 87},	"entityInformation": {"name": "Colin",	"profileId": 3,	"email": "colin87@gmail.com",	"password": "a87",	"status": "active"}},	
     {"identifiers": {"accountId": 91},	"entityInformation": {"name": "Lars",	"profileId": 3,	"email": "lars91@gmail.com",	"password": "a91",	"status": "active"}},	
     {"identifiers": {"accountId": 95},	"entityInformation": {"name": "Otis",	"profileId": 3,	"email": "otis95@gmail.com",	"password": "a95",	"status": "active"}},	
-    {"identifiers": {"accountId": 99},	"entityInformation": {"name": "Gus",	"profileId": 3,	"email": "gus99@gmail.com",	"password": "a99",	"status": "active"},	
+    {"identifiers": {"accountId": 99},	"entityInformation": {"name": "Gus",	"profileId": 3,	"email": "gus99@gmail.com",	"password": "a99",	"status": "active"}	
 }];
 
     static carListing = [

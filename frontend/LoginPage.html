@@ -41,6 +41,24 @@
     </style>
   </head>
 
+  <script type="module">
+    import Data from "../backend/data/Data.js"
+    // localStorage.clear();
+
+    // store initial data
+    if (localStorage.getItem("userProfiles") == null)
+      localStorage.setItem("userProfiles", JSON.stringify(Data.userProfiles));
+    if (localStorage.getItem("userAccounts") == null)
+      localStorage.setItem("userAccounts", JSON.stringify(Data.userAccounts));
+    if (localStorage.getItem("reviews") == null)
+      localStorage.setItem("reviews", JSON.stringify(Data.reviews));
+    if (localStorage.getItem("carListing") == null)
+      localStorage.setItem("carListing", JSON.stringify(Data.carListing));
+    if (localStorage.getItem("shortlists") == null)
+      localStorage.setItem("shortlists", JSON.stringify(Data.shortlists));
+    console.log(localStorage.getItem("reviews"));
+  </script>
+
   <body>
     <h1 style="margin-top: 30px; color:orangered;"><center>Car Sales System</center></h1><br/>
     <div class="container-fluid">

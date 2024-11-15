@@ -28,10 +28,14 @@ class ViewProfileUI extends Boundary {
                         var desc = document.createElement("p");
                         text = document.createTextNode(profileArray[i].entityInformation.roleDescription);
                         desc.appendChild(text);
+                        var status = document.createElement("p");
+                        text = document.createTextNode(profileArray[i].entityInformation.status);
+                        status.appendChild(text);
                         // append to div
                         divItem.appendChild(role);
                         divItem.appendChild(id);
                         divItem.appendChild(desc);
+                        divItem.appendChild(status);
                         // add to page
                         container[0].appendChild(divItem);
                     }

@@ -1,4 +1,3 @@
-import Data from "../data/Data.js" 
 /* example structure ===================================
 static shortlists = [
         {"identifiers":
@@ -12,11 +11,12 @@ class Shortlist {
     saveUsedCar(carId) {
         try {
             var successFlag = true;
-            if (Data.shortlists == null)
+            var data = JSON.parse(localStorage.getItem("shortlists"));
+            if (data == null)
                 throw "Data could not be found";
 
             var shortlistsExists = false;
-            Data.shortlists.forEach(shortlist => {
+            data.forEach(shortlist => {
                 if (shortlist.identifiers.accountId == localStorage.getItem("currentUser")) {
                     // shortlist for this user exists
                     shortlistsExists = true;
@@ -30,12 +30,13 @@ class Shortlist {
             });
             if (!shortlistsExists) {
                 // create new shortlist for this user
-                Data.shortlists.push({
+                data.push({
                     "identifiers": {"accountId": localStorage.getItem("currentUser")},
                     "entityInformation":
                         {"cars": [{"carId": carId}]}
                 });
             }
+            localStorage.setItem("shortlists", JSON.stringify(data));
         } catch (err) {
             successFlag = false;
             throw err; // propagate to boundary
@@ -46,13 +47,14 @@ class Shortlist {
     getShortlist() {
         try {
             var shortlistedCars;
-            if (Data.shortlists == null)
+            var data = JSON.parse(localStorage.getItem("shortlists"));
+            if (data == null)
                 throw "Data could not be found";
             var shortlistsExists = false;
-            for (var i = 0; i < Data.shortlists.length; i++) {
-                if (Data.shortlists[i].identifiers.accountId == localStorage.getItem("currentUser")) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].identifiers.accountId == localStorage.getItem("currentUser")) {
                     shortlistsExists = true;
-                    shortlistedCars = Data.shortlists[i].entityInformation.cars;
+                    shortlistedCars = data[i].entityInformation.cars;
                     break;
                 }
             }
@@ -67,9 +69,10 @@ class Shortlist {
     getNumOfShortlists(carId) {
         try {
             var num = 0;
-            if (Data.shortlists == null)
+            var data = JSON.parse(localStorage.getItem("shortlists"));
+            if (data == null)
                 throw "Data could not be found";
-            Data.shortlists.forEach(shortlist => {
+            data.forEach(shortlist => {
                 shortlist.entityInformation.cars.forEach(car => {
                     if (car.carId == carId)
                         num++;
