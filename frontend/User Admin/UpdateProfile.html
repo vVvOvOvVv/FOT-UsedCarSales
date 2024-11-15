@@ -3,7 +3,7 @@
     <head>
         <title>Update User Profile</title>
 
-        <!-- boostrap1 css1 js1 -->
+        <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 
         <style>
@@ -83,6 +83,16 @@
         </style>
     </head> 
 
+    <script type="module">
+        var data = JSON.parse(localStorage.getItem("userProfiles"));
+
+        var dropdown = document.getElementById("profile");
+        data.forEach(profile => {
+            dropdown.innerHTML += 
+            `<option value="${profile.identifiers.profileId}">${profile.entityInformation.role}</option>`;
+        });
+    </script>
+
     <script type="module" src="../../backend/boundaries/adminFunctions/UpdateUserProfileUI.js"></script>
     <script type="module" src="../../backend/boundaries/adminFunctions/LogoutUserUI.js"></script>
   
@@ -92,7 +102,7 @@
                 <span style="color:white">User Admin</span>
             </div>
             <div id="logout">
-                <a href="../LoginPage.html" style="text-decoration-color: white; text-decoration: none;"><span style="color:white; ">Logout</span></a>
+                <a href="../LoginPage.html" style="text-decoration-color: white; text-decoration: none;"><span style="color:white;">Logout</span></a>
             </div>
         </div>
 
@@ -104,15 +114,11 @@
                         <label for="profile">Choose a profile:</label>
                         <select id="profile" name="profile" style="border: none;" required>
                             <option value="" disabled selected></option>
-                            <!-- Other selectable options -->
-                            <option value="0">User Admin</option>
-                            <option value="1">Buyer</option>
-                            <option value="2">Seller</option> 
-                            <option value="3">Used Car Agent</option>
+                            <!-- The profile options will be dynamically populated from localStorage -->
                         </select>
                     </div><br/>
 
-                    <b>Update the followings of the selected profile:</b><br/>
+                    <b>Update the following of the selected profile:</b><br/>
                     <label for="role">Role name</label><br/>
                     <input type="text" id="role" placeholder="Eg. buyer, seller" /><br/><br/>
 
