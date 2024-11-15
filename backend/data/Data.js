@@ -1834,25 +1834,8 @@ static userAccounts = [
                         "review": "Quick to respond and very friendly!"
                     },
                     {
-                        "carBrand": "mazda",
-                        "rating": 4.5,
-                        "review": "Very friendly"
-                    }
-                ]
-            }
-        },
-        {
-            "identifiers": { "accountId": 3 },
-            "entityInformation": {
-                "reviews": [
-                    {
                         "carBrand": "toyota",
-                        "rating": 5,
-                        "review": "Quick to respond and very friendly!"
-                    },
-                    {
-                        "carBrand": "mazda",
-                        "rating": 5,
+                        "rating": 4.5,
                         "review": "Very friendly"
                     }
                 ]
@@ -1864,6 +1847,23 @@ static userAccounts = [
                 "reviews": [
                     {
                         "carBrand": "honda",
+                        "rating": 5,
+                        "review": "Quick to respond and very friendly!"
+                    },
+                    {
+                        "carBrand": "honda",
+                        "rating": 5,
+                        "review": "Very friendly"
+                    }
+                ]
+            }
+        },
+        {
+            "identifiers": { "accountId": 71 },
+            "entityInformation": {
+                "reviews": [
+                    {
+                        "carBrand": "mazda",
                         "rating": 4,
                         "review": "Great experience!"
                     },
@@ -1876,16 +1876,16 @@ static userAccounts = [
             }
         },
         {
-            "identifiers": { "accountId": 71 },
+            "identifiers": { "accountId": 75 },
             "entityInformation": {
                 "reviews": [
                     {
-                        "carBrand": "mazda",
+                        "carBrand": "bmw",
                         "rating": 4.8,
                         "review": "Amazing customer service!"
                     },
                     {
-                        "carBrand": "mercedes",
+                        "carBrand": "bmw",
                         "rating": 5,
                         "review": "Highly recommend!"
                     }
@@ -1893,11 +1893,11 @@ static userAccounts = [
             }
         },
         {
-            "identifiers": { "accountId": 75 },
+            "identifiers": { "accountId": 79 },
             "entityInformation": {
                 "reviews": [
                     {
-                        "carBrand": "bmw",
+                        "carBrand": "mercedes",
                         "rating": 3.9,
                         "review": "Satisfied with the service."
                     },
@@ -1910,16 +1910,16 @@ static userAccounts = [
             }
         },
         {
-            "identifiers": { "accountId": 79 },
+            "identifiers": { "accountId": 83 },
             "entityInformation": {
                 "reviews": [
                     {
-                        "carBrand": "mercedes",
+                        "carBrand": "kia",
                         "rating": 4.6,
                         "review": "Friendly and knowledgeable staff"
                     },
                     {
-                        "carBrand": "hyundai",
+                        "carBrand": "kia",
                         "rating": 4.1,
                         "review": "Pleasant experience"
                     }
@@ -1927,11 +1927,11 @@ static userAccounts = [
             }
         },
         {
-            "identifiers": { "accountId": 83 },
+            "identifiers": { "accountId": 87 },
             "entityInformation": {
                 "reviews": [
                     {
-                        "carBrand": "kia",
+                        "carBrand": "hyundai",
                         "rating": 5,
                         "review": "Luxury treatment!"
                     },
@@ -1944,11 +1944,11 @@ static userAccounts = [
             }
         },
         {
-            "identifiers": { "accountId": 87 },
+            "identifiers": { "accountId": 91 },
             "entityInformation": {
                 "reviews": [
                     {
-                        "carBrand": "hyundai",
+                        "carBrand": "nissan",
                         "rating": 4.7,
                         "review": "Amazing experience!"
                     },
@@ -1961,35 +1961,18 @@ static userAccounts = [
             }
         },
         {
-            "identifiers": { "accountId": 91 },
-            "entityInformation": {
-                "reviews": [
-                    {
-                        "carBrand": "nissan",
-                        "rating": 4.9,
-                        "review": "Top-notch service!"
-                    },
-                    {
-                        "carBrand": "nissan",
-                        "rating": 4.8,
-                        "review": "Highly recommended!"
-                    }
-                ]
-            }
-        },
-        {
             "identifiers": { "accountId": 95 },
             "entityInformation": {
                 "reviews": [
                     {
                         "carBrand": "suzuki",
-                        "rating": 4.4,
-                        "review": "Very satisfied"
+                        "rating": 4.9,
+                        "review": "Top-notch service!"
                     },
                     {
-                        "carBrand": "porsche",
-                        "rating": 4.6,
-                        "review": "Would come again"
+                        "carBrand": "suzuki",
+                        "rating": 4.8,
+                        "review": "Highly recommended!"
                     }
                 ]
             }
@@ -2000,17 +1983,18 @@ static userAccounts = [
                 "reviews": [
                     {
                         "carBrand": "porsche",
-                        "rating": 4.2,
-                        "review": "Excellent service"
+                        "rating": 4.4,
+                        "review": "Very satisfied"
                     },
                     {
                         "carBrand": "porsche",
-                        "rating": 4.0,
-                        "review": "Friendly atmosphere"
+                        "rating": 4.6,
+                        "review": "Would come again"
                     }
                 ]
             }
         }
+        
     ];
     
     static shortlists = [
