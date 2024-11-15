@@ -40,7 +40,7 @@ class CarListing {
                 "status": status.toLowerCase(),
                 "views": 1}
             };
-            localStorage.setItem("nextCarId", carId++);
+            localStorage.setItem("nextCarId", ++carId);
             var savedData = JSON.parse(localStorage.getItem("carListing"));
             savedData.push(data)
             localStorage.setItem("carListing", JSON.stringify(savedData));

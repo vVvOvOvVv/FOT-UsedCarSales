@@ -9,7 +9,6 @@ class UserProfile {
         // attempt to enter into the JSON 
         var isSuccess = true;
         var profileId = localStorage.getItem("nextProfileId");
-        localStorage.setItem("nextProfileId", profileId++);
         var profileData = JSON.parse(localStorage.getItem("userProfiles"));
 
         var data = { 
@@ -20,6 +19,7 @@ class UserProfile {
                 "roleDescription": roleDesc,
                 "status": "active"
         }}
+        localStorage.setItem("nextProfileId", ++profileId);
         try {
             profileData.push(data);  
             localStorage.setItem("userProfiles", JSON.stringify(profileData));

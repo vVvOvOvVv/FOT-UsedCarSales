@@ -33,7 +33,7 @@ class UserAccount {
                 "password": password,
                 "status": "active"
         }};
-        localStorage.setItem("nextUserId", accountId++);
+        localStorage.setItem("nextUserId", ++accountId);
         try{
             accData.push(data);
             localStorage.setItem("userAccounts", JSON.stringify(accData));
